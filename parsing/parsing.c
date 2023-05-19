@@ -18,12 +18,17 @@ void	read_file_to_content(char *file, char **content)
 		free(line);
 		free(tmp);
 	}
+	printf("%s\n", *content);
 	close(fd);
 }
 
 void parser(char *file)
 {
 	char	*content;
+	int		skip;
 
 	read_file_to_content(file, &content);
+	skip = set_elements(content);
+	get_map(content);
+	free(content);
 }
