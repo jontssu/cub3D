@@ -17,9 +17,12 @@ typedef struct s_parser
 }	t_parser;
 
 //Parser
-void	parser(char *file);
-int		set_elements(char **split);
+int	parser(char *file, t_parser *elements);
+int	set_elements(char **split, t_parser *elements);
 
 //Error handling
 int	error_argument_count(void);
+
+//Helpers
+void	free_double_pointer(char **array);
 #endif
