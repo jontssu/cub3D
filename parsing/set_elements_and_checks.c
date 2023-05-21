@@ -52,6 +52,7 @@ int	set_elements(char **split, t_parser *elements)
 			set_int_array(&split[i][1], elements->floor);
 		else if (split[i][0] == 'C' && ft_isdigit(split[i][1]))
 			set_int_array(&split[i][1], elements->ceiling);
+		printf("IM HERE\n");
 	}
 	return (0);
 }
