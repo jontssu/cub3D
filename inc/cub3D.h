@@ -7,17 +7,18 @@
 
 typedef struct s_parser
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	int		F[3];
-	int		C[3];
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		floor[3];
+	int		ceiling[3];
 	char	**map;
 }	t_parser;
 
 //Parser
 void	parser(char *file);
+int		set_elements(char **split);
 
 //Error handling
 int	error_argument_count(void);
