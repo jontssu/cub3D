@@ -8,7 +8,7 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 #Flags
-FLAGS = -Wall -Werror -Wextra -g 
+FLAGS = -Wall -Werror -Wextra -I includes -g 
 
 #Direcory locations
 PARSER_DIR = parsing/
@@ -34,8 +34,8 @@ $(LIB):
 	@echo "$(COLOUR_GREEN)libft compilation completed$(COLOUR_END)"
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	# @cc $(FLAGS) $(OBJS) -o $@ -L ./libft -lft
-	@cc $(FLAGS) $(OBJS) -o $@
+	# @cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
+	@cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@
 	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR):
