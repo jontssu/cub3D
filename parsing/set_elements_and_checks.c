@@ -1,5 +1,20 @@
 #include "cub3d.h"
 
+void	check_config_file_name(char *file)
+{
+	int	len;
+
+	len = ft_strlen(file);
+	if (file[len - 1] == 'b' && file[len - 2] == 'u' && \
+	file[len - 3] == 'c' && file[len - 4] == '.')
+	{
+		len = open(file, O_RDONLY);
+		if (len != -1)
+			return;
+	}
+	error_cub_file();
+}
+
 void	set_int_array(char *str, int *int_arr)
 {
 	char	**split;
@@ -37,7 +52,6 @@ int	set_elements(char **split, t_parser *elements)
 			set_int_array(&split[i][1], elements->floor);
 		else if (split[i][0] == 'C' && ft_isdigit(split[i][1]))
 			set_int_array(&split[i][1], elements->ceiling);
-		printf("IM HERE\n");
 	}
 	return (0);
 }

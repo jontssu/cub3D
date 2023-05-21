@@ -6,6 +6,13 @@ int	error_argument_count(void)
 	return (1);
 }
 
+void	error_cub_file(void)
+{
+	write(2, "Error\nInvalid config file\n", 26);
+	//free
+	exit(-1);
+}
+
 void	error_in_colors(void)
 {
 	write(2, "Error\nInvalid colors\n", 21);

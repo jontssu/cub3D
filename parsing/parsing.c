@@ -73,7 +73,7 @@ int	parser(char *file, t_parser *elements)
 	char	*content;
 	char	**split;
 
-	//filename check .cub
+	check_config_file_name(file);
 	read_file_to_content(file, &content);
 	split = ft_split(content, '\n');	
 	split = remove_spaces_from_elements(split);
