@@ -19,3 +19,10 @@ void	error_in_path(void)
 	//free
 	exit(-1);
 }
+
+void	error_no_color_setting(void)
+{
+	write(2, "Error\nMissing color setting\n", 28);
+	//free
+	exit(-1);
+}
