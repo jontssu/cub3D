@@ -22,7 +22,7 @@ void	error_in_colors(void)
 
 void	error_in_path(void)
 {
-	write(2, "Error\nIncorrect path\n", 21);
+	write(2, "Error\nIncorrect path for elements\n", 34);
 	//free
 	exit(-1);
 }
