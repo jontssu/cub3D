@@ -6,8 +6,14 @@ void	set_int_array(char *str, int *int_arr)
 
 	split = ft_split(str, ',');
 	int_arr[0] = ft_atoi(split[0]);
+	if (int_arr[0] > 255 || int_arr[0] < 0)
+		error_in_colors();
 	int_arr[1] = ft_atoi(split[1]);
+	if (int_arr[1] > 255 || int_arr[1] < 0)
+		error_in_colors();
 	int_arr[2] = ft_atoi(split[2]);
+	if (int_arr[2] > 255 || int_arr[2] < 0)
+		error_in_colors();
 	free_double_pointer(split);
 }
 
@@ -34,7 +40,19 @@ int	set_elements(char **split, t_parser *elements)
 	return (0);
 }
 
-int	check_elements(t_parser *elements)
+void	check_path(char *path)
 {
-	return (0);
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		error_in_path();
+}
+
+void	check_elements(t_parser *elements)
+{
+	check_path(elements->north);
+	check_path(elements->south);
+	check_path(elements->west);
+	check_path(elements->east);
 }

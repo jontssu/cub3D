@@ -78,7 +78,7 @@ int	parser(char *file, t_parser *elements)
 	split = ft_split(content, '\n');	
 	split = remove_spaces_from_elements(split);
 	set_elements(split, elements);
-	check_elements(elements)
+	check_elements(elements);
 	//get_map(content);
 	//int i = 0;
 	//while (split[i])
