@@ -11,8 +11,8 @@ typedef struct s_parser
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor[3];
-	int		ceiling[3];
+	int		floor[4];
+	int		ceiling[4];
 	char	**map;
 }	t_parser;
 
@@ -25,6 +25,7 @@ void	check_elements(t_parser *elements);
 int		error_argument_count(void);
 void	error_in_colors(void);
 void	error_in_path(void);
+void	error_no_color_setting(void);
 
 //Helpers
 void	free_double_pointer(char **array);

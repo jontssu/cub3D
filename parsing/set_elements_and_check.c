@@ -12,8 +12,9 @@ void	set_int_array(char *str, int *int_arr)
 	if (int_arr[1] > 255 || int_arr[1] < 0)
 		error_in_colors();
 	int_arr[2] = ft_atoi(split[2]);
-	if (int_arr[2] > 255 || int_arr[2] < 0)
+	if (int_arr[2] > 255 || int_arr[2] < 0 || split[3])
 		error_in_colors();
+	int_arr[3] = 1;
 	free_double_pointer(split);
 }
 
@@ -36,6 +37,7 @@ int	set_elements(char **split, t_parser *elements)
 			set_int_array(&split[i][1], elements->floor);
 		else if (split[i][0] == 'C' && ft_isdigit(split[i][1]))
 			set_int_array(&split[i][1], elements->ceiling);
+		printf("IM HERE\n");
 	}
 	return (0);
 }
@@ -55,4 +57,6 @@ void	check_elements(t_parser *elements)
 	check_path(elements->south);
 	check_path(elements->west);
 	check_path(elements->east);
+	if (elements->ceiling[3] == 0 || elements->floor[3] == 0)
+		error_no_color_setting();
 }
