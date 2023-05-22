@@ -25,6 +25,7 @@ typedef struct s_player{
 	double	planeX;
 	double	planeY;
 	char	**map;
+	char	**cpy_map;
 	int		ResX;
 	int		ResY;
 	void	*img;
@@ -39,5 +40,8 @@ typedef struct s_player{
 }				t_player;
 
 int	ray_cast(t_player *P);
+void print_map(t_player *P);
+char** copy2DCharArray(char** arr);
+# include <string.h>
 #endif
 

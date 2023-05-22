@@ -18,7 +18,8 @@ OBJS_DIR = obj/
 
 #Sources by folder
 _PARSER := parsing.c
-_RAYCASTING := ray_casting.c
+_RAYCASTING := ray_casting.c \
+				test.c
 _CORE := cub3d.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_CORE)

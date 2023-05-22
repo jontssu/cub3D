@@ -28,6 +28,14 @@ void verLine(t_player *P, int x, int drawStart, int drawEnd, int color)
 {
 	// (void) drawStart;
 	// printf("BEGIN:startY:%i, endY:%i. ", drawEnd, drawEnd);
+	int color2 = create_trgb (255,255,255,255);
+	int y = 0;
+	while (y < P->ResY)
+	{
+		// printf("startY:%i, endY:%i. ", drawStart, drawEnd);
+		my_mlx_pixel_put(P, x, y, color2);
+		y++;
+	}
 	while (drawStart < drawEnd)
 	{
 		// printf("startY:%i, endY:%i. ", drawStart, drawEnd);
@@ -74,11 +82,11 @@ int	ray_cast(t_player *P)
 		mapX = (int)P->playerX; //current cords vector is in.
 		mapY = (int)P->playerY;
 		cameraX = 2 * x / (double)P->ResX - 1; //generates values between -1 to 1 depndig if x is more left or right of the view
-		rayDirX = P->dirX + P->planeX * cameraX;//the angle where the ray will be cast to from the player.
-      	rayDirY = P->dirY + P->planeY * cameraX;
-		
+		rayDirX = P->dirX + (P->planeX * cameraX);//the angle where the ray will be cast to from the player.
+      	rayDirY = P->dirY + (P->planeY * cameraX);
+
 		// printf("%i= %d\n",mapX, mapY);
-		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1.0 / rayDirX); //
+		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1.0 / rayDirX); 
 		deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1.0 / rayDirY);
 		// printf("deltaDistX[%f], deltaDistY[%f]\n", deltaDistX, deltaDistY);
 		// printf("\nX[%i]: cameraX:[%f]\n rayDirX:[%f], deltaDistX[%f] rayDirY:[%f], deltaDistY[%f]\n",x, cameraX, rayDirX, deltaDistX, rayDirY, deltaDistY);
@@ -135,7 +143,7 @@ int	ray_cast(t_player *P)
 			}
 			//Check if ray has hit a wall
 			// printf("type at: X[%i], Y[%i], is[%c]\n", mapX, mapY, P->map[mapX][mapY]);
-
+			P->cpy_map[mapX][mapY] = '/';
 			if (P->map[mapX][mapY] > '0')
 				hit = 1;
 		} 
@@ -174,7 +182,7 @@ int	ray_cast(t_player *P)
 		lineHeight = (int)(h / perpWallDist);
 		// printf("perpWallDist: %f\n", perpWallDist);
 		
-		// printf("lineHeight: %i = %d/%f. ", lineHeight, h, perpWallDist);
+		// printf("X[%i]=lineHeight: %i = %d/%f.\n", x, lineHeight, h, perpWallDist);
 		drawStart = -lineHeight / 2 + h / 2;
 		// printf("drawStart: %i = %d/2+%d/2.\n",drawStart, lineHeight, h);
 
@@ -206,5 +214,9 @@ int	ray_cast(t_player *P)
     //   double rayDirY = dirY + planeY * cameraX;
 	// }
 	// printf("hi%f", P->playerX);
+	print_map(P);
+	free(P->cpy_map);
+	P->cpy_map = copy2DCharArray(P->map);
+
 	return (0);
 }
