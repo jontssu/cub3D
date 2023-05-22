@@ -28,7 +28,6 @@ void	read_file_to_content(char *file, char **content)
 		free(line);
 		free(tmp);
 	}
-	//printf("%s\n", *content);
 	close(fd);
 }
 
@@ -80,7 +79,7 @@ int	parser(char *file, t_parser *elements)
 	set_elements(split, elements);
 	check_elements(elements);
 	get_map(&split[6], elements);
-	map_check(elements);
+	//map_check(elements);
 
 	/*printf("ELEMENT: %s\n", elements->north);
 	printf("ELEMENT: %s\n", elements->south);
