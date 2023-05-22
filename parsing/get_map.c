@@ -28,11 +28,17 @@ void	fill_with_x(int max_size, t_parser *elements)
 		j = max_size - 1;
 		while (j)
 		{
-			if (elements->map[i][j] != '0' && elements->map [i][j] != '1')
+			if (elements->map[i][j] != '0' && elements->map [i][j] != '1' && \
+			elements->map[i][j] != 'N' && elements->map[i][j] != 'S' && \
+			elements->map[i][j] != 'W' && elements->map[i][j] != 'E' && \
+			elements->map[i][j] == ' ')
 				elements->map[i][j] = 'X';	
 			j--;
 		}
-		if (elements->map[i][j] != '0' && elements->map [i][j] != '1')
+		if (elements->map[i][j] != '0' && elements->map [i][j] != '1' && \
+		elements->map[i][j] != 'N' && elements->map[i][j] != 'S' && \
+		elements->map[i][j] != 'W' && elements->map[i][j] != 'E' && \
+		elements->map[i][j] == ' ')
 			elements->map[i][j] = 'X';	
 		i++;
 	}

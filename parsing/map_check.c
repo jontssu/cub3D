@@ -2,5 +2,5 @@
 
 void	map_check(t_parser *elements)
 {
-	(void)elements;
+	valid_chars_check(elements);
 }
