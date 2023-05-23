@@ -59,11 +59,12 @@ void player_move(t_player *P, double x, double y)
 	// (void)x;
 	// (void)y;
 	printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
-	if(P->map[(int)(P->playerX + P->dirX * x)][(int)P->playerY] == '0')
-		P->playerX += x;
-	if(P->map[(int)(P->playerX)][(int)(P->playerY + P->dirY * y)] == '0')
-		P->playerY += y;
-	// printf("x: %f, y: %f\n", x, y);
+	// printf("check if map[%i][%i] [%s]== 0\n", (int)(P->playerY + P->dirY * y), (int)P->playerX), P->map[(int)(P->playerY + P->dirY * y)][(int)P->playerX];
+	if(P->map[(int)(P->playerY + P->dirY * y)][(int)P->playerX] == '0')
+		P->playerY += P->dirY * y;
+	if(P->map[(int)(P->playerY)][(int)(P->playerX + P->dirX * x)] == '0')
+		P->playerX += P->dirX * x;
+	printf("Going x[%f], y[%f]\n", P->dirX * x, P->dirY * y);
 	// P->playerX += x;
 	// P->playerY += y;
 	ray_cast(P);
@@ -75,6 +76,7 @@ void player_rotate(t_player *P, double x, double y)
 {
 	// P->dirX += x;
 	P->dirY += y;// <--------------------------------------- REMOVE the y variable not used!
+	printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
 
 	// printf("x: %f, y: %f\n", x, y);
 	// printf("rotspeed[%f], P->dirX[%f],  P->dirY[%f], planeX[%f], P->planeY[%f]\n", rotSpeed, P->dirX, P->dirY, P->planeX, P->planeY);
@@ -96,18 +98,19 @@ void player_rotate(t_player *P, double x, double y)
 
 int key_pressed(int keycode, void *param)
 {
+
 	// (void) param;
 	// printf("key-pressed: %d\n", keycode);
 	// if(keycode == 0)//left
 	// 	player_move(param, -0.1, 0);
 	if (keycode == 13)//forward
-		player_move(param, 0, -0.1);
+		player_move(param, 0.1, 0.1);
 	else if (keycode == 1)//back
-		player_move(param, 0, 0.1);
+		player_move(param, -0.1, -0.1);
 	else if (keycode == 0)//left
-		player_move(param, -0.1, 0);
+		player_move(param, -0.1, -0.1);
 	else if (keycode == 2)//right
-		player_move(param, 0.1, 0);
+		player_move(param, 0.1, 0.0);
 	else if (keycode == 124)//Rightrot
 		player_rotate(param, -0.1, 0);
 	else if (keycode == 123)//Leftrot
