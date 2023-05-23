@@ -36,8 +36,33 @@ typedef struct s_player{
 	int		endian;
 	void	*mlx;
 	void	*mlx_win;
-
 }				t_player;
+
+typedef struct s_dda
+{
+	int	x;
+	double cameraX; //cam x pos
+	double rayDirX; // direction to work with the ray/vector from player to make FOV
+	double rayDirY;
+	double deltaDistX;//the amount to increase measure vector
+	double deltaDistY;
+	double sideDistX;//mesaure vector total
+	double sideDistY;
+	double perpWallDist; //the length from POV to wall
+	int stepX; //what direction to step into x or y
+	int stepY;
+	int hit; //was there a wall hit?
+	int side; //was a NS or a EW wall hit?
+	int mapX; //current vector hit pos
+	int mapY;
+	//Calculate height of line to draw on screen
+	int h;
+	int lineHeight;
+	//calculate lowest and highest pixel to fill in current stripe
+    int drawStart;
+    int drawEnd;
+}				t_dda;
+
 
 int	ray_cast(t_player *P);
 void print_map(t_player *P);

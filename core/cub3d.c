@@ -19,9 +19,9 @@ int	rec_cross_close(void)
 void init(t_player *P)
 {
 	P->playerX = 7;
-	P->playerY = 9;
-	P->dirX = 1;
-	P->dirY = 1;
+	P->playerY = 2;
+	P->dirX = -1;
+	P->dirY = 0;
 	P->planeX = 0;
 	P->planeY = 0.66;
 	P->ResX = 600;
@@ -58,14 +58,14 @@ void player_move(t_player *P, double x, double y)
 {
 	// (void)x;
 	// (void)y;
-	// printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
-	// if(P->map[(int)(P->playerX + P->dirX * x)][(int)P->playerY] == '0')
-		// P->playerX += x;
-	// if(P->map[(int)(P->playerX)][(int)(P->playerY + P->dirY * y)] == '0')
-		// P->playerY += y;
+	printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
+	if(P->map[(int)(P->playerX + P->dirX * x)][(int)P->playerY] == '0')
+		P->playerX += x;
+	if(P->map[(int)(P->playerX)][(int)(P->playerY + P->dirY * y)] == '0')
+		P->playerY += y;
 	// printf("x: %f, y: %f\n", x, y);
-	P->playerX += x;
-	P->playerY += y;
+	// P->playerX += x;
+	// P->playerY += y;
 	ray_cast(P);
 	mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img, 0, 0);
@@ -73,17 +73,18 @@ void player_move(t_player *P, double x, double y)
 
 void player_rotate(t_player *P, double x, double y)
 {
-	P->dirX += x;
-	P->dirY += y;
+	// P->dirX += x;
+	P->dirY += y;// <--------------------------------------- REMOVE the y variable not used!
+
 	// printf("x: %f, y: %f\n", x, y);
 	// printf("rotspeed[%f], P->dirX[%f],  P->dirY[%f], planeX[%f], P->planeY[%f]\n", rotSpeed, P->dirX, P->dirY, P->planeX, P->planeY);
 	//both camera direction and camera plane must be rotated
-	// double oldDirX = P->dirX;
-	// P->dirX =  P->dirX * cos(rotSpeed) -  P->dirY * sin(rotSpeed);
-	// P->dirX = oldDirX * sin(rotSpeed) + P->dirY * cos(rotSpeed);
-	// double oldPlaneX = P->planeX;
-	// P->planeX = P->planeX * cos(rotSpeed) - P->planeY * sin(rotSpeed);
-	// P->planeY = oldPlaneX * sin(rotSpeed) + P->planeY * cos(rotSpeed);
+	double oldDirX = P->dirX;
+	P->dirX =  P->dirX * cos(x) -  P->dirY * sin(x);
+	P->dirY = oldDirX * sin(x) + P->dirY * cos(x);
+	double oldPlaneX = P->planeX;
+	P->planeX = P->planeX * cos(x) - P->planeY * sin(x);
+	P->planeY = oldPlaneX * sin(x) + P->planeY * cos(x);
 	printf(" P->dirX[%f],  P->dirY[%f], planeX[%f], P->planeY[%f]\n", P->dirX, P->dirY, P->planeX, P->planeY);
 
 	ray_cast(P);
@@ -100,21 +101,21 @@ int key_pressed(int keycode, void *param)
 	// if(keycode == 0)//left
 	// 	player_move(param, -0.1, 0);
 	if (keycode == 13)//forward
-		player_move(param, 0, -1);
+		player_move(param, 0, -0.1);
 	else if (keycode == 1)//back
-		player_move(param, 0, 1);
+		player_move(param, 0, 0.1);
 	else if (keycode == 0)//left
-		player_move(param, -1, 0);
+		player_move(param, -0.1, 0);
 	else if (keycode == 2)//right
-		player_move(param, 1, 0);
+		player_move(param, 0.1, 0);
 	else if (keycode == 124)//Rightrot
-		player_rotate(param, 0.25, 0);
+		player_rotate(param, -0.1, 0);
 	else if (keycode == 123)//Leftrot
-		player_rotate(param, -0.25, 0);
+		player_rotate(param, 0.1, 0);
 	else if (keycode == 126)//Uprot
-		player_rotate(param, 0.0, 0.25);
+		player_rotate(param, 0.0, 0.1);
 	else if (keycode == 125)//downrot
-		player_rotate(param, 0.0, -0.25);
+		player_rotate(param, 0.0, -0.1);
 	// else if (keycode == 13)//up
 	// 	player_move(param, 1, 1);
 	// else if (keycode == 1)//down
