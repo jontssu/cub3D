@@ -53,11 +53,14 @@ void init(t_player *P)
 }
 
 
-
-int	main(void)
+int main(int argc, char **argv) 
 {
-	t_player player;
+	t_player 	player;
+	t_parser	elements;
 
+	if (argc != 2)
+		return (error_argument_count());
+	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
@@ -76,6 +79,7 @@ int	main(void)
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);
+
 
 	return (0);
 }
