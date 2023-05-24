@@ -79,9 +79,9 @@ int	parser(char *file, t_parser *elements)
 	set_elements(split, elements);
 	check_elements(elements);
 	get_map(&split[6], elements);
-	map_check(elements);
+	//map_check(elements);
 
-	/*printf("ELEMENT: %s\n", elements->north);
+	printf("ELEMENT: %s\n", elements->north);
 	printf("ELEMENT: %s\n", elements->south);
 	printf("ELEMENT: %s\n", elements->west);
 	printf("ELEMENT: %s\n", elements->east);
@@ -91,8 +91,9 @@ int	parser(char *file, t_parser *elements)
 	printf("ELEMENT: %d\n", elements->ceiling[0]);
 	printf("ELEMENT: %d\n", elements->ceiling[1]);
 	printf("ELEMENT: %d\n", elements->ceiling[2]);
-	*/
+	
 
+	printf("\n\n\n");
 	int i = 0;
 	while (elements->map[i])
 		printf("%s\n", elements->map[i++]);
