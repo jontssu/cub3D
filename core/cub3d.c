@@ -1,17 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 13:17:21 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/18 13:17:22 by leklund          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "cub3d.h"
 
-
-int	main(void)
+int main(int argc, char **argv) 
 {
+	t_parser	elements;
+	if (argc != 2)
+		return (error_argument_count());
+	parser(argv[1], &elements);
 	return (0);
 }
