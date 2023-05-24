@@ -1,5 +1,5 @@
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSING_H
+# define PARSING_H
 # include "libft.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -14,6 +14,11 @@ typedef struct s_parser
 	int		floor[4];
 	int		ceiling[4];
 	char	**map;
+	char	orientation;
+	int		start_x;
+	int		start_y;
+	int		max_width;
+	int		max_heigth;
 }	t_parser;
 
 //Parser
@@ -27,6 +32,7 @@ void	fill_with_x(int max_size, t_parser *elements);
 //Map check
 void	map_check(t_parser *elements);
 void	valid_chars_check(t_parser *elements);
+void	flood_fill(t_parser *elements, int y, int x);
 
 //Error handling
 int		error_argument_count(void);
@@ -35,7 +41,8 @@ void	error_in_colors(void);
 void	error_in_path(void);
 void	error_no_color_setting(void);
 void	error_invalid_char(void);
-void	error_start_position(void);
+void	error_start_position(int);
+void	error_map_open(void);
 
 //Helpers
 void	free_double_pointer(char **array);
