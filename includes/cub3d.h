@@ -63,6 +63,12 @@ typedef struct s_dda
     int drawEnd;
 }				t_dda;
 
+//KEY_HANDLE
+int key_pressed(int keycode, void *param);
+int	red_cross_close(void);
+void player_move1(t_player *P, double x, double y);
+void player_move2(t_player *P, double x, double y);
+void player_rotate(t_player *P, double x);
 
 int	ray_cast(t_player *P);
 void print_map(t_player *P);

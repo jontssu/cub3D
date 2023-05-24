@@ -24,58 +24,51 @@ void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void verLine(t_player *P, int x, int drawStart, int drawEnd, int color)
+void	ver_line(t_player *P, t_dda *dda, int color)
 {
-	int color2 = create_trgb (255,255,255,255);
-	int y = 0;
+	int	color2 = create_trgb (255,255,255,255);
+	int	y;
+
+	y = 0;
 	while (y < P->ResY) // tmp black image remove!<---------- REMOVE!!!!!!!!!!
 	{
-		my_mlx_pixel_put(P, x, y, color2);
+		my_mlx_pixel_put(P, dda->x, y, color2);
 		y++;
 	}
-	while (drawStart < drawEnd)
+	while (dda->drawStart < dda->drawEnd)
 	{
-		my_mlx_pixel_put(P, x, drawStart, color);
-		drawStart++;
+		my_mlx_pixel_put(P, dda->x, dda->drawStart, color);
+		dda->drawStart++;
 	}
 }
 
-void drawVerLine(t_player *P, t_dda *dda)
+void	draw_ver_line(t_player *P, t_dda *dda)
 {
-	int color;
+	int	color;
 
 	color = create_trgb(0,0,255,0);
-	//Calculate distance projected on camera direction removing fisheye effect!
-		if(dda->side == 0)
-		{
-			dda->perpWallDist = (dda->sideDistX - dda->deltaDistX);
-		}
-		else
-		{
-			dda->perpWallDist = (dda->sideDistY - dda->deltaDistY);
-		}
-		//Calculate height of line to draw on screen
-		dda->lineHeight = (int)(P->ResY / dda->perpWallDist);
-		
-		dda->drawStart = -dda->lineHeight / 2 + P->ResY / 2;
-
-		//calculate lowest and highest pixel to fill in current stripe
-		if(dda->drawStart < 0)
-			dda->drawStart = 0;
-		dda->drawEnd = dda->lineHeight / 2 + P->ResY / 2;
-		if(dda->drawEnd >= P->ResY)
-			dda->drawEnd = P->ResY - 1;
-		//draw the pixels of the stripe as a vertical line
-		verLine(P, dda->x, dda->drawStart, dda->drawEnd, color);
+	if (dda->side == 0)
+	{
+		dda->perpWallDist = (dda->sideDistX - dda->deltaDistX);
+	}
+	else
+	{
+		dda->perpWallDist = (dda->sideDistY - dda->deltaDistY);
+	}
+	dda->lineHeight = (int)(P->ResY / dda->perpWallDist);
+	dda->drawStart = -dda->lineHeight / 2 + P->ResY / 2;
+	if (dda->drawStart < 0)
+		dda->drawStart = 0;
+	dda->drawEnd = dda->lineHeight / 2 + P->ResY / 2;
+	if (dda->drawEnd >= P->ResY)
+		dda->drawEnd = P->ResY - 1;
+	ver_line(P, dda, color);
 }
 
-void	Digital_Differential_Analysis(t_player *P, t_dda *dda)
+void	digital_differential_analysis(t_player *P, t_dda *dda)
 {
-	//perform DDA (Digital Differential Analysis)
 	while (dda->hit == 0)
 	{
-
-		//jump to next map square, either in x-direction, or in y-direction
 		if (dda->sideDistX < dda->sideDistY)
 		{
 			dda->sideDistX += dda->deltaDistX;
@@ -88,16 +81,14 @@ void	Digital_Differential_Analysis(t_player *P, t_dda *dda)
 			dda->mapY += dda->stepY;
 			dda->side = 1;
 		}
-		//Check if ray has hit a wall
 		P->cpy_map[dda->mapY][dda->mapX] = '/';
 		if (P->map[dda->mapY][dda->mapX] > '0')
 			dda->hit = 1;
-	} 
+	}
 }
 
-void start_Dir_Len(t_player *P, t_dda *dda)
+void	start_dir_len(t_player *P, t_dda *dda)
 {
-	//calculate step and initial sideDist
 	if (dda->rayDirX < 0)
 	{
 		dda->stepX = -1;
@@ -122,23 +113,22 @@ void start_Dir_Len(t_player *P, t_dda *dda)
 
 int	ray_cast(t_player *P)
 {
-	t_dda dda;
+	t_dda	dda;
 
 	dda.x = 0;
-	while(dda.x < P->ResX)
+	while (dda.x < P->ResX)
 	{
-		//init starting values
 		dda.hit = 0;
-		dda.mapX = (int)P->playerX; //current cords vector is in.
+		dda.mapX = (int)P->playerX;
 		dda.mapY = (int)P->playerY;
-		dda.cameraX = 2 * dda.x / (double)P->ResX - 1; //generates values between -1 to 1 depndig if x is more left or right of the view
-		dda.rayDirX = P->dirX + (P->planeX * dda.cameraX);//the angle where the ray will be cast to from the player.
-      	dda.rayDirY = P->dirY + (P->planeY * dda.cameraX);
+		dda.cameraX = 2 * dda.x / (double)P->ResX - 1;
+		dda.rayDirX = P->dirX + (P->planeX * dda.cameraX);
+		dda.rayDirY = P->dirY + (P->planeY * dda.cameraX);
 		dda.deltaDistX = (dda.rayDirX == 0) ? 1e30 : fabs(1.0 / dda.rayDirX); 
 		dda.deltaDistY = (dda.rayDirY == 0) ? 1e30 : fabs(1.0 / dda.rayDirY);
-		start_Dir_Len(P, &dda);
-		Digital_Differential_Analysis(P, &dda);
-		drawVerLine(P, &dda);
+		start_dir_len(P, &dda);
+		digital_differential_analysis(P, &dda);
+		draw_ver_line(P, &dda);
 		dda.hit = 0;
 		dda.x++;
 	}

@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-int	rec_cross_close(void)
-{
-	exit(0);
-}
+
 
 void init(t_player *P)
 {
@@ -45,6 +42,7 @@ void init(t_player *P)
         i++;
     }
 	P->map[7][7] = '1';
+	P->map[1][1] = '1';
     P->map[i] = NULL;
     i = 0;
     while(P->map[i] != NULL) {
@@ -54,112 +52,7 @@ void init(t_player *P)
 	P->cpy_map = copy2DCharArray(P->map);
 }
 
-void player_move(t_player *P, double x, double y)
-{
-	// (void)x;
-	// (void)y;
-	printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
-	// printf("check if map[%i][%i] [%s]== 0\n", (int)(P->playerY + P->dirY * y), (int)P->playerX), P->map[(int)(P->playerY + P->dirY * y)][(int)P->playerX];
-	if(P->map[(int)(P->playerY + P->dirY * y)][(int)P->playerX] == '0')
-		P->playerY += P->dirY * y;
-	if(P->map[(int)(P->playerY)][(int)(P->playerX + P->dirX * x)] == '0')
-		P->playerX += P->dirX * x;
-	printf("Going x[%f], y[%f]\n", P->dirX * x, P->dirY * y);
-	// P->playerX += x;
-	// P->playerY += y;
-	ray_cast(P);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img, 0, 0);
-}
 
-void player_rotate(t_player *P, double x, double y)
-{
-	// P->dirX += x;
-	P->dirY += y;// <--------------------------------------- REMOVE the y variable not used!
-	printf("X[%f], playerX[%f], dirX[%f], Y[%f], playerY[%f], dirY[%f]\n", x, P->playerX, P->dirX, y, P->playerY, P->dirY);
-
-	// printf("x: %f, y: %f\n", x, y);
-	// printf("rotspeed[%f], P->dirX[%f],  P->dirY[%f], planeX[%f], P->planeY[%f]\n", rotSpeed, P->dirX, P->dirY, P->planeX, P->planeY);
-	//both camera direction and camera plane must be rotated
-	double oldDirX = P->dirX;
-	P->dirX =  P->dirX * cos(x) -  P->dirY * sin(x);
-	P->dirY = oldDirX * sin(x) + P->dirY * cos(x);
-	double oldPlaneX = P->planeX;
-	P->planeX = P->planeX * cos(x) - P->planeY * sin(x);
-	P->planeY = oldPlaneX * sin(x) + P->planeY * cos(x);
-	printf(" P->dirX[%f],  P->dirY[%f], planeX[%f], P->planeY[%f]\n", P->dirX, P->dirY, P->planeX, P->planeY);
-
-	ray_cast(P);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img, 0, 0);
-}
-
-
-
-int key_pressed(int keycode, void *param)
-{
-
-	// (void) param;
-	// printf("key-pressed: %d\n", keycode);
-	// if(keycode == 0)//left
-	// 	player_move(param, -0.1, 0);
-	if (keycode == 13)//forward
-		player_move(param, 0.1, 0.1);
-	else if (keycode == 1)//back
-		player_move(param, -0.1, -0.1);
-	else if (keycode == 0)//left
-		player_move(param, -0.1, -0.1);
-	else if (keycode == 2)//right
-		player_move(param, 0.1, 0.0);
-	else if (keycode == 124)//Rightrot
-		player_rotate(param, -0.1, 0);
-	else if (keycode == 123)//Leftrot
-		player_rotate(param, 0.1, 0);
-	else if (keycode == 126)//Uprot
-		player_rotate(param, 0.0, 0.1);
-	else if (keycode == 125)//downrot
-		player_rotate(param, 0.0, -0.1);
-	// else if (keycode == 13)//up
-	// 	player_move(param, 1, 1);
-	// else if (keycode == 1)//down
-	// 	player_move(param, -1, -1);
-	// else if (keycode == 2)//right
-	// 	player_move(param, 0.1, 0);
-	
-    // //rotate to the right
-    // if (keyDown(SDLK_RIGHT))
-    // {
-    //   //both camera direction and camera plane must be rotated
-    //   double oldDirX = dirX;
-    //   dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-    //   dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-    //   double oldPlaneX = planeX;
-    //   planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-    //   planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-    // }
-    // //rotate to the left
-    // if (keyDown(SDLK_LEFT))
-    // {
-    //   //both camera direction and camera plane must be rotated
-    //   double oldDirX = dirX;
-    //   dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-    //   dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-    //   double oldPlaneX = planeX;
-    //   planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-    //   planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-    // }
-//   }
-	return (0);
-}
-
-int key_released(int keycode, void *param)
-{
-	(void) param;
-	(void) keycode;
-	// printf("key-released: %d\n", keycode);
-	return (0);
-
-}
 
 int	main(void)
 {
@@ -179,10 +72,9 @@ int	main(void)
 								&player.endian);
 	ray_cast(&player);
 	// mlx_loop_hook(mlx, ray_cast, &player);
-	mlx_hook(player.mlx_win, 17, 0, rec_cross_close, &player.mlx);
+	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
-	mlx_hook(player.mlx_win, 3, 1L << 1, key_released, &player);
 	mlx_loop(player.mlx);
 
 	return (0);
