@@ -40,9 +40,7 @@ void	error_cub_file(void);
 void	error_in_colors(void);
 void	error_in_path(void);
 void	error_no_color_setting(void);
-void	error_invalid_char(void);
-void	error_start_position(int);
-void	error_map_open(void);
+void	error_invalid_map(int);
 
 //Helpers
 void	free_double_pointer(char **array);
