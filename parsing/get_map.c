@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 19:40:30 by jole              #+#    #+#             */
+/*   Updated: 2023/05/25 19:43:23 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int	get_biggest_strlen(char **split)
@@ -32,14 +44,14 @@ void	fill_with_x(int max_size, t_parser *elements)
 			elements->map[i][j] != 'N' && elements->map[i][j] != 'S' && \
 			elements->map[i][j] != 'W' && elements->map[i][j] != 'E' && \
 			elements->map[i][j] == ' ') || !elements->map[i][j])
-				elements->map[i][j] = 'X';	
+				elements->map[i][j] = 'X';
 			j--;
 		}
 		if ((elements->map[i][j] != '0' && elements->map [i][j] != '1' && \
 		elements->map[i][j] != 'N' && elements->map[i][j] != 'S' && \
 		elements->map[i][j] != 'W' && elements->map[i][j] != 'E' && \
 		elements->map[i][j] == ' ') || !elements->map[i][j])
-			elements->map[i][j] = 'X';	
+			elements->map[i][j] = 'X';
 		i++;
 	}
 }

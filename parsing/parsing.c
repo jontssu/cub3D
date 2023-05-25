@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
+/*   Updated: 2023/05/25 19:49:07 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	free_double_pointer(char **array)
@@ -22,7 +34,7 @@ void	read_file_to_content(char *file, char **content)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		tmp = *content;
 		*content = ft_strjoin(tmp, line);
 		free(tmp);
@@ -81,7 +93,7 @@ int	parser(char *file, t_parser *elements)
 	elements->map = NULL;
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
-	split = ft_split(content, '\n');	
+	split = ft_split(content, '\n');
 	if (!split)
 		error_malloc(content);
 	free(content);
@@ -93,21 +105,5 @@ int	parser(char *file, t_parser *elements)
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
 	map_check(elements);
-
-	/*printf("ELEMENT: %s\n", elements->north);
-	printf("ELEMENT: %s\n", elements->south);
-	printf("ELEMENT: %s\n", elements->west);
-	printf("ELEMENT: %s\n", elements->east);
-	printf("ELEMENT: %d\n", elements->floor[0]);
-	printf("ELEMENT: %d\n", elements->floor[1]);
-	printf("ELEMENT: %d\n", elements->floor[2]);
-	printf("ELEMENT: %d\n", elements->ceiling[0]);
-	printf("ELEMENT: %d\n", elements->ceiling[1]);
-	printf("ELEMENT: %d\n", elements->ceiling[2]);*/
-
-	printf("\nEND MAP:\n");
-	int i = 0;
-	while (elements->map[i])
-		printf("%s\n", elements->map[i++]);
 	return (0);
 }

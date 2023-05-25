@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 19:40:01 by jole              #+#    #+#             */
+/*   Updated: 2023/05/25 19:42:53 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	check_edges(t_parser *elements, int y, int x)
@@ -8,11 +20,11 @@ void	check_edges(t_parser *elements, int y, int x)
 	else if (y == 0 && x <= (elements->max_width - 1) && \
 	elements->map[y][x] == '0')
 		error_invalid_map(elements, 4);
-	else if (x == (elements->max_width - 1) && y < (elements->max_heigth - 1) && \
-	elements->map[y][x] == '0')
+	else if (x == (elements->max_width - 1) && y < (elements->max_heigth - 1) \
+	&& elements->map[y][x] == '0')
 		error_invalid_map(elements, 4);
-	else if (x < (elements->max_width - 1) && y == (elements->max_heigth - 1) && \
-	elements->map[y][x] == '0')
+	else if (x < (elements->max_width - 1) && y == (elements->max_heigth - 1) \
+	&& elements->map[y][x] == '0')
 		error_invalid_map(elements, 4);
 }
 
@@ -21,17 +33,16 @@ int	check_zero_surroundings(t_parser *elements, int y, int x)
 	if (elements->map[y - 1][x] != 'X' && elements->map[y - 1][x + 1] != 'X' \
 	&& elements->map[y][x + 1] != 'X' && elements->map[y + 1][x + 1] != 'X' \
 	&& elements->map[y + 1][x] != 'X' && elements->map[y + 1][x - 1] != 'X' \
-	&& elements->map[y][x - 1] != 'X' && elements->map[y - 1][x - 1] != 'X') 
+	&& elements->map[y][x - 1] != 'X' && elements->map[y - 1][x - 1] != 'X')
 		return (0);
 	return (1);
 }
 
 void	check_if_fill(t_parser *elements, int y, int x)
 {
-
 	if (y < 0 || x < 0 || y > elements->max_heigth - 1 || \
 	x > elements->max_width - 1)
-		return;
+		return ;
 	check_edges(elements, y, x);
 	if (elements->map[y][x] == '1')
 	{

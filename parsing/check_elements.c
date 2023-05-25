@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_elements.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 19:39:54 by jole              #+#    #+#             */
+/*   Updated: 2023/05/25 19:41:20 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	check_config_file_name(char *file)
@@ -10,7 +22,7 @@ void	check_config_file_name(char *file)
 	{
 		len = open(file, O_RDONLY);
 		if (len != -1)
-			return;
+			return ;
 	}
 	error_invalid_input(2);
 }
@@ -22,7 +34,7 @@ void	check_commas(t_parser *elements, char *str, char **split)
 
 	i = 0;
 	count = 0;
-	while (str[i])	
+	while (str[i])
 	{
 		if (str[i++] == ',')
 			count++;
