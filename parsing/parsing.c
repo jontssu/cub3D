@@ -46,7 +46,7 @@ char	*remove_spaces(char *string)
 		if (string[i] == ' ')
 		{
 			j = i;
-			while (string[j - 1])
+			while (string[j])
 			{
 				string[j] = string[j + 1];
 				j++;
@@ -74,6 +74,11 @@ int	parser(char *file, t_parser *elements)
 	char	*content;
 	char	**split;
 
+	elements->north = NULL;
+	elements->south = NULL;
+	elements->west = NULL;
+	elements->east = NULL;
+	elements->map = NULL;
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
 	split = ft_split(content, '\n');	
@@ -85,6 +90,8 @@ int	parser(char *file, t_parser *elements)
 	free_double_pointer(split);
 	check_elements(elements);
 	get_map(&split[6], elements);
+	if (elements->max_heigth < 3 || elements->max_width < 3)
+		error_invalid_map(elements, 8);
 	map_check(elements);
 
 	/*printf("ELEMENT: %s\n", elements->north);

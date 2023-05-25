@@ -17,7 +17,7 @@ CORE_DIR = core/
 OBJS_DIR = obj/
 
 #Sources by folder
-_PARSER := parsing.c error.c set_elements_and_checks.c \
+_PARSER := parsing.c error.c set_elements.c check_elements.c \
 get_map.c map_check.c valid_chars_check.c flood_fill.c
 _RAYCASTING := ray_casting.c
 _CORE := cub3d.c

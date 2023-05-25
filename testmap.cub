@@ -1,17 +1,10 @@
-
-C 112,250,+
 SO ./path_to_the_south_texture
-
-     NO ./path_to _th e _ n o r t h _texture           
-
-
-WE./path_to_the_west_texture
-
+C 112,123,123
+ NO ./path_to _th e _ n o r t h _texture
 EA       ./path_to_t he_ ea     s  t _ t e     x t ure
-
+WE./path_to_the_west_texture
 F 200,1,200
 
 111
-101
 1E1
 111
