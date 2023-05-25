@@ -4,16 +4,16 @@ void	check_edges(t_parser *elements, int y, int x)
 {
 	if (x == 0 && y <= (elements->max_heigth - 1) && \
 	elements->map[y][x] == '0')
-		error_invalid_map(4);
+		error_invalid_map(elements, 4);
 	else if (y == 0 && x <= (elements->max_width - 1) && \
 	elements->map[y][x] == '0')
-		error_invalid_map(4);
+		error_invalid_map(elements, 4);
 	else if (x == (elements->max_width - 1) && y < (elements->max_heigth - 1) && \
 	elements->map[y][x] == '0')
-		error_invalid_map(4);
+		error_invalid_map(elements, 4);
 	else if (x < (elements->max_width - 1) && y == (elements->max_heigth - 1) && \
 	elements->map[y][x] == '0')
-		error_invalid_map(4);
+		error_invalid_map(elements, 4);
 }
 
 int	check_zero_surroundings(t_parser *elements, int y, int x)
@@ -28,6 +28,7 @@ int	check_zero_surroundings(t_parser *elements, int y, int x)
 
 void	check_if_fill(t_parser *elements, int y, int x)
 {
+
 	if (y < 0 || x < 0 || y > elements->max_heigth - 1 || \
 	x > elements->max_width - 1)
 		return;
@@ -41,7 +42,7 @@ void	check_if_fill(t_parser *elements, int y, int x)
 	{
 		if (y == elements->max_heigth || x == elements->max_width || \
 		check_zero_surroundings(elements, y, x))
-			error_invalid_map(4);
+			error_invalid_map(elements, 4);
 		elements->map[y][x] = '.';
 		flood_fill(elements, y, x);
 	}

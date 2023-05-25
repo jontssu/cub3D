@@ -25,8 +25,10 @@ void	read_file_to_content(char *file, char **content)
 			break;
 		tmp = *content;
 		*content = ft_strjoin(tmp, line);
-		free(line);
 		free(tmp);
+		free(line);
+		if (!content)
+			error_malloc(*content);
 	}
 	close(fd);
 }
@@ -75,8 +77,12 @@ int	parser(char *file, t_parser *elements)
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
 	split = ft_split(content, '\n');	
+	if (!split)
+		error_malloc(content);
+	free(content);
 	split = remove_spaces_from_elements(split);
 	set_elements(split, elements);
+	free_double_pointer(split);
 	check_elements(elements);
 	get_map(&split[6], elements);
 	map_check(elements);
@@ -91,13 +97,10 @@ int	parser(char *file, t_parser *elements)
 	printf("ELEMENT: %d\n", elements->ceiling[0]);
 	printf("ELEMENT: %d\n", elements->ceiling[1]);
 	printf("ELEMENT: %d\n", elements->ceiling[2]);*/
-	
 
 	printf("\nEND MAP:\n");
 	int i = 0;
 	while (elements->map[i])
 		printf("%s\n", elements->map[i++]);
-	free(content);
-	free_double_pointer(split);
 	return (0);
 }

@@ -35,14 +35,14 @@ void	valid_chars_check(t_parser *elements);
 void	flood_fill(t_parser *elements, int y, int x);
 
 //Error handling
-int		error_argument_count(void);
-void	error_cub_file(void);
-void	error_in_colors(void);
-void	error_in_path(void);
-void	error_no_color_setting(void);
-void	error_invalid_map(int);
+void	error_invalid_input(int error);
+void	error_malloc(char *content);
+void	error_in_colors(t_parser *elements, char **split, char **split2);
+void	error_invalid_configuration(t_parser *elements, int error);
+void	error_invalid_map(t_parser *elements, int error);
 
 //Helpers
 void	free_double_pointer(char **array);
+void	free_elements(t_parser *elements);
 #endif
 	

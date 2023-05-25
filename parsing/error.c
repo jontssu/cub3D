@@ -1,43 +1,56 @@
 #include "parsing.h"
 
-int	error_argument_count(void)
-{
-	ft_putstr_fd("Error\nIncorrect amount of arguments\n", 2);
-	return (1);
-}
-
-void	error_cub_file(void)
-{
-	ft_putstr_fd("Error\nInvallid config file\n", 2);
-	//free
-	exit(-1);
-}
-
-void	error_in_colors(void)
-{
-	ft_putstr_fd("Error\nInvalid colors\n", 2);
-	//free
-	exit(-1);
-}
-
-void	error_in_path(void)
-{
-	ft_putstr_fd("Error\nIncorrect path for elements\n", 2);
-	//free
-	exit(-1);
-}
-
-void	error_no_color_setting(void)
-{
-	ft_putstr_fd("Error\nMissing color setting\n", 2);
-	//free
-	exit(-1);
-}
-
-void	error_invalid_map(int error)
+void	error_invalid_input(int error)
 {
 	if (error == 1)
-		ft_putstr_fd("Error\ntoo many starting positions\n", 2);
+		ft_putstr_fd("Error\nIncorrect amount of arguments\n", 2);
+	else if (error == 2)
+		ft_putstr_fd("Error\nInvalid config file\n", 2);
+	//dont free anything
+	exit(-1);
+}
+
+void	error_malloc(char *content)
+{
+	ft_putstr_fd("Error\nMalloc error\n", 2);
+	free(content);
+	exit(-1);
+}
+
+void	error_in_colors(t_parser *elements, char **split, char **split2)
+{
+	ft_putstr_fd("Error\nInvalid colors\n", 2);
+	if (elements->north)
+		free(elements->north);
+	if (elements->south)
+		free(elements->south);
+	if (elements->west)
+		free(elements->west);
+	if (elements->east)
+		free(elements->east);
+	free_double_pointer(split);
+	free_double_pointer(split2);
+	exit(-1);
+}
+
+void	error_invalid_configuration(t_parser *elements, int error)
+{
+	if (error == 1)
+		ft_putstr_fd("Error\nIncorrect path for elements\n", 2);
+	else if (error == 2)
+		ft_putstr_fd("Error\nMissing color setting\n", 2);
+	else if (error == 3)
+		ft_putstr_fd("Error\nNon-numeric color setting\n", 2);
+	else if (error == 4)
+		ft_putstr_fd("Error\nMissing a color setting\n", 2);
+	free_elements(elements);
+	exit(-1);
+}
+
+void	error_invalid_map(t_parser *elements, int error)
+{
+	if (error == 1)
+		ft_putstr_fd("Error\nToo many starting positions\n", 2);
 	else if (error == 2)
 		ft_putstr_fd("Error\nNo starting position\n", 2);
 	else if (error == 3)
@@ -45,11 +58,11 @@ void	error_invalid_map(int error)
 	else if (error == 4)
 		ft_putstr_fd("Error\nMap was open\n", 2);
 	else if (error == 5)
-		ft_putstr_fd("Error\nPart of the map was not connected\n", 2);
+		ft_putstr_fd("Error\nPart of a map was not connected\n", 2);
 	else if (error == 6)
 		ft_putstr_fd("Error\nInvalid map component\n", 2);
 	else if (error == 7)
 		ft_putstr_fd("Error\nStarting position is invalid\n", 2);
-	//free
+	free_elements(elements);
 	exit(-1);
 }
