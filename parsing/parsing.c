@@ -6,20 +6,19 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
-/*   Updated: 2023/05/25 19:49:07 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/25 19:58:38 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	free_double_pointer(char **array)
+void	init_elements(t_parser *elements)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	elements->north = NULL;
+	elements->south = NULL;
+	elements->west = NULL;
+	elements->east = NULL;
+	elements->map = NULL;
 }
 
 void	read_file_to_content(char *file, char **content)
@@ -86,11 +85,7 @@ int	parser(char *file, t_parser *elements)
 	char	*content;
 	char	**split;
 
-	elements->north = NULL;
-	elements->south = NULL;
-	elements->west = NULL;
-	elements->east = NULL;
-	elements->map = NULL;
+	init_elements(elements);
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
 	split = ft_split(content, '\n');

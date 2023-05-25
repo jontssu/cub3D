@@ -6,20 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/05/25 19:50:39 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/25 19:56:37 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-void	free_elements(t_parser *elements)
-{
-	free(elements->north);
-	free(elements->south);
-	free(elements->west);
-	free(elements->east);
-	free_double_pointer(elements->map);
-}
 
 int	main(int argc, char **argv)
 {
