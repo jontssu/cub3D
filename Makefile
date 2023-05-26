@@ -13,16 +13,22 @@ FLAGS = -Wall -Werror -Wextra -g -I inc -I libft
 #Direcory locations
 PARSER_DIR = parsing/
 RAYCASTING_DIR = ray_casting/
+KEYHANDLE_DIR = key_handle/
 CORE_DIR = core/
 OBJS_DIR = obj/
 
 #Sources by folder
+_PARSER := parsing.c
+_RAYCASTING := ray_casting.c \
+				test.c \
+				texturing.c
+_KEYHANDLE := key_handle.c \
+				movement.c
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
-_RAYCASTING := ray_casting.c
 _CORE := cub3d.c
 
-SRCS = $(_RAYCASTING) $(_PARSER) $(_CORE)
+SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 OBJS = $(patsubst %, $(OBJS_DIR)%, $(SRCS:.c=.o))
 
 LIB = libft/libft.a
@@ -35,7 +41,7 @@ $(LIB):
 
 # @make bonus -C libft
 $(NAME):  $(LIB) $(OBJS_DIR) $(OBJS)
-	@cc $(FLAGS) $(OBJS) -o $@ -L ./libft -lft
+	@cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
 	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR):
@@ -48,6 +54,10 @@ $(OBJS_DIR)%.o: $(PARSER_DIR)%.c
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
+	@cc $(FLAGS) -c $< -o $@ 
+	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
+
+$(OBJS_DIR)%.o: $(KEYHANDLE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
