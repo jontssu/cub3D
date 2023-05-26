@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
-/*   Updated: 2023/05/26 11:47:10 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/26 15:01:16 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int	parser(char *file, t_parser *elements)
 	free(content);
 	split = remove_spaces_from_elements(split);
 	set_elements(split, elements);
-	free_double_pointer(split);
 	check_elements(elements);
 	get_map(&split[6], elements);
+	free_double_pointer(split);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
 	map_check(elements);
