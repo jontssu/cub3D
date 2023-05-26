@@ -20,7 +20,8 @@ OBJS_DIR = obj/
 #Sources by folder
 _PARSER := parsing.c
 _RAYCASTING := ray_casting.c \
-				test.c
+				test.c \
+				texturing.c
 _KEYHANDLE := key_handle.c \
 				movement.c
 _PARSER := parsing.c error.c error2.c set_elements_and_checks.c \
@@ -40,7 +41,7 @@ $(LIB):
 
 # @make bonus -C libft
 $(NAME):  $(LIB) $(OBJS_DIR) $(OBJS)
-	@cc $(FLAGS) $(OBJS) -o $@ -L ./libft -lft
+	@cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
 	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR):

@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 int	error_argument_count(void)
 {

@@ -9,14 +9,14 @@
 /*   Updated: 2023/05/19 05:51:05 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3d.h"
+#include "cub3D.h"
 
-int	create_trgb(int t, int r, int g, int b)
+static int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
+static void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -24,28 +24,30 @@ void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	ver_line(t_player *P, t_dda *dda, int color)
+void	ver_line1(t_player *P, t_dda *dda, int color)
 {
 	int	color2 = create_trgb (255,255,255,255);
 	int	y;
 
 	y = 0;
-	while (y < P->ResY) // tmp black image remove!<---------- REMOVE!!!!!!!!!!
+	while (y < screenHeight) // tmp black image remove!<---------- REMOVE!!!!!!!!!!
 	{
 		my_mlx_pixel_put(P, dda->x, y, color2);
 		y++;
 	}
+	y = dda->drawStart;
 	while (dda->drawStart < dda->drawEnd)
 	{
 		my_mlx_pixel_put(P, dda->x, dda->drawStart, color);
 		dda->drawStart++;
 	}
+	dda->drawStart = y;
 }
 
 void	draw_ver_line(t_player *P, t_dda *dda)
 {
 	int	color;
-
+	(void) P;
 	color = create_trgb(0,0,255,0);
 	if (dda->side == 0)
 	{
@@ -55,14 +57,14 @@ void	draw_ver_line(t_player *P, t_dda *dda)
 	{
 		dda->perpWallDist = (dda->sideDistY - dda->deltaDistY);
 	}
-	dda->lineHeight = (int)(P->ResY / dda->perpWallDist);
-	dda->drawStart = -dda->lineHeight / 2 + P->ResY / 2;
+	dda->lineHeight = (int)(screenHeight / dda->perpWallDist);
+	dda->drawStart = -dda->lineHeight / 2 + screenHeight / 2;
 	if (dda->drawStart < 0)
 		dda->drawStart = 0;
-	dda->drawEnd = dda->lineHeight / 2 + P->ResY / 2;
-	if (dda->drawEnd >= P->ResY)
-		dda->drawEnd = P->ResY - 1;
-	ver_line(P, dda, color);
+	dda->drawEnd = dda->lineHeight / 2 + screenHeight / 2;
+	if (dda->drawEnd >= screenHeight)
+		dda->drawEnd = screenHeight - 1;
+	ver_line1(P, dda, color);
 }
 
 void	digital_differential_analysis(t_player *P, t_dda *dda)
@@ -115,13 +117,16 @@ int	ray_cast(t_player *P)
 {
 	t_dda	dda;
 
+	
 	dda.x = 0;
-	while (dda.x < P->ResX)
+	// while (dda.x < screenWidth)
+	// while (dda.x < 10)
+	while (dda.x < screenWidth)
 	{
 		dda.hit = 0;
 		dda.mapX = (int)P->playerX;
 		dda.mapY = (int)P->playerY;
-		dda.cameraX = 2 * dda.x / (double)P->ResX - 1;
+		dda.cameraX = 2 * dda.x / (double)screenWidth - 1;
 		dda.rayDirX = P->dirX + (P->planeX * dda.cameraX);
 		dda.rayDirY = P->dirY + (P->planeY * dda.cameraX);
 		dda.deltaDistX = (dda.rayDirX == 0) ? 1e30 : fabs(1.0 / dda.rayDirX); 
@@ -129,6 +134,8 @@ int	ray_cast(t_player *P)
 		start_dir_len(P, &dda);
 		digital_differential_analysis(P, &dda);
 		draw_ver_line(P, &dda);
+		// printf("drawStart[%i] - h[%i] + lineHeight[%i]\n", dda.drawStart, screenHeight, dda.lineHeight);
+		// texture(P, &dda);
 		dda.hit = 0;
 		dda.x++;
 	}

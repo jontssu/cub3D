@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	error_invalid_char(void)
 {

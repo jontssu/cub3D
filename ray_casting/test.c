@@ -9,14 +9,13 @@
 /*   Updated: 2023/05/22 09:48:57 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3d.h"
+#include "cub3D.h"
 
 
 void print_map(t_player *P)
 {
 	int y = 0;
 	int x = 0;
-	printf("A1\n");
 	while(P->cpy_map[y])
 	{
 		x = 0;

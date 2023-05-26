@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	check_config_file_name(char *file)
 {

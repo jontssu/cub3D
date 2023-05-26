@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 int	get_biggest_strlen(char **split)
 {

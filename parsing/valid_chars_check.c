@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	valid_start(t_parser *elements)
 {
