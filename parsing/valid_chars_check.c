@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:39 by jole              #+#    #+#             */
-/*   Updated: 2023/05/25 19:48:54 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/26 11:42:24 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	valid_start(t_parser *elements, int i, int count)
 
 void	valid_start_position(t_parser *elements, int y, int x)
 {
-	if (y == elements->max_heigth - 1 || x == elements->max_width - 1)
+	if (y == elements->max_heigth - 1 || x == elements->max_width - 1 \
+	|| x == 0 || y == 0)
 		error_invalid_map(elements, 7);
 	else if (elements->map[y - 1][x] != 'X' && elements->map[y - 1][x + 1] \
 	!= 'X' && elements->map[y][x + 1] != 'X' && elements->map[y + 1][x + 1] \
