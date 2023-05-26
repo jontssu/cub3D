@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 07:36:31 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/25 07:36:32 by leklund          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:15:53 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3D.h"
 
+#include "cub3D.h"
 
 // static int	create_trgb(int t, int r, int g, int b)
 // {
