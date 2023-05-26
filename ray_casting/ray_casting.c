@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 05:51:03 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/19 05:51:05 by leklund          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:18:00 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "cub3D.h"
 
 static int	create_trgb(int t, int r, int g, int b)
@@ -84,7 +85,7 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->side = 1;
 		}
 		P->cpy_map[dda->mapY][dda->mapX] = '/';
-		if (P->map[dda->mapY][dda->mapX] > '0')
+		if (P->map[dda->mapY][dda->mapX] > '.')
 			dda->hit = 1;
 	}
 }

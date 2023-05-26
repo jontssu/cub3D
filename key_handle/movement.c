@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:51 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/24 07:50:52 by leklund          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:17:40 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void action_move(t_player *P, double y, double x)
@@ -25,15 +26,15 @@ static void action_move(t_player *P, double y, double x)
 		bodyY = -BODY;
 	else
 		bodyY = BODY;
-	// printf("Player is at Y[%f], X[%f]\n", P->playerY, P->playerX);
-	// printf("Player [Y] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX);
-	// printf("Player [X] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX + x);
+	 //printf("Player is at Y[%f], X[%f]\n", P->playerY, P->playerX);
+	 //printf("Player [Y] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX);
+	 //printf("Player [X] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX + x);
 
-	if(P->map[(int)(bodyY + P->playerY + y)][(int)(bodyX + P->playerX)] == '0'
-			&& P->map[(int)(P->playerY + y)][(int)(P->playerX)] == '0')
+	if(P->map[(int)(bodyY + P->playerY + y)][(int)(bodyX + P->playerX)] == '.'
+			&& P->map[(int)(P->playerY + y)][(int)(P->playerX)] == '.')
 		P->playerY += y;
-	if(P->map[(int)(bodyY + P->playerY)][(int)(bodyX + P->playerX + x)] == '0'
-			&& P->map[(int)(P->playerY)][(int)(P->playerX + x)] == '0')
+	if(P->map[(int)(bodyY + P->playerY)][(int)(bodyX + P->playerX + x)] == '.'
+			&& P->map[(int)(P->playerY)][(int)(P->playerX + x)] == '.')
 		P->playerX += x;
 	// printf("Player is at Y[%f], X[%f]\n", P->playerY, P->playerX);
 }
