@@ -1,13 +1,26 @@
-#include "cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
+/*   Updated: 2023/05/26 11:47:10 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	free_double_pointer(char **array)
+#include "parsing.h"
+
+void	init_elements(t_parser *elements)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	elements->north = NULL;
+	elements->south = NULL;
+	elements->west = NULL;
+	elements->east = NULL;
+	elements->map = NULL;
+	elements->ceiling[3] = -1;
+	elements->floor[3] = -1;
 }
 
 void	read_file_to_content(char *file, char **content)
@@ -22,11 +35,13 @@ void	read_file_to_content(char *file, char **content)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		tmp = *content;
 		*content = ft_strjoin(tmp, line);
-		free(line);
 		free(tmp);
+		free(line);
+		if (!content)
+			error_malloc(*content);
 	}
 	close(fd);
 }
@@ -44,7 +59,7 @@ char	*remove_spaces(char *string)
 		if (string[i] == ' ')
 		{
 			j = i;
-			while (string[j - 1])
+			while (string[j])
 			{
 				string[j] = string[j + 1];
 				j++;
@@ -72,32 +87,23 @@ int	parser(char *file, t_parser *elements)
 	char	*content;
 	char	**split;
 
+	init_elements(elements);
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
-	split = ft_split(content, '\n');	
+	split = ft_split(content, '\n');
+	if (!split)
+		error_malloc(content);
+	free(content);
 	split = remove_spaces_from_elements(split);
 	set_elements(split, elements);
+	free_double_pointer(split);
 	check_elements(elements);
 	get_map(&split[6], elements);
-	//map_check(elements);
-
-	printf("ELEMENT: %s\n", elements->north);
-	printf("ELEMENT: %s\n", elements->south);
-	printf("ELEMENT: %s\n", elements->west);
-	printf("ELEMENT: %s\n", elements->east);
-	printf("ELEMENT: %d\n", elements->floor[0]);
-	printf("ELEMENT: %d\n", elements->floor[1]);
-	printf("ELEMENT: %d\n", elements->floor[2]);
-	printf("ELEMENT: %d\n", elements->ceiling[0]);
-	printf("ELEMENT: %d\n", elements->ceiling[1]);
-	printf("ELEMENT: %d\n", elements->ceiling[2]);
-	
-
-	printf("\n\n\n");
+	if (elements->max_heigth < 3 || elements->max_width < 3)
+		error_invalid_map(elements, 8);
+	map_check(elements);
 	int i = 0;
 	while (elements->map[i])
 		printf("%s\n", elements->map[i++]);
-	free(content);
-	free_double_pointer(split);
 	return (0);
 }

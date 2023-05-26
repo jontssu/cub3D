@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 13:17:21 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/18 13:17:22 by leklund          ###   ########.fr       */
+/*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
+/*   Updated: 2023/05/25 19:56:37 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3D.h"
+#include "parsing.h"
 
 void	init(t_player *P, t_parser *elements)
 {
@@ -23,17 +24,13 @@ void	init(t_player *P, t_parser *elements)
 	P->cpy_map = copy2DCharArray(P->map);
 }
 
-
-int main(int argc, char **argv) 
+int	main(int argc, char **argv)
 {
 	t_player 	player;
 	t_parser	elements;
 
-
-
-
 	if (argc != 2)
-		return (error_argument_count());
+		error_invalid_input(1);
 	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)
@@ -65,5 +62,6 @@ int main(int argc, char **argv)
 	mlx_loop(player.mlx);
 
 
+	free_elements(&elements);
 	return (0);
 }

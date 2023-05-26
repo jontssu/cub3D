@@ -24,8 +24,8 @@ _RAYCASTING := ray_casting.c \
 				texturing.c
 _KEYHANDLE := key_handle.c \
 				movement.c
-_PARSER := parsing.c error.c error2.c set_elements_and_checks.c \
-get_map.c map_check.c valid_chars_check.c
+_PARSER := parsing.c error.c set_elements.c check_elements.c \
+get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 _CORE := cub3d.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
