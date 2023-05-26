@@ -101,7 +101,7 @@ int	parser(char *file, t_parser *elements)
 	get_map(&split[6], elements);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
-	map_check(elements);
+	// map_check(elements);
 	int i = 0;
 	while (elements->map[i])
 		printf("%s\n", elements->map[i++]);
