@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
-/*   Updated: 2023/05/25 19:58:38 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/26 11:47:10 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_elements(t_parser *elements)
 	elements->west = NULL;
 	elements->east = NULL;
 	elements->map = NULL;
+	elements->ceiling[3] = -1;
+	elements->floor[3] = -1;
 }
 
 void	read_file_to_content(char *file, char **content)
@@ -100,5 +102,8 @@ int	parser(char *file, t_parser *elements)
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
 	map_check(elements);
+	int i = 0;
+	while (elements->map[i])
+		printf("%s\n", elements->map[i++]);
 	return (0);
 }

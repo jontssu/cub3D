@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:18 by jole              #+#    #+#             */
-/*   Updated: 2023/05/25 19:40:20 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/26 11:46:51 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	set_elements(char **split, t_parser *elements)
 			set_int_array(&split[i][1], elements->ceiling, elements, split);
 	}
 	if (!elements->north || !elements->south || !elements->west \
-	|| !elements->east || elements->ceiling[3] == 0 || elements->floor[3] == 0)
+	|| !elements->east || elements->ceiling[3] == -1 || elements->floor[3] == -1)
 		error_elements(elements, split, 2);
 	return (0);
 }
