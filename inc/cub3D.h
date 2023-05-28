@@ -38,6 +38,18 @@
 # define texHeight 64
 
 
+typedef struct	s_img
+{
+	void	*img;
+	int		*data;
+
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_img;
+
 typedef struct s_player{
 	double	playerX;
 	double	playerY;
@@ -47,15 +59,18 @@ typedef struct s_player{
 	double	planeY;
 	char	**map;
 	char	**cpy_map;
-	void	*img;
-	void	*reset_img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	// void	*img;
+	// void	*reset_img;
+	// char	*addr;
+	// int		bits_per_pixel;
+	// int		line_length;
+	// int		endian;
+	t_img	img;
+	int		buf[screenHeight][screenWidth];
 	void	*mlx;
 	void	*mlx_win;
-	void	*texture[8];
+	int		texture[4][texHeight * texWidth];
+	int		re_buf;
 }				t_player;
 
 typedef struct s_dda
@@ -90,6 +105,8 @@ void player_rotate(t_player *P, double x);
 
 //texuring
 void	texture(t_player *P, t_dda *dda);
+void	draw(t_player *P);
+
 
 int	ray_cast(t_player *P);
 void print_map(t_player *P);

@@ -47,8 +47,8 @@ void player_move(t_player *P, double x, double y, int type)
 		action_move(P, -P->dirX * y, P->dirY * x);
 	}
 	ray_cast(P);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img, 0, 0);
+	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
+	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 
 void player_rotate(t_player *P, double x)
@@ -60,8 +60,8 @@ void player_rotate(t_player *P, double x)
 	P->planeX = P->planeX * cos(x) - P->planeY * sin(x);
 	P->planeY = oldPlaneX * sin(x) + P->planeY * cos(x);
 	ray_cast(P);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
-	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img, 0, 0);
+	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
+	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 
 
