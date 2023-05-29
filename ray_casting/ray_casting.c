@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "parsing.h"
 
 void	draw_ver_line(t_player *P, t_dda *dda)
 {
@@ -49,7 +50,7 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->side = 1;
 		}
 		P->cpy_map[dda->mapY][dda->mapX] = '/';
-		if (P->map[dda->mapY][dda->mapX] > '.')
+		if (P->map[dda->mapY][dda->mapX] == 'I')
 			dda->hit = 1;
 	}
 }
@@ -91,7 +92,10 @@ int	ray_cast(t_player *P)
 	{
 		for (int j = 0; j < screenWidth; j++)
 		{
-			P->buf[i][j] = 0;
+			if (i >= screenHeight/2)
+				P->buf[i][j] = P->floor;
+			else
+				P->buf[i][j] = P->ceiling;
 		}
 	}
 
@@ -113,7 +117,7 @@ int	ray_cast(t_player *P)
 		dda.x++;
 	}
 	print_map(P);
-	free(P->cpy_map);
+	free_double_pointer(P->cpy_map);
 	P->cpy_map = copy2DCharArray(P->map);
 	draw(P);
 

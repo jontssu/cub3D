@@ -13,16 +13,27 @@
 #include "cub3D.h"
 #include "parsing.h"
 
+int	create_trgb(int arr[4])
+{
+	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
+}
+
 void	init(t_player *P, t_parser *elements)
 {
-	P->playerX = 6;
-	P->playerY = 6;
+	P->playerX = elements->start_x + 0.5;
+	P->playerY = elements->start_y + 0.5;
 	P->dirX = -1;
 	P->dirY = 0;
 	P->planeX = 0;
 	P->planeY = 0.66;
 	P->map = elements->map;
 	P->cpy_map = copy2DCharArray(P->map);
+	// ft_memcpy(P->ceiling, elements->ceiling, sizeof(elements->ceiling));
+	// ft_memcpy(P->floor, elements->floor, sizeof(elements->floor));
+	P->ceiling = create_trgb(elements->ceiling);
+	P->floor = create_trgb(elements->floor);
+	P->map[(int)P->playerY][(int)P->playerX] = '.';
+
 }
 
 
