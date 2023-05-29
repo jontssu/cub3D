@@ -11,45 +11,11 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static void	my_mlx_pixel_put(t_player *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	ver_line1(t_player *P, t_dda *dda, int color)
-{
-	int	color2 = create_trgb (255,255,255,255);
-	int	y;
-
-	y = 0;
-	while (y < screenHeight) // tmp black image remove!<---------- REMOVE!!!!!!!!!!
-	{
-		my_mlx_pixel_put(P, dda->x, y, color2);
-		y++;
-	}
-	y = dda->drawStart;
-	while (dda->drawStart < dda->drawEnd)
-	{
-		my_mlx_pixel_put(P, dda->x, dda->drawStart, color);
-		dda->drawStart++;
-	}
-	dda->drawStart = y;
-}
+#include "parsing.h"
 
 void	draw_ver_line(t_player *P, t_dda *dda)
 {
-	int	color;
 	(void) P;
-	color = create_trgb(0,0,255,0);
 	if (dda->side == 0)
 	{
 		dda->perpWallDist = (dda->sideDistX - dda->deltaDistX);
@@ -65,7 +31,6 @@ void	draw_ver_line(t_player *P, t_dda *dda)
 	dda->drawEnd = dda->lineHeight / 2 + screenHeight / 2;
 	if (dda->drawEnd >= screenHeight)
 		dda->drawEnd = screenHeight - 1;
-	ver_line1(P, dda, color);
 }
 
 void	digital_differential_analysis(t_player *P, t_dda *dda)
@@ -85,7 +50,7 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->side = 1;
 		}
 		P->cpy_map[dda->mapY][dda->mapX] = '/';
-		if (P->map[dda->mapY][dda->mapX] > '.')
+		if (P->map[dda->mapY][dda->mapX] == 'I')
 			dda->hit = 1;
 	}
 }
@@ -120,8 +85,20 @@ int	ray_cast(t_player *P)
 
 	
 	dda.x = 0;
-	// while (dda.x < screenWidth)
-	// while (dda.x < 10)
+
+	// ft_bzero(P->buf, screenWidth * screenHeight * sizeof(int));
+
+	for (int i = 0; i < screenHeight; i++)
+	{
+		for (int j = 0; j < screenWidth; j++)
+		{
+			if (i >= screenHeight/2)
+				P->buf[i][j] = P->floor;
+			else
+				P->buf[i][j] = P->ceiling;
+		}
+	}
+
 	while (dda.x < screenWidth)
 	{
 		dda.hit = 0;
@@ -135,13 +112,14 @@ int	ray_cast(t_player *P)
 		start_dir_len(P, &dda);
 		digital_differential_analysis(P, &dda);
 		draw_ver_line(P, &dda);
-		// printf("drawStart[%i] - h[%i] + lineHeight[%i]\n", dda.drawStart, screenHeight, dda.lineHeight);
-		// texture(P, &dda);
+		texture(P, &dda);
 		dda.hit = 0;
 		dda.x++;
 	}
 	print_map(P);
-	free(P->cpy_map);
+	free_double_pointer(P->cpy_map);
 	P->cpy_map = copy2DCharArray(P->map);
+	draw(P);
+
 	return (0);
 }
