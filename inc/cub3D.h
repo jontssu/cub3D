@@ -20,11 +20,14 @@
 # include <stdlib.h>
 # include <math.h>
 # include "ray_casting.h"
+# include "parsing.h"
+
 
 typedef struct s_cub3D
 {
 	t_dda		dda;
 	t_player	player;
+	t_parser	elements;
 }				t_cub3D;
 
 

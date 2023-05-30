@@ -21,7 +21,7 @@ void print_map(t_player *P)
 		x = 0;
 		while(P->cpy_map[y][x])
 		{
-			if(y == P->playerY && x == P->playerX)
+			if(y == P->pos_y && x == P->pos_x)
 				printf("P");
 			else
 				printf("%c", P->cpy_map[y][x]);
