@@ -11,115 +11,119 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "parsing.h"
 
-void	draw_ver_line(t_player *P, t_dda *dda)
+void	calc_line(t_dda *dda)
 {
-	(void) P;
 	if (dda->side == 0)
 	{
-		dda->perpWallDist = (dda->sideDistX - dda->deltaDistX);
+		dda->perp_wall_dist = (dda->tot_dist_x - dda->delta_dist_x);
 	}
 	else
 	{
-		dda->perpWallDist = (dda->sideDistY - dda->deltaDistY);
+		dda->perp_wall_dist = (dda->tot_dist_y - dda->delta_dist_y);
 	}
-	dda->lineHeight = (int)(screenHeight / dda->perpWallDist);
-	dda->drawStart = -dda->lineHeight / 2 + screenHeight / 2;
-	if (dda->drawStart < 0)
-		dda->drawStart = 0;
-	dda->drawEnd = dda->lineHeight / 2 + screenHeight / 2;
-	if (dda->drawEnd >= screenHeight)
-		dda->drawEnd = screenHeight - 1;
+	dda->line_height = (int)(HEIGHT / dda->perp_wall_dist);
+	dda->draw_start = -dda->line_height / 2 + HEIGHT / 2;
+	if (dda->draw_start < 0)
+		dda->draw_start = 0;
+	dda->draw_end = dda->line_height / 2 + HEIGHT / 2;
+	if (dda->draw_end >= HEIGHT)
+		dda->draw_end = HEIGHT;
 }
 
 void	digital_differential_analysis(t_player *P, t_dda *dda)
 {
 	while (dda->hit == 0)
 	{
-		if (dda->sideDistX < dda->sideDistY)
+		if (dda->tot_dist_x < dda->tot_dist_y)
 		{
-			dda->sideDistX += dda->deltaDistX;
-			dda->mapX += dda->stepX;
+			dda->tot_dist_x += dda->delta_dist_x;
+			dda->map_x += dda->step_x;
 			dda->side = 0;
 		}
 		else
 		{
-			dda->sideDistY += dda->deltaDistY;
-			dda->mapY += dda->stepY;
+			dda->tot_dist_y += dda->delta_dist_y;
+			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		P->cpy_map[dda->mapY][dda->mapX] = '/';
-		if (P->map[dda->mapY][dda->mapX] == 'I')
+		P->cpy_map[dda->map_y][dda->map_x] = '/';
+		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
 	}
 }
 
 void	start_dir_len(t_player *P, t_dda *dda)
 {
-	if (dda->rayDirX < 0)
+	if (dda->ray_dir_x < 0)
 	{
-		dda->stepX = -1;
-		dda->sideDistX = (P->playerX - dda->mapX) * dda->deltaDistX;
+		dda->step_x = -1;
+		dda->tot_dist_x = (P->pos_x - dda->map_x) * dda->delta_dist_x;
 	}
 	else
 	{
-		dda->stepX = 1;
-		dda->sideDistX = (dda->mapX + 1.0 - P->playerX) * dda->deltaDistX;
+		dda->step_x = 1;
+		dda->tot_dist_x = (dda->map_x + 1.0 - P->pos_x) * dda->delta_dist_x;
 	}
-	if (dda->rayDirY < 0)
+	if (dda->ray_dir_y < 0)
 	{
-		dda->stepY = -1;
-		dda->sideDistY = (P->playerY - dda->mapY) * dda->deltaDistY;
+		dda->step_y = -1;
+		dda->tot_dist_y = (P->pos_y - dda->map_y) * dda->delta_dist_y;
 	}
 	else
 	{
-		dda->stepY = 1;
-		dda->sideDistY = (dda->mapY + 1.0 - P->playerY) * dda->deltaDistY;
+		dda->step_y = 1;
+		dda->tot_dist_y = (dda->map_y + 1.0 - P->pos_y) * dda->delta_dist_y;
 	}
 }
 
-int	ray_cast(t_player *P)
+int	ray_cast(t_player *player)
 {
 	t_dda	dda;
+	int		y;
+	int		x;
 
-	
-	dda.x = 0;
-
-	// ft_bzero(P->buf, screenWidth * screenHeight * sizeof(int));
-
-	for (int i = 0; i < screenHeight; i++)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		for (int j = 0; j < screenWidth; j++)
+		x = 0;
+		while (x < WIDTH)
 		{
-			if (i >= screenHeight/2)
-				P->buf[i][j] = P->floor;
+			if (y >= HEIGHT/2)
+				player->buf[y][x] = player->floor;
 			else
-				P->buf[i][j] = P->ceiling;
+				player->buf[y][x] = player->ceiling;
+			x++;
 		}
+		y++;
 	}
-
-	while (dda.x < screenWidth)
+	dda.x = 0;
+	while (dda.x < WIDTH)
 	{
 		dda.hit = 0;
-		dda.mapX = (int)P->playerX;
-		dda.mapY = (int)P->playerY;
-		dda.cameraX = 2 * dda.x / (double)screenWidth - 1;
-		dda.rayDirX = P->dirX + (P->planeX * dda.cameraX);
-		dda.rayDirY = P->dirY + (P->planeY * dda.cameraX);
-		dda.deltaDistX = (dda.rayDirX == 0) ? 1e30 : fabs(1.0 / dda.rayDirX); 
-		dda.deltaDistY = (dda.rayDirY == 0) ? 1e30 : fabs(1.0 / dda.rayDirY);
-		start_dir_len(P, &dda);
-		digital_differential_analysis(P, &dda);
-		draw_ver_line(P, &dda);
-		texture(P, &dda);
+		dda.map_x = (int)player->pos_x;
+		dda.map_y = (int)player->pos_y;
+		dda.camera_x = 2 * dda.x / ((double)WIDTH - 1) - 1;
+		dda.ray_dir_x = player->dir_x + (player->plane_x * dda.camera_x);
+		dda.ray_dir_y = player->dir_y + (player->plane_y * dda.camera_x);
+		if (dda.ray_dir_x == 0)
+			dda.delta_dist_x = 1e30;
+		else
+			dda.delta_dist_x = fabs(1.0 / dda.ray_dir_x);
+		if (dda.ray_dir_y == 0)
+			dda.delta_dist_y = 1e30;
+		else
+			dda.delta_dist_y = fabs(1.0 / dda.ray_dir_y);
+		start_dir_len(player, &dda);
+		digital_differential_analysis(player, &dda);
+		calc_line(&dda);
+		texture(player, &dda);
 		dda.hit = 0;
 		dda.x++;
 	}
-	print_map(P);
-	free_double_pointer(P->cpy_map);
-	P->cpy_map = copy2DCharArray(P->map);
-	draw(P);
-
+	print_map(player);
+	free_double_pointer(player->cpy_map);
+	player->cpy_map = copy2DCharArray(player->map);
+	draw(player);
 	return (0);
 }
