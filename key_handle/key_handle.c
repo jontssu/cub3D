@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:20 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/26 15:09:56 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/29 16:14:29 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	key_pressed(int keycode, void *param)
 {
-	printf("KEYCODE:%d\n", keycode);
 	if (keycode == KEY_W)
 		player_move(param, 0.1, 0.1, KEY_W);
 	else if (keycode == KEY_S)
@@ -27,10 +26,19 @@ int	key_pressed(int keycode, void *param)
 		player_rotate(param, -0.1);
 	else if (keycode == KEY_RIGHT)
 		player_rotate(param, 0.1);
+	else if (keycode == KEY_ESC)
+		esc_close_window();
 	return (0);
 }
 
 int	red_cross_close(void)
 {
+	//should free stuff
 	exit(0);
+}
+
+int	esc_close_window(void)
+{
+	//should free stuff
+	exit (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:55:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/24 11:55:34 by leklund          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:10:30 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ typedef struct s_cub3D
 	t_player	player;
 	t_parser	elements;
 }				t_cub3D;
-
 
 #endif

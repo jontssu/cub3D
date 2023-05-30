@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/29 06:52:42 by leklund          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:14:04 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define KEY_D 2
 # define KEY_LEFT 124
 # define KEY_RIGHT 123
+# define KEY_ESC 53
 
 
 # define WIDTH 640
@@ -105,8 +106,7 @@ typedef struct s_dda
 //KEY_HANDLE
 int		key_pressed(int keycode, void *param);
 int		red_cross_close(void);
-
-//Movement
+int		esc_close_window(void);
 void	player_move(t_player *P, double x, double y, int type);
 void	player_rotate(t_player *P, double x);
 
