@@ -14,30 +14,37 @@
 
 void	draw(t_player *P)
 {
-	for (int y = 0; y < screenHeight; y++)
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < HEIGHT)
 	{
-		for (int x = 0; x < screenWidth; x++)
+		x = 0;
+		while (x < WIDTH)
 		{
-			P->img.data[y * screenWidth + x] = P->buf[y][x];
+			P->img.data[y * WIDTH + x] = P->buf[y][x];
+			x++;
 		}
+		y++;
 	}
 	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 
-int	choose_texture(t_player *P, t_dda *dda)
+int	choose_texture(t_dda *dda)
 {
 	int	tex_num;
-	(void) P;
+
 	if (dda->side == 1)
 	{
-		if (dda->rayDirY <= 0)
+		if (dda->ray_dir_y <= 0)
 			tex_num = 0;
 		else
 			tex_num = 1;
 	}
 	else
 	{
-		if (dda->rayDirX <= 0)
+		if (dda->ray_dir_x <= 0)
 			tex_num = 2;
 		else
 			tex_num = 3;
@@ -47,34 +54,30 @@ int	choose_texture(t_player *P, t_dda *dda)
 
 void	texture(t_player *P, t_dda *dda)
 {
-	int texNum = choose_texture(P, dda);
-	double wallX; //where exactly the wall was hit
-	if (dda->side == 0)
-		wallX = P->playerY + dda->perpWallDist * dda->rayDirY;
-	else
-		wallX = P->playerX + dda->perpWallDist * dda->rayDirX;
-	wallX -= floor((wallX));
-	 //x coordinate on the texture
-	int texX = (int)(wallX * (double)(texWidth));
-	if(dda->side == 0 && dda->rayDirX > 0)
-		texX = texWidth - texX - 1;
-	if(dda->side == 1 && dda->rayDirY < 0)
-		texX = texWidth - texX - 1;
-	// How much to increase the texture coordinate per screen pixel
-	double step = 1.0 * texHeight / dda->lineHeight;
-	// Starting texture coordinate
-	double texPos = (dda->drawStart - screenHeight / 2 + dda->lineHeight / 2) * step;
-	int y = dda->drawStart;
-	while(y < dda->drawEnd)
-	{
-		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-		int texY = (int)texPos & (texHeight - 1);
-		texPos += step;
+	t_tex	tex;
+	int		y;
 
-		int	color = P->texture[texNum][texHeight * texY + texX];
-		// if(dda->side == 1)
-		// 	color = (color >> 1) & 8355711;
-		P->buf[y][dda->x] = color;
+	tex.tex_num = choose_texture(dda);
+	if (dda->side == 0)
+		tex.wall_x = P->pos_y + dda->perp_wall_dist * dda->ray_dir_y;
+	else
+		tex.wall_x = P->pos_x + dda->perp_wall_dist * dda->ray_dir_x;
+	tex.wall_x -= floor((tex.wall_x));
+	tex.tex_x = (int)(tex.wall_x * (double)(TEX_WIDTH));
+	if (dda->side == 0 && dda->ray_dir_x > 0)
+		tex.tex_x = TEX_WIDTH - tex.tex_x - 1;
+	if (dda->side == 1 && dda->ray_dir_y < 0)
+		tex.tex_x = TEX_WIDTH - tex.tex_x - 1;
+	tex.step = 1.0 * TEX_HEIGHT / dda->line_height;
+	tex.tex_pos = (dda->draw_start - HEIGHT / 2 + dda->line_height / 2) \
+	* tex.step;
+	y = dda->draw_start;
+	while (y < dda->draw_end)
+	{
+		tex.tex_y = (int)tex.tex_pos & (TEX_HEIGHT - 1);
+		tex.tex_pos += tex.step;
+		tex.color = P->texture[tex.tex_num][TEX_HEIGHT * tex.tex_y + tex.tex_x];
+		P->buf[y][dda->x] = tex.color;
 		y++;
 	}
 
