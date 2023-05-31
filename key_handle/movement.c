@@ -12,56 +12,52 @@
 
 #include "cub3D.h"
 
-static void action_move(t_player *P, double y, double x)
+static void	action_move(t_player *P, double y, double x)
 {
-	double	bodyX;
-	double	bodyY;
+	double	body_x;
+	double	body_y;
 
-	if(P->dirX < 0)
+	if (P->dir_x < 0)
 
-		bodyX = -BODY;
+		body_x = -BODY;
 	else
-		bodyX = BODY;
-	if(P->dirY < 0)
-		bodyY = -BODY;
+		body_x = BODY;
+	if (P->dir_y < 0)
+		body_y = -BODY;
 	else
-		bodyY = BODY;
-	 //printf("Player is at Y[%f], X[%f]\n", P->playerY, P->playerX);
-	 //printf("Player [Y] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX);
-	 //printf("Player [X] wanna move to Y[%f], X[%f]\n", bodyY + P->playerY + y, bodyX + P->playerX + x);
-
-	if(P->map[(int)(bodyY + P->playerY + y)][(int)(bodyX + P->playerX)] == '.'
-			&& P->map[(int)(P->playerY + y)][(int)(P->playerX)] == '.')
-		P->playerY += y;
-	if(P->map[(int)(bodyY + P->playerY)][(int)(bodyX + P->playerX + x)] == '.'
-			&& P->map[(int)(P->playerY)][(int)(P->playerX + x)] == '.')
-		P->playerX += x;
-	// printf("Player is at Y[%f], X[%f]\n", P->playerY, P->playerX);
+		body_y = BODY;
+	if (P->map[(int)(body_y + P->pos_y + y)][(int)(body_x + P->pos_x)] == '.'
+			&& P->map[(int)(P->pos_y + y)][(int)(P->pos_x)] == '.')
+		P->pos_y += y;
+	if (P->map[(int)(body_y + P->pos_y)][(int)(body_x + P->pos_x + x)] == '.'
+			&& P->map[(int)(P->pos_y)][(int)(P->pos_x + x)] == '.')
+		P->pos_x += x;
 }
-void player_move(t_player *P, double x, double y, int type)
+
+void	player_move(t_player *P, double x, double y, int type)
 {
-	if(type == KEY_W || type == KEY_S)
-		action_move(P, P->dirY * y, P->dirX * x);
+	if (type == KEY_W || type == KEY_S)
+		action_move(P, P->dir_y * y, P->dir_x * x);
 	else
 	{
-		action_move(P, -P->dirX * y, P->dirY * x);
+		action_move(P, -P->dir_x * y, P->dir_y * x);
 	}
 	ray_cast(P);
-	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 
-void player_rotate(t_player *P, double x)
+void	player_rotate(t_player *P, double x)
 {
-	double oldDirX = P->dirX;
-	P->dirX =  P->dirX * cos(x) - P->dirY * sin(x);
-	P->dirY = oldDirX * sin(x) + P->dirY * cos(x);
-	double oldPlaneX = P->planeX;
-	P->planeX = P->planeX * cos(x) - P->planeY * sin(x);
-	P->planeY = oldPlaneX * sin(x) + P->planeY * cos(x);
-	printf("PDIRX:%f, PDIRY: %f", P->dirX, P->dirY);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = P->dir_x;
+	old_plane_x = P->plane_x;
+	P->dir_x = P->dir_x * cos(x) - P->dir_y * sin(x);
+	P->dir_y = old_dir_x * sin(x) + P->dir_y * cos(x);
+	P->plane_x = P->plane_x * cos(x) - P->plane_y * sin(x);
+	P->plane_y = old_plane_x * sin(x) + P->plane_y * cos(x);
 	ray_cast(P);
-	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 

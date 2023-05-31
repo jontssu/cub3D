@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/31 18:13:45 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/31 18:15:48 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@
 # define KEY_ESC 53
 
 
-# define screenWidth 640
-# define screenHeight 480
-# define texWidth 64
-# define texHeight 64
+# define WIDTH 640
+# define HEIGHT 480
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	int		*data;
@@ -72,35 +72,34 @@ typedef struct s_player
 	int		buf[screenHeight][screenWidth];
 	void	*mlx;
 	void	*mlx_win;
-	int		texture[4][texHeight * texWidth];
-	int		re_buf;
-	int		floor;
+	t_img	img;
+	int		texture[4][TEX_HEIGHT * TEX_WIDTH];
+	int		buf[HEIGHT][WIDTH];
 	int		ceiling;
 	t_parser	*elements;
 }				t_player;
 
+//Digital differential analysis ;D
 typedef struct s_dda
 {
-	int	x;
-	double cameraX; //cam x pos
-	double rayDirX; // direction to work with the ray/vector from player to make FOV
-	double rayDirY;
-	double deltaDistX;//the amount to increase measure vector
-	double deltaDistY;
-	double sideDistX;//mesaure vector total
-	double sideDistY;
-	double perpWallDist; //the length from POV to wall
-	int stepX; //what direction to step into x or y
-	int stepY;
-	int hit; //was there a wall hit?
-	int side; //was a NS or a EW wall hit?
-	int mapX; //current vector hit pos
-	int mapY;
-	//Calculate height of line to draw on screen
-	int lineHeight;
-	//calculate lowest and highest pixel to fill in current stripe
-    int drawStart;
-    int drawEnd;
+	int		x;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	tot_dist_x;
+	double	tot_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }					t_dda;
 
 //KEY_HANDLE
@@ -113,9 +112,13 @@ void	player_rotate(t_player *P, double x);
 void	texture(t_player *P, t_dda *dda);
 void	draw(t_player *P);
 
+//Ray_casting
+int		ray_cast(t_player *P);
 
-int	ray_cast(t_player *P);
-void print_map(t_player *P);
-char** copy2DCharArray(char** arr);
+//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
+//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
+//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
+void	print_map(t_player *P);
+char**	copy2DCharArray(char** arr);
 # include <string.h>
 #endif
