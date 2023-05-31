@@ -43,7 +43,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(P->mlx, path, &img->img_width, &img->img_height);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
 	y = 0;
-	printf("img_H[%d], img_W[%d]\n", img->img_height, img->img_width);
 	while (y < img->img_height)
 	{
 		x = 0;
@@ -54,14 +53,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 		}
 		y++;
 	}
-
-	// for (int y = 0; y < img->img_height; y++)
-	// {
-	// 	for (int x = 0; x < img->img_width; x++)
-	// 	{
-	// 		texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-	// 	}
-	// }
 	mlx_destroy_image(P->mlx, img->img);
 }
 
@@ -111,6 +102,7 @@ int	main(int argc, char **argv)
 
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
+	// mlx_loop_hook(player.mlx, ray_cast, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);

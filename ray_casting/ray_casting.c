@@ -125,5 +125,6 @@ int	ray_cast(t_player *player)
 	free_double_pointer(player->cpy_map);
 	player->cpy_map = copy2DCharArray(player->map);
 	draw(player);
+	mlx_put_image_to_window(player->mlx, player->mlx_win, player->img.img, 0, 0);
 	return (0);
 }

@@ -22,6 +22,9 @@
 
 //Player
 # define BODY 0.25
+# define SPEED 0.1
+# define ROT_SPEED 0.1
+
 
 //Mac key values
 # define KEY_W 13
