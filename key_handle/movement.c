@@ -14,24 +14,9 @@
 
 static void	action_move(t_player *player, double y, double x)
 {
-	double	body_x;
-	double	body_y;
-
-	if (player->dir_x < 0)
-
-		body_x = -BODY;
-	else
-		body_x = BODY;
-	if (player->dir_y < 0)
-		body_y = -BODY;
-	else
-		body_y = BODY;
-	printf("DIR Y[%f]X[%f] and wants to move to Y[%f]X[%f]\n", player->dir_y, player->dir_x, y, x);
-	if (player->map[(int)(body_y + player->pos_y + y)][(int)(player->pos_x)] == '.'
-			&& player->map[(int)(player->pos_y + y)][(int)(player->pos_x)] == '.')
+	if (player->map[(int)(player->pos_y + y)][(int)(player->pos_x)] == '.')
 		player->pos_y += y;
-	if (player->map[(int)(player->pos_y)][(int)(body_x + player->pos_x + x)] == '.'
-			&& player->map[(int)(player->pos_y)][(int)(player->pos_x + x)] == '.')
+	if (player->map[(int)(player->pos_y)][(int)(player->pos_x + x)] == '.')
 		player->pos_x += x;
 }
 

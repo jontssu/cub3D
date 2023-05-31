@@ -44,8 +44,8 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
-	P->player_x = elements->start_x + 0.5;
-	P->player_y = elements->start_y + 0.5;
+	P->pos_x = elements->start_x + 0.5;
+	P->pos_y = elements->start_y + 0.5;
 	P->dir_x = 0;
 	P->dir_y = 0;
 	P->plane_x = 0;
@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 								&player.img.endian);
 	ft_bzero(player.buf, WIDTH * HEIGHT);
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
-	load_texture(&player);
+	load_texture(&player, &elements);
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
 	// mlx_loop_hook(player.mlx, ray_cast, &player);
