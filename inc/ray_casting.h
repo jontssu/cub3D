@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/29 16:14:04 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/29 18:15:39 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 //Player
-# define BODY 0.25
+# define BODY 0.5
 
 //Mac key values
 # define KEY_W 13

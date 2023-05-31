@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/05/29 16:11:59 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/31 12:52:35 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,39 @@ int	create_trgb(int arr[4])
 	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
 }
 
+void	determine_dir(t_player *P, t_parser *elements)
+{
+	if (elements->orientation == 'N')
+	{
+		P->dirY = -1;
+		P->planeX = -0.66;
+	}
+	else if (elements->orientation == 'S')
+	{
+		P->dirY = 1;
+		P->planeX = 0.66;
+	}
+	else if (elements->orientation == 'W')
+	{
+		P->dirX = 1;
+		P->planeY = -0.66;
+	}
+	else if (elements->orientation == 'E')
+	{
+		P->dirX = -1;
+		P->planeY = 0.66;
+	}
+}
+
 void	init(t_player *P, t_parser *elements)
 {
 	P->playerX = elements->start_x + 0.5;
 	P->playerY = elements->start_y + 0.5;
-	P->dirX = -1;
+	P->dirX = 0;
 	P->dirY = 0;
 	P->planeX = 0;
-	P->planeY = 0.66;
+	P->planeY = 0;
+	determine_dir(P, elements);
 	P->map = elements->map;
 	P->cpy_map = copy2DCharArray(P->map);
 	// ft_memcpy(P->ceiling, elements->ceiling, sizeof(elements->ceiling));
@@ -33,7 +58,6 @@ void	init(t_player *P, t_parser *elements)
 	P->ceiling = create_trgb(elements->ceiling);
 	P->floor = create_trgb(elements->floor);
 	P->map[(int)P->playerY][(int)P->playerX] = '.';
-
 }
 
 
@@ -51,15 +75,15 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	mlx_destroy_image(P->mlx, img->img);
 }
 
-void	load_texture(t_player *P)
+void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
 	int i;
 
-	load_image(P, P->texture[0], "./texture/bluestone.xpm", &img);
-	load_image(P, P->texture[1], "./texture/eagle.xpm", &img);
-	load_image(P, P->texture[2], "./texture/greystone.xpm", &img);
-	load_image(P, P->texture[3], "./texture/redbrick.xpm", &img);
+	load_image(P, P->texture[0], elements->north, &img);
+	load_image(P, P->texture[1], elements->south, &img);
+	load_image(P, P->texture[2], elements->west, &img);
+	load_image(P, P->texture[3], elements->east, &img);
 	i = 0;
 	while (i < 4)
 	{
@@ -93,7 +117,7 @@ int	main(int argc, char **argv)
 								&player.img.endian);
 	ft_bzero(player.buf, screenWidth * screenHeight);
 	ft_bzero(player.texture, 4 * texHeight * texWidth);
-	load_texture(&player);
+	load_texture(&player, &elements);
 
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);

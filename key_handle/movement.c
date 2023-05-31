@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:51 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/26 15:17:40 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/31 12:16:56 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void player_rotate(t_player *P, double x)
 	double oldPlaneX = P->planeX;
 	P->planeX = P->planeX * cos(x) - P->planeY * sin(x);
 	P->planeY = oldPlaneX * sin(x) + P->planeY * cos(x);
+	printf("PDIRX:%f, PDIRY: %f", P->dirX, P->dirY);
 	ray_cast(P);
 	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->reset_img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
