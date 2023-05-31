@@ -44,8 +44,8 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
-	P->player_x = elements->start_x + 0.5;
-	P->player_y = elements->start_y + 0.5;
+	P->pos_x = elements->start_x + 0.5;
+	P->pos_y = elements->start_y + 0.5;
 	P->dir_x = 0;
 	P->dir_y = 0;
 	P->plane_x = 0;
@@ -67,7 +67,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(P->mlx, path, &img->img_width, &img->img_height);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
 	y = 0;
-	printf("img_H[%d], img_W[%d]\n", img->img_height, img->img_width);
 	while (y < img->img_height)
 	{
 		x = 0;
@@ -78,14 +77,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 		}
 		y++;
 	}
-
-	// for (int y = 0; y < img->img_height; y++)
-	// {
-	// 	for (int x = 0; x < img->img_width; x++)
-	// 	{
-	// 		texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-	// 	}
-	// }
 	mlx_destroy_image(P->mlx, img->img);
 }
 
@@ -131,9 +122,10 @@ int	main(int argc, char **argv)
 								&player.img.endian);
 	ft_bzero(player.buf, WIDTH * HEIGHT);
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
-	load_texture(&player);
+	load_texture(&player, &elements);
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
+	// mlx_loop_hook(player.mlx, ray_cast, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);

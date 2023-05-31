@@ -15,17 +15,17 @@
 int	key_pressed(int keycode, void *param)
 {
 	if (keycode == KEY_W)
-		player_move(param, 0.1, 0.1, KEY_W);
+		player_move(param, SPEED, SPEED, KEY_W);
 	else if (keycode == KEY_S)
-		player_move(param, -0.1, -0.1, KEY_S);
-	else if (keycode == KEY_A)
-		player_move(param, -0.1, -0.1, KEY_A);
+		player_move(param, -SPEED, -SPEED, KEY_S);
 	else if (keycode == KEY_D)
-		player_move(param, 0.1, 0.1, KEY_D);
+		player_move(param, -SPEED, -SPEED, KEY_A);
+	else if (keycode == KEY_A)
+		player_move(param, SPEED, SPEED, KEY_D);
 	else if (keycode == KEY_LEFT)
-		player_rotate(param, -0.05);
+		player_rotate(param, ROT_SPEED);
 	else if (keycode == KEY_RIGHT)
-		player_rotate(param, 0.05);
+		player_rotate(param, -ROT_SPEED);
 	else if (keycode == KEY_ESC)
 		esc_close_window();
 	return (0);

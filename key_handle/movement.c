@@ -12,26 +12,12 @@
 
 #include "cub3D.h"
 
-static void	action_move(t_player *P, double y, double x)
+static void	action_move(t_player *player, double y, double x)
 {
-	double	body_x;
-	double	body_y;
-
-	if (P->dir_x < 0)
-
-		body_x = -BODY;
-	else
-		body_x = BODY;
-	if (P->dir_y < 0)
-		body_y = -BODY;
-	else
-		body_y = BODY;
-	if (P->map[(int)(body_y + P->pos_y + y)][(int)(body_x + P->pos_x)] == '.'
-			&& P->map[(int)(P->pos_y + y)][(int)(P->pos_x)] == '.')
-		P->pos_y += y;
-	if (P->map[(int)(body_y + P->pos_y)][(int)(body_x + P->pos_x + x)] == '.'
-			&& P->map[(int)(P->pos_y)][(int)(P->pos_x + x)] == '.')
-		P->pos_x += x;
+	if (player->map[(int)(player->pos_y + y)][(int)(player->pos_x)] == '.')
+		player->pos_y += y;
+	if (player->map[(int)(player->pos_y)][(int)(player->pos_x + x)] == '.')
+		player->pos_x += x;
 }
 
 void	player_move(t_player *P, double x, double y, int type)

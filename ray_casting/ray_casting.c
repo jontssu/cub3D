@@ -103,7 +103,7 @@ int	ray_cast(t_player *player)
 		dda.hit = 0;
 		dda.map_x = (int)player->pos_x;
 		dda.map_y = (int)player->pos_y;
-		dda.camera_x = 2 * dda.x / ((double)WIDTH - 1) - 1;
+		dda.camera_x = (2 * dda.x / ((double)WIDTH - 1) - 1) * -1;
 		dda.ray_dir_x = player->dir_x + (player->plane_x * dda.camera_x);
 		dda.ray_dir_y = player->dir_y + (player->plane_y * dda.camera_x);
 		if (dda.ray_dir_x == 0)
@@ -125,5 +125,6 @@ int	ray_cast(t_player *player)
 	free_double_pointer(player->cpy_map);
 	player->cpy_map = copy2DCharArray(player->map);
 	draw(player);
+	mlx_put_image_to_window(player->mlx, player->mlx_win, player->img.img, 0, 0);
 	return (0);
 }
