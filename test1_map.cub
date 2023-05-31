@@ -1,10 +1,13 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture      
 
-F 0,255,0
-C 255, 0, 0
+NO ./texture/bluestone.xpm
+S O  . /text ure/eagle.xpm
+
+WE ./text    ur e/ gr e ysto    ne.     xpm
+
+EA ./texture/redbrick.xp m
+
+F 128,128, 128
+C 0, 0, 0
 
 111111111111111
 1E0000000000001
@@ -12,6 +15,7 @@ C 255, 0, 0
 100000000000001
 100000000000001
 100000000000001
+100000S00000001
 100000000000001
 100000000000001
 100000000000001
