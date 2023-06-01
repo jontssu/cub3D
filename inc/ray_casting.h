@@ -57,12 +57,12 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double	playerX;
-	double	playerY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	player_x;
+	double	player_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	char	**map;
 	char	**cpy_map;
 	// void	*img;
