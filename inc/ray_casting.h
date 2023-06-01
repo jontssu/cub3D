@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 11:31:07 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:35:24 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,22 @@ typedef struct s_tex
 	int		color;
 }				t_tex;
 
-typedef struct s_player
-{
-	double	player_x;
-	double	player_y;
+typedef struct s_player{
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	char	**map;
-	char	**cpy_map;
-	// void	*img;
-	// void	*reset_img;
-	// char	*addr;
-	// int		bits_per_pixel;
-	// int		line_length;
-	// int		endian;
-	t_img	img;
-	int		buf[screenHeight][screenWidth];
 	void	*mlx;
 	void	*mlx_win;
 	t_img	img;
 	int		texture[4][TEX_HEIGHT * TEX_WIDTH];
 	int		buf[HEIGHT][WIDTH];
 	int		ceiling;
-	t_parser	*elements;
+	int		floor;
+	char	**map;
+	char	**cpy_map;
 }				t_player;
 
 //Digital differential analysis ;D
