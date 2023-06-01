@@ -100,6 +100,12 @@ void	load_texture(t_player *P, t_parser *elements)
 	}
 }
 
+void	core_game(t_player *player)
+{
+	ray_cast(&player);
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_player 	player;
@@ -123,11 +129,11 @@ int	main(int argc, char **argv)
 	ft_bzero(player.buf, WIDTH * HEIGHT);
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(&player, &elements);
-	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
 	// mlx_loop_hook(player.mlx, ray_cast, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
+	// mlx_hook(player.mlx_win, 3, 1L << 1, key_release, &player);
 	mlx_loop(player.mlx);
 
 

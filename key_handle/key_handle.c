@@ -31,6 +31,11 @@ int	key_pressed(int keycode, void *param)
 	return (0);
 }
 
+int	key_release(int keycode, void *param)
+{
+
+}
+
 int	red_cross_close(void)
 {
 	//should free stuff
