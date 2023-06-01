@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:20 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/31 12:15:15 by jole             ###   ########.fr       */
+/*   Updated: 2023/05/31 18:12:56 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,14 @@ int	key_pressed(int keycode, void *param)
 	else if (keycode == KEY_RIGHT)
 		player_rotate(param, -ROT_SPEED);
 	else if (keycode == KEY_ESC)
-		esc_close_window();
+		free_all(param);
 	return (0);
 }
 
-int	red_cross_close(void)
+int	free_all(t_player *param)
 {
-	//should free stuff
+	mlx_destroy_window(param->mlx, param->mlx_win);
+	free_elements(param->elements);
 	exit(0);
-}
-
-int	esc_close_window(void)
-{
-	//should free stuff
-	exit (0);
+	return (0);
 }

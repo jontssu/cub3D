@@ -6,12 +6,13 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/29 18:15:39 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:36:34 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_CASTING_H
 # define RAY_CASTING_H
+# include "parsing.h"
 # include "libft.h"
 # include <stdio.h>
 # include <mlx.h>
@@ -81,6 +82,7 @@ typedef struct s_player{
 	int		floor;
 	char	**map;
 	char	**cpy_map;
+	t_parser	*elements;
 }				t_player;
 
 //Digital differential analysis ;D
@@ -108,8 +110,7 @@ typedef struct s_dda
 
 //KEY_HANDLE
 int		key_pressed(int keycode, void *param);
-int		red_cross_close(void);
-int		esc_close_window(void);
+int		free_all(t_player *param);
 void	player_move(t_player *P, double x, double y, int type);
 void	player_rotate(t_player *P, double x);
 

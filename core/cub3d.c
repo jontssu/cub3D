@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/05/31 12:52:35 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:37:27 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
+
+	P->elements = elements;
 	P->pos_x = elements->start_x + 0.5;
 	P->pos_y = elements->start_y + 0.5;
 	P->dir_x = 0;
@@ -124,13 +126,9 @@ int	main(int argc, char **argv)
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(&player, &elements);
 	ray_cast(&player);
-	mlx_hook(player.mlx_win, 17, 0, red_cross_close, &player.mlx);
-	// mlx_loop_hook(player.mlx, ray_cast, &player);
+	mlx_hook(player.mlx_win, 17, 0, free_all, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);
-
-
-	free_elements(&elements);
 	return (0);
 }
