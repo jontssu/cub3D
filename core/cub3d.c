@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/05/31 18:15:29 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:29:00 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(P->mlx, path, &img->img_width, &img->img_height);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
 	y = 0;
-	printf("img_H[%d], img_W[%d]\n", img->img_height, img->img_width);
 	while (y < img->img_height)
 	{
 		x = 0;
@@ -79,14 +78,6 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 		}
 		y++;
 	}
-
-	// for (int y = 0; y < img->img_height; y++)
-	// {
-	// 	for (int x = 0; x < img->img_width; x++)
-	// 	{
-	// 		texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-	// 	}
-	// }
 	mlx_destroy_image(P->mlx, img->img);
 }
 
@@ -132,7 +123,7 @@ int	main(int argc, char **argv)
 								&player.img.endian);
 	ft_bzero(player.buf, WIDTH * HEIGHT);
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
-	load_texture(&player);
+	load_texture(&player, &elements);
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, free_all, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
