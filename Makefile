@@ -7,7 +7,7 @@ COLOUR_RED=\033[0;31m
 COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
-#Flags
+#Flags -O2
 FLAGS = -Wall -Werror -Wextra -g -I inc -I libft
 
 #Direcory locations
