@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 #include "parsing.h"
 
 int	create_trgb(int arr[4])
@@ -44,7 +44,11 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
-
+	P->move_w = -1;
+	P->move_s = -1;
+	P->move_a = -1;
+	P->move_d = -1;
+	P->rotate = 0;
 	P->elements = elements;
 	P->pos_x = elements->start_x + 0.5;
 	P->pos_y = elements->start_y + 0.5;
@@ -87,10 +91,10 @@ void	load_texture(t_player *P, t_parser *elements)
 	t_img	img;
 	int i;
 
-	load_image(P, P->texture[0], elements->north, &img);
-	load_image(P, P->texture[1], elements->south, &img);
-	load_image(P, P->texture[2], elements->west, &img);
-	load_image(P, P->texture[3], elements->east, &img);
+	load_image(P, P->texture[0], elements->south, &img);
+	load_image(P, P->texture[1], elements->north, &img);
+	load_image(P, P->texture[2], elements->east, &img);
+	load_image(P, P->texture[3], elements->west, &img);
 	i = 0;
 	while (i < 4)
 	{
@@ -102,10 +106,12 @@ void	load_texture(t_player *P, t_parser *elements)
 	}
 }
 
-void	core_game(t_player *player)
+int	core_game(t_player *player)
 {
-	ray_cast(&player);
-
+	ray_cast(player);
+	player_move(player);
+	player_rotate(player, player->rotate);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -125,7 +131,6 @@ int	main(int argc, char **argv)
 	init(&player, &elements);
 	player.mlx_win = mlx_new_window(player.mlx, WIDTH, HEIGHT, "Cub3D");
 	player.img.img = mlx_new_image(player.mlx, WIDTH, HEIGHT);
-	// player.reset_img = mlx_new_image(player.mlx, screenWidth, screenHeight);
 	player.img.data = (int *)mlx_get_data_addr(player.img.img, &player.img.bpp, &player.img.size_l,
 								&player.img.endian);
 	ft_bzero(player.buf, WIDTH * HEIGHT);
@@ -135,7 +140,8 @@ int	main(int argc, char **argv)
 	mlx_hook(player.mlx_win, 17, 0, free_all, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
-	// mlx_hook(player.mlx_win, 3, 1L << 1, key_release, &player);
+	mlx_loop_hook(player.mlx, &core_game, &player);
+	mlx_hook(player.mlx_win, 3, 1L << 1, key_release, &player);
 	mlx_loop(player.mlx);
 	return (0);
 }
