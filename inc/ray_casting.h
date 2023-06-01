@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 11:29:40 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:31:07 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ typedef struct s_img
 	int		img_width;
 	int		img_height;
 }				t_img;
+
+typedef struct s_tex
+{
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
+	double	tex_pos;
+	int		tex_y;
+	double	step;
+	int		color;
+}				t_tex;
 
 typedef struct s_player
 {
