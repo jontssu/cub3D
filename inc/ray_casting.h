@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/31 18:15:48 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:29:40 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double	playerX;
-	double	playerY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	player_x;
+	double	player_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	char	**map;
 	char	**cpy_map;
 	// void	*img;
