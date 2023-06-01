@@ -26,7 +26,7 @@ _KEYHANDLE := key_handle.c \
 				movement.c
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
-_CORE := cub3d.c
+_CORE := cub3d.c init.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 OBJS = $(patsubst %, $(OBJS_DIR)%, $(SRCS:.c=.o))

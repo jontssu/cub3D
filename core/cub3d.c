@@ -6,105 +6,12 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 11:37:27 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:49:19 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parsing.h"
-
-int	create_trgb(int arr[4])
-{
-	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
-}
-
-void	determine_dir(t_player *P, t_parser *elements)
-{
-	if (elements->orientation == 'N')
-	{
-		P->dir_y = -1;
-		P->plane_x = -0.66;
-	}
-	else if (elements->orientation == 'S')
-	{
-		P->dir_y = 1;
-		P->plane_x = 0.66;
-	}
-	else if (elements->orientation == 'W')
-	{
-		P->dir_x = 1;
-		P->plane_y = -0.66;
-	}
-	else if (elements->orientation == 'E')
-	{
-		P->dir_x = -1;
-		P->plane_y = 0.66;
-	}
-}
-
-void	init(t_player *P, t_parser *elements)
-{
-	P->move_w = -1;
-	P->move_s = -1;
-	P->move_a = -1;
-	P->move_d = -1;
-	P->rotate = 0;
-	P->elements = elements;
-	P->pos_x = elements->start_x + 0.5;
-	P->pos_y = elements->start_y + 0.5;
-	P->dir_x = 0;
-	P->dir_y = 0;
-	P->plane_x = 0;
-	P->plane_x = 0;
-	determine_dir(P, elements);
-	P->map = elements->map;
-	P->cpy_map = copy2DCharArray(P->map);
-	P->ceiling = create_trgb(elements->ceiling);
-	P->floor = create_trgb(elements->floor);
-	P->map[(int)P->pos_y][(int)P->pos_x] = '.';
-}
-
-
-void	load_image(t_player *P, int *texture, char *path, t_img *img)
-{
-	int	y;
-	int	x;
-
-	img->img = mlx_xpm_file_to_image(P->mlx, path, &img->img_width, &img->img_height);
-	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
-	y = 0;
-	while (y < img->img_height)
-	{
-		x = 0;
-		while (x < img->img_width)
-		{
-			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-			x++;
-		}
-		y++;
-	}
-	mlx_destroy_image(P->mlx, img->img);
-}
-
-void	load_texture(t_player *P, t_parser *elements)
-{
-	t_img	img;
-	int i;
-
-	load_image(P, P->texture[0], elements->south, &img);
-	load_image(P, P->texture[1], elements->north, &img);
-	load_image(P, P->texture[2], elements->east, &img);
-	load_image(P, P->texture[3], elements->west, &img);
-	i = 0;
-	while (i < 4)
-	{
-		if (P->texture[i] == NULL)
-		{
-			printf("Exit error\n");	
-		}
-		i++;
-	}
-}
 
 int	core_game(t_player *player)
 {
@@ -116,7 +23,7 @@ int	core_game(t_player *player)
 
 int	main(int argc, char **argv)
 {
-	t_player 	player;
+	t_player	player;
 	t_parser	elements;
 
 	if (argc != 2)
@@ -131,8 +38,8 @@ int	main(int argc, char **argv)
 	init(&player, &elements);
 	player.mlx_win = mlx_new_window(player.mlx, WIDTH, HEIGHT, "Cub3D");
 	player.img.img = mlx_new_image(player.mlx, WIDTH, HEIGHT);
-	player.img.data = (int *)mlx_get_data_addr(player.img.img, &player.img.bpp, &player.img.size_l,
-								&player.img.endian);
+	player.img.data = (int *)mlx_get_data_addr(player.img.img, \
+	&player.img.bpp, &player.img.size_l, &player.img.endian);
 	ft_bzero(player.buf, WIDTH * HEIGHT);
 	ft_bzero(player.texture, 4 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(&player, &elements);
