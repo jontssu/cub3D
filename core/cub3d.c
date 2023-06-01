@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 11:29:00 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:32:50 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
+
 	P->elements = elements;
-	P->playerX = elements->start_x + 0.5;
-	P->playerY = elements->start_y + 0.5;
-	P->dirX = 0;
-	P->dirY = 0;
-	P->planeX = 0;
-	P->planeY = 0;
+	P->pos_x = elements->start_x + 0.5;
+	P->pos_y = elements->start_y + 0.5;
+	P->dir_x = 0;
+	P->dir_y = 0;
+	P->plane_x = 0;
+	P->plane_x = 0;
 	determine_dir(P, elements);
 	P->map = elements->map;
 	P->cpy_map = copy2DCharArray(P->map);
@@ -126,6 +127,10 @@ int	main(int argc, char **argv)
 	load_texture(&player, &elements);
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, free_all, &player);
+<<<<<<< HEAD
+=======
+	// mlx_loop_hook(player.mlx, ray_cast, &player);
+>>>>>>> 9d07d79e63594045ea63594617be1fe5217cabb9
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);
