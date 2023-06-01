@@ -40,7 +40,6 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 
-
 typedef struct s_img
 {
 	void	*img;
@@ -65,26 +64,25 @@ typedef struct s_tex
 }				t_tex;
 
 typedef struct s_player{
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	int		move_w;
-	int		move_s;
-	int		move_a;
-	int		move_d;
-	double	rotate;
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
-	int		texture[4][TEX_HEIGHT * TEX_WIDTH];
-	int		buf[HEIGHT][WIDTH];
-	int		ceiling;
-	int		floor;
-	char	**map;
-	char	**cpy_map;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			move_w;
+	int			move_s;
+	int			move_a;
+	int			move_d;
+	double		rotate;
+	void		*mlx;
+	void		*mlx_win;
+	t_img		img;
+	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
+	int			buf[HEIGHT][WIDTH];
+	int			ceiling;
+	int			floor;
+	char		**map;
 	t_parser	*elements;
 }				t_player;
 
@@ -125,10 +123,4 @@ void	draw(t_player *P);
 //Ray_casting
 int		ray_cast(t_player *P);
 
-//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
-//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
-//EXTRA REMOVE <=========================== OIIIIII!!!!!!!!!!!!!
-void	print_map(t_player *P);
-char**	copy2DCharArray(char** arr);
-# include <string.h>
 #endif

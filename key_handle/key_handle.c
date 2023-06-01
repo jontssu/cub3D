@@ -24,9 +24,9 @@ int	key_pressed(int keycode, t_player *param)
 		param->move_d = keycode;
 	if (keycode == KEY_ESC)
 		free_all(param);
-	else if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT)
 		param->rotate = ROT_SPEED;
-	else if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 		param->rotate = -ROT_SPEED;
 	return (0);
 }
