@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 11:35:24 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 11:36:34 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_player{
 	int		floor;
 	char	**map;
 	char	**cpy_map;
+	t_parser	*elements;
 }				t_player;
 
 //Digital differential analysis ;D
