@@ -47,7 +47,6 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		P->cpy_map[dda->map_y][dda->map_x] = '/';
 		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
 	}
@@ -77,6 +76,30 @@ void	start_dir_len(t_player *P, t_dda *dda)
 	}
 }
 
+void	make_screen(t_player *player, t_dda *dda)
+{
+	dda->hit = 0;
+	dda->map_x = (int)player->pos_x;
+	dda->map_y = (int)player->pos_y;
+	dda->camera_x = (2 * dda->x / ((double)WIDTH - 1) - 1) * -1;
+	dda->ray_dir_x = player->dir_x + (player->plane_x * dda->camera_x);
+	dda->ray_dir_y = player->dir_y + (player->plane_y * dda->camera_x);
+	if (dda->ray_dir_x == 0)
+		dda->delta_dist_x = 1e30;
+	else
+		dda->delta_dist_x = fabs(1.0 / dda->ray_dir_x);
+	if (dda->ray_dir_y == 0)
+		dda->delta_dist_y = 1e30;
+	else
+		dda->delta_dist_y = fabs(1.0 / dda->ray_dir_y);
+	start_dir_len(player, dda);
+	digital_differential_analysis(player, dda);
+	calc_line(dda);
+	texture(player, dda);
+	dda->hit = 0;
+	dda->x++;
+}
+
 int	ray_cast(t_player *player)
 {
 	t_dda	dda;
@@ -89,7 +112,7 @@ int	ray_cast(t_player *player)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (y >= HEIGHT/2)
+			if (y >= HEIGHT / 2)
 				player->buf[y][x] = player->floor;
 			else
 				player->buf[y][x] = player->ceiling;
@@ -99,32 +122,9 @@ int	ray_cast(t_player *player)
 	}
 	dda.x = 0;
 	while (dda.x < WIDTH)
-	{
-		dda.hit = 0;
-		dda.map_x = (int)player->pos_x;
-		dda.map_y = (int)player->pos_y;
-		dda.camera_x = (2 * dda.x / ((double)WIDTH - 1) - 1) * -1;
-		dda.ray_dir_x = player->dir_x + (player->plane_x * dda.camera_x);
-		dda.ray_dir_y = player->dir_y + (player->plane_y * dda.camera_x);
-		if (dda.ray_dir_x == 0)
-			dda.delta_dist_x = 1e30;
-		else
-			dda.delta_dist_x = fabs(1.0 / dda.ray_dir_x);
-		if (dda.ray_dir_y == 0)
-			dda.delta_dist_y = 1e30;
-		else
-			dda.delta_dist_y = fabs(1.0 / dda.ray_dir_y);
-		start_dir_len(player, &dda);
-		digital_differential_analysis(player, &dda);
-		calc_line(&dda);
-		texture(player, &dda);
-		dda.hit = 0;
-		dda.x++;
-	}
-	print_map(player);
-	free_double_pointer(player->cpy_map);
-	player->cpy_map = copy2DCharArray(player->map);
+		make_screen(player, &dda);
 	draw(player);
-	mlx_put_image_to_window(player->mlx, player->mlx_win, player->img.img, 0, 0);
+	mlx_put_image_to_window(player->mlx, player->mlx_win, \
+		player->img.img, 0, 0);
 	return (0);
 }

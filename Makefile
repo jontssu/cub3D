@@ -20,7 +20,6 @@ OBJS_DIR = obj/
 #Sources by folder
 _PARSER := parsing.c
 _RAYCASTING := ray_casting.c \
-				test.c \
 				texturing.c
 _KEYHANDLE := key_handle.c \
 				movement.c

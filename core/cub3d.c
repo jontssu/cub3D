@@ -58,7 +58,6 @@ void	init(t_player *P, t_parser *elements)
 	P->plane_x = 0;
 	determine_dir(P, elements);
 	P->map = elements->map;
-	P->cpy_map = copy2DCharArray(P->map);
 	P->ceiling = create_trgb(elements->ceiling);
 	P->floor = create_trgb(elements->floor);
 	P->map[(int)P->pos_y][(int)P->pos_x] = '.';

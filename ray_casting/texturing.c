@@ -28,7 +28,6 @@ void	draw(t_player *P)
 		}
 		y++;
 	}
-	// mlx_put_image_to_window(P->mlx, P->mlx_win, P->img.img, 0, 0);
 }
 
 int	choose_texture(t_dda *dda)
@@ -52,10 +51,25 @@ int	choose_texture(t_dda *dda)
 	return (tex_num);
 }
 
+void	add_line_to_buff(t_player *P, t_dda *dda, t_tex *tex)
+{
+	int		y;
+
+	y = dda->draw_start;
+	while (y < dda->draw_end)
+	{
+		tex->tex_y = (int)tex->tex_pos & (TEX_HEIGHT - 1);
+		tex->tex_pos += tex->step;
+		tex->color = P->texture[tex->tex_num] \
+		[TEX_HEIGHT * tex->tex_y + tex->tex_x];
+		P->buf[y][dda->x] = tex->color;
+		y++;
+	}
+}
+
 void	texture(t_player *P, t_dda *dda)
 {
 	t_tex	tex;
-	int		y;
 
 	tex.tex_num = choose_texture(dda);
 	if (dda->side == 0)
@@ -71,14 +85,5 @@ void	texture(t_player *P, t_dda *dda)
 	tex.step = 1.0 * TEX_HEIGHT / dda->line_height;
 	tex.tex_pos = (dda->draw_start - HEIGHT / 2 + dda->line_height / 2) \
 	* tex.step;
-	y = dda->draw_start;
-	while (y < dda->draw_end)
-	{
-		tex.tex_y = (int)tex.tex_pos & (TEX_HEIGHT - 1);
-		tex.tex_pos += tex.step;
-		tex.color = P->texture[tex.tex_num][TEX_HEIGHT * tex.tex_y + tex.tex_x];
-		P->buf[y][dda->x] = tex.color;
-		y++;
-	}
-
+	add_line_to_buff(P, dda, &tex);
 }
