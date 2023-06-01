@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 11:37:27 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 13:46:36 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	load_texture(t_player *P, t_parser *elements)
 	{
 		if (P->texture[i] == NULL)
 		{
-			printf("Exit error\n");	
+			printf("Error\nFailure loading textures\n");	
 		}
 		i++;
 	}
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
-		printf("mlx_int broke\n");
+		printf("Error\nmlx_init broke\n");
 		exit(1);
 	}
 	init(&player, &elements);
@@ -127,6 +127,7 @@ int	main(int argc, char **argv)
 	load_texture(&player, &elements);
 	ray_cast(&player);
 	mlx_hook(player.mlx_win, 17, 0, free_all, &player);
+	mlx_loop_hook(player.mlx, ray_cast, &player);
 	mlx_put_image_to_window(player.mlx, player.mlx_win, player.img.img, 0, 0);
 	mlx_hook(player.mlx_win, 2, 1L << 0, key_pressed, &player);
 	mlx_loop(player.mlx);
