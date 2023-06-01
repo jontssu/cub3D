@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jole <jole@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 06:52:41 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 11:36:34 by jole             ###   ########.fr       */
+/*   Created: 2023/06/01 18:57:58 by jole              #+#    #+#             */
+/*   Updated: 2023/06/01 18:58:00 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,11 @@ typedef struct s_dda
 	int		draw_end;
 }					t_dda;
 
+//init
+
+void	init(t_player *P, t_parser *elements);
+void	load_texture(t_player *P, t_parser *elements);
+
 //KEY_HANDLE
 int		key_pressed(int keycode, t_player *param);
 int		free_all(t_player *param);
@@ -116,7 +121,7 @@ void	player_move(t_player *P);
 void	player_rotate(t_player *P, double x);
 int		key_release(int keycode, t_player *param);
 
-//texuring
+//texturing
 void	texture(t_player *P, t_dda *dda);
 void	draw(t_player *P);
 

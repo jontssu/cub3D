@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:20 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/31 18:12:56 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:48:41 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	key_pressed(int keycode, t_player *param)
 		param->rotate = -ROT_SPEED;
 	return (0);
 }
+
 int	key_release(int keycode, t_player *param)
 {
 	if (keycode == KEY_W)
