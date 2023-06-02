@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:34 by jole              #+#    #+#             */
-/*   Updated: 2023/05/29 16:12:01 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 15:31:46 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_parser
 	char	*south;
 	char	*west;
 	char	*east;
+	char	*door_o;
+	char	*door_c;
 	int		floor[4];
 	int		ceiling[4];
 	char	**map;

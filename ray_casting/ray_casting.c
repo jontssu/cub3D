@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 05:51:03 by leklund           #+#    #+#             */
-/*   Updated: 2023/05/26 15:18:00 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:31:25 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (P->map[dda->map_y][dda->map_x] == 'I')
+		if (P->map[dda->map_y][dda->map_x] == 'I' \
+		/*|| P->map[dda->map_y][dda->map_x] == 'D' */ )
 			dda->hit = 1;
 	}
 }

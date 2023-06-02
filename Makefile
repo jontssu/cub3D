@@ -1,5 +1,6 @@
 #Target Binary Program
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 #Color scheme
 COLOUR_GREEN=\033[0;32m
@@ -15,10 +16,11 @@ PARSER_DIR = parsing/
 RAYCASTING_DIR = ray_casting/
 KEYHANDLE_DIR = key_handle/
 CORE_DIR = core/
+BONUS_DIR = bonus/
 OBJS_DIR = obj/
+BOBJS_DIR = bonus_obj/
 
 #Sources by folder
-_PARSER := parsing.c
 _RAYCASTING := ray_casting.c \
 				texturing.c
 _KEYHANDLE := key_handle.c \
@@ -26,10 +28,13 @@ _KEYHANDLE := key_handle.c \
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 _CORE := cub3d.c init.c
+_BONUS := parsing.c error.c set_elements.c check_elements.c \
+get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
+BSRCS = $(_RAYCASTING) $(_BONUS) $(_KEYHANDLE) $(_CORE)
 OBJS = $(patsubst %, $(OBJS_DIR)%, $(SRCS:.c=.o))
-
+BOBJS = $(patsubst %, $(BOBJS_DIR)%, $(BSRCS:.c=.o))
 LIB = libft/libft.a
 
 all: $(NAME)
@@ -79,4 +84,29 @@ fclean: clean
 
 re: fclean all
 
-bonus: fclean all
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS):  $(LIB) $(BOBJS_DIR) $(BOBJS)
+	@cc $(FLAGS) $(BOBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
+	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
+
+$(BOBJS_DIR):
+	@mkdir -p $(BOBJS_DIR)
+	@echo $(BSRCS) $(BOBJS) $(BOBJ_FILES)
+	@echo "$(COLOUR_BLUE)object directory created$(COLOUR_END)"
+
+$(BOBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
+	@cc $(FLAGS) -c $< -o $@ 
+	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
+
+$(BOBJS_DIR)%.o: $(KEYHANDLE_DIR)%.c
+	@cc $(FLAGS) -c $< -o $@ 
+	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
+
+$(BOBJS_DIR)%.o: $(CORE_DIR)%.c
+	@cc $(FLAGS) -c $< -o $@ 
+	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
+
+$(BOBJS_DIR)%.o: $(BONUS_DIR)%.c
+	@cc $(FLAGS) -c $< -o $@ 
+	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"

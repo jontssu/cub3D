@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:51 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 18:46:01 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:39:17 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	action_move(t_player *player, double y, double x, int key)
 	pos_x = player->pos_x;
 	body_x = body_move(player->dir_x, player->dir_y, key, 1);
 	body_y = body_move(player->dir_y, player->dir_x, key, -1);
+	// printf("value1:%fvalue2:%f",pos_y + y + body_y, pos_x + body_x);
 	if (player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
 		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.')
 		player->pos_y += y;
