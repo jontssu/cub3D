@@ -12,24 +12,68 @@
 
 #include "cub3d.h"
 
-static void	action_move(t_player *player, double y, double x)
+double	body_move(double dir_1, double dir_2, int key, int reverse)
 {
-	if (player->map[(int)(player->pos_y + y)][(int)(player->pos_x)] == '.')
+	double	body;
+
+	body = 0;
+	if (dir_1 < 0 && key == KEY_W)
+		return (-BODY);
+	else if (dir_1 >= 0 && key == KEY_W)
+		return (BODY);
+	else if (dir_1 < 0 && key == KEY_S)
+		return (BODY);
+	else if (dir_1 >= 0 && key == KEY_S)
+		return (-BODY);
+	else if (dir_2 < 0 && key == KEY_A)
+		return (-BODY * reverse);
+	else if (dir_2 >= 0 && key == KEY_A)
+		return (BODY * reverse);
+	else if (dir_2 < 0 && key == KEY_D)
+		return (BODY * reverse);
+	else if (dir_2 >= 0 && key == KEY_D)
+		return (-BODY * reverse);
+	return (BODY);
+}
+
+static void	action_move(t_player *player, double y, double x, int key)
+{
+	double	body_x;
+	double	body_y;
+	double	pos_y;
+	double	pos_x;
+
+	pos_y = player->pos_y;
+	pos_x = player->pos_x;
+	body_x = body_move(player->dir_x, player->dir_y, key, 1);
+	body_y = body_move(player->dir_y, player->dir_x, key, -1);
+	if (player->map[(int)(pos_y + y)][(int)(pos_x)] == '.' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x)])
 		player->pos_y += y;
-	if (player->map[(int)(player->pos_y)][(int)(player->pos_x + x)] == '.')
+	pos_y = player->pos_y;
+	if (player->map[(int)(pos_y)][(int)(pos_x + x)] == '.' &&
+		player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
+		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.' &&
+		player->map[(int)(pos_y)][(int)(pos_x + x + body_x)] == '.')
 		player->pos_x += x;
 }
 
 void	player_move(t_player *player)
 {
-	if (player->move_w == KEY_W)
-		action_move(player, player->dir_y * SPEED, player->dir_x * SPEED);
-	if (player->move_s == KEY_S)
-		action_move(player, player->dir_y * -SPEED, player->dir_x * -SPEED);
-	if (player->move_a == KEY_A)
-		action_move(player, -player->dir_x * SPEED, player->dir_y * SPEED);
-	if (player->move_d == KEY_D)
-		action_move(player, -player->dir_x * -SPEED, player->dir_y * -SPEED);
+	if (player->move_w)
+		action_move(player, player->dir_y * SPEED, \
+		player->dir_x * SPEED, KEY_W);
+	if (player->move_s)
+		action_move(player, player->dir_y * -SPEED, \
+		player->dir_x * -SPEED, KEY_S);
+	if (player->move_a)
+		action_move(player, -player->dir_x * SPEED, \
+		player->dir_y * SPEED, KEY_A);
+	if (player->move_d)
+		action_move(player, -player->dir_x * -SPEED, \
+		player->dir_y * -SPEED, KEY_D);
 }
 
 void	player_rotate(t_player *P, double x)
