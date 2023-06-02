@@ -22,7 +22,7 @@
 # include <math.h>
 
 //Player
-# define BODY 0.25
+# define BODY 0.1
 # define SPEED 0.05
 # define ROT_SPEED 0.05
 

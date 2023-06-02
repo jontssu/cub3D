@@ -47,16 +47,12 @@ static void	action_move(t_player *player, double y, double x, int key)
 	pos_x = player->pos_x;
 	body_x = body_move(player->dir_x, player->dir_y, key, 1);
 	body_y = body_move(player->dir_y, player->dir_x, key, -1);
-	if (player->map[(int)(pos_y + y)][(int)(pos_x)] == '.' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x)])
+	if (player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.')
 		player->pos_y += y;
 	pos_y = player->pos_y;
-	if (player->map[(int)(pos_y)][(int)(pos_x + x)] == '.' &&
-		player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
-		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.' &&
-		player->map[(int)(pos_y)][(int)(pos_x + x + body_x)] == '.')
+	if (player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
+		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.')
 		player->pos_x += x;
 }
 
