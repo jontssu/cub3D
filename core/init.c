@@ -44,11 +44,12 @@ void	determine_dir(t_player *P, t_parser *elements)
 
 void	init(t_player *P, t_parser *elements)
 {
-	P->move_w = -1;
-	P->move_s = -1;
-	P->move_a = -1;
-	P->move_d = -1;
-	P->rotate = 0;
+	P->move_w = 0;
+	P->move_s = 0;
+	P->move_a = 0;
+	P->move_d = 0;
+	P->rotate_left = 0;
+	P->rotate_right = 0;
 	P->elements = elements;
 	P->pos_x = elements->start_x + 0.5;
 	P->pos_y = elements->start_y + 0.5;

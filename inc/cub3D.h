@@ -22,6 +22,7 @@
 # include <math.h>
 
 //Player
+# define BODY 0.1
 # define SPEED 0.05
 # define ROT_SPEED 0.05
 
@@ -74,7 +75,8 @@ typedef struct s_player{
 	int			move_s;
 	int			move_a;
 	int			move_d;
-	double		rotate;
+	double		rotate_left;
+	double		rotate_right;
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
