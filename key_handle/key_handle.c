@@ -50,7 +50,8 @@ int	key_release(int keycode, t_player *param)
 
 int	free_all(t_player *param)
 {
-	mlx_destroy_window(param->mlx, param->mlx_win);
+	if (param->mlx && param->mlx_win)
+		mlx_destroy_window(param->mlx, param->mlx_win);
 	free_elements(param->elements);
 	exit(0);
 	return (0);

@@ -112,7 +112,6 @@ typedef struct s_dda
 }					t_dda;
 
 //init
-
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
 
@@ -129,5 +128,8 @@ void	draw(t_player *P);
 
 //Ray_casting
 int		ray_cast(t_player *P);
+
+//FREE
+int		free_all(t_player *param);
 
 #endif

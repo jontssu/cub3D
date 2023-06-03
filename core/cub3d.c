@@ -25,7 +25,11 @@ int	core_game(t_player *player)
 void	mlxing(t_player *player, t_parser *elements)
 {
 	player->mlx_win = mlx_new_window(player->mlx, WIDTH, HEIGHT, "Cub3D");
+	if (!player->mlx_win)
+		free_all(player);
 	player->img.img = mlx_new_image(player->mlx, WIDTH, HEIGHT);
+	if (!player->img.img)
+		free_all(player);
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
@@ -51,8 +55,8 @@ int	main(int argc, char **argv)
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
-		printf("mlx_int broke\n");
-		exit(1);
+		printf("mlx_init broke\n");
+		free_all(&player);
 	}
 	init(&player, &elements);
 	mlxing(&player, &elements);
