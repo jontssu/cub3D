@@ -80,7 +80,7 @@ typedef struct s_player{
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
-	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
+	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
 	int			ceiling;
 	int			floor;

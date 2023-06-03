@@ -73,10 +73,12 @@ clean:
 	@make clean -C libft
 	@echo "$(COLOUR_BLUE)libft object files cleaned$(COLOUR_END)"
 	@rm -f $(OBJS)
+	@rm -f $(BOBJS)
 	@echo "$(COLOUR_BLUE)object directory cleaned$(COLOUR_END)"
 
 fclean: clean
 	@rm -rf $(OBJS_DIR)
+	@rm -rf $(BOBJS_DIR)
 	@rm -f $(LIB)
 	@echo "$(COLOUR_RED)libft.a removed$(COLOUR_END)"
 	@rm -f $(NAME)

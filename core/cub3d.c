@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "parsing.h"
 
 int	core_game(t_player *player)
@@ -29,7 +29,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
-	ft_bzero(player->texture, 4 * TEX_HEIGHT * TEX_WIDTH);
+	ft_bzero(player->texture, 6 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(player, elements);
 	mlx_hook(player->mlx_win, 17, 0, free_all, player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \

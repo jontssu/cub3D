@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 double	body_move(double dir_1, double dir_2, int key, int reverse)
 {

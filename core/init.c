@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "parsing.h"
 
 int	create_trgb(int arr[4])
@@ -96,7 +96,7 @@ void	load_texture(t_player *P, t_parser *elements)
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
-	// load_image(P, P->texture[4], elements->door_o, &img);
-	// load_image(P, P->texture[5], elements->door_c, &img);
+	load_image(P, P->texture[4], elements->door_o, &img);
+	load_image(P, P->texture[5], elements->door_c, &img);
 	printf("LOAD_TEXTURE\n");
 }
