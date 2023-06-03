@@ -6,11 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:20 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 18:48:41 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:36:34 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 int	key_pressed(int keycode, t_player *param)
 {

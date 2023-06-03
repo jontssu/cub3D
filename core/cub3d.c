@@ -6,11 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 18:55:03 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:39:41 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "parsing.h"
 
 int	core_game(t_player *player)
@@ -33,7 +33,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
-	ft_bzero(player->texture, 4 * TEX_HEIGHT * TEX_WIDTH);
+	ft_bzero(player->texture, 6 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(player, elements);
 	mlx_hook(player->mlx_win, 17, 0, free_all, player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \

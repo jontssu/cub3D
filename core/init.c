@@ -6,11 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:47:45 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 18:58:14 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:39:36 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "parsing.h"
 
 int	create_trgb(int arr[4])
@@ -96,8 +96,12 @@ void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
 
+	printf("LOAD_TEXTURE\n");
 	load_image(P, P->texture[0], elements->south, &img);
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
+	load_image(P, P->texture[4], elements->door_o, &img);
+	load_image(P, P->texture[5], elements->door_c, &img);
+	printf("LOAD_TEXTURE\n");
 }
