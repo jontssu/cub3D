@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jole <jole@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:57:58 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 17:39:31 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:58:00 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_player{
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
-	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
+	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
 	int			ceiling;
 	int			floor;
@@ -112,6 +112,7 @@ typedef struct s_dda
 }					t_dda;
 
 //init
+
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
 
@@ -128,8 +129,5 @@ void	draw(t_player *P);
 
 //Ray_casting
 int		ray_cast(t_player *P);
-
-//FREE
-int		free_all(t_player *param);
 
 #endif

@@ -16,8 +16,13 @@ PARSER_DIR = parsing/
 RAYCASTING_DIR = ray_casting/
 KEYHANDLE_DIR = key_handle/
 CORE_DIR = core/
-BONUS_DIR = bonus/
 OBJS_DIR = obj/
+
+BPARSER_DIR = bonus/parsing/
+BRAYCASTING_DIR = bonus/ray_casting/
+BKEYHANDLE_DIR = bonus/key_handle/
+BCORE_DIR = bonus/core/
+# BONUS_DIR = bonus/
 BOBJS_DIR = bonus_obj/
 
 #Sources by folder
@@ -28,12 +33,13 @@ _KEYHANDLE := key_handle.c \
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 _CORE := cub3d.c init.c
-_BONUS := parsing.c error.c set_elements.c check_elements.c \
-				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c \
-				mouse.c
+B_RAYCASTING := $(_RAYCASTING)
+B_KEYHANDLE := $(_KEYHANDLE)
+B_PARSER := $(_PARSER)
+B_CORE := $(_CORE)
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
-BSRCS = $(_RAYCASTING) $(_BONUS) $(_KEYHANDLE) $(_CORE)
+BSRCS = $(B_RAYCASTING) $(B_KEYHANDLE) $(B_PARSER) $(B_CORE)
 OBJS = $(patsubst %, $(OBJS_DIR)%, $(SRCS:.c=.o))
 BOBJS = $(patsubst %, $(BOBJS_DIR)%, $(BSRCS:.c=.o))
 LIB = libft/libft.a
@@ -83,6 +89,7 @@ fclean: clean
 	@rm -f $(LIB)
 	@echo "$(COLOUR_RED)libft.a removed$(COLOUR_END)"
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 	@echo "$(COLOUR_RED)$(NAME) removed$(COLOUR_END)"
 
 re: fclean all
@@ -98,18 +105,18 @@ $(BOBJS_DIR):
 	@echo $(BSRCS) $(BOBJS) $(BOBJ_FILES)
 	@echo "$(COLOUR_BLUE)object directory created$(COLOUR_END)"
 
-$(BOBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
+$(BOBJS_DIR)%.o: $(BRAYCASTING_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
-$(BOBJS_DIR)%.o: $(KEYHANDLE_DIR)%.c
+$(BOBJS_DIR)%.o: $(BKEYHANDLE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
-$(BOBJS_DIR)%.o: $(CORE_DIR)%.c
+$(BOBJS_DIR)%.o: $(BCORE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
-$(BOBJS_DIR)%.o: $(BONUS_DIR)%.c
+$(BOBJS_DIR)%.o: $(BPARSER_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
