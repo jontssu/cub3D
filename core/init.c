@@ -96,12 +96,12 @@ void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
 
-	printf("LOAD_TEXTURE\n");
+	// printf("LOAD_TEXTURE\n");
 	load_image(P, P->texture[0], elements->south, &img);
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
-	load_image(P, P->texture[4], elements->door_o, &img);
-	load_image(P, P->texture[5], elements->door_c, &img);
-	printf("LOAD_TEXTURE\n");
+	// load_image(P, P->texture[4], elements->door_o, &img);
+	// load_image(P, P->texture[5], elements->door_c, &img);
+	// printf("LOAD_TEXTURE\n");
 }

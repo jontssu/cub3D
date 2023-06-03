@@ -26,10 +26,11 @@ _RAYCASTING := ray_casting.c \
 _KEYHANDLE := key_handle.c \
 				movement.c
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
-get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
+				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 _CORE := cub3d.c init.c
 _BONUS := parsing.c error.c set_elements.c check_elements.c \
-get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
+				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c \
+				mouse.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 BSRCS = $(_RAYCASTING) $(_BONUS) $(_KEYHANDLE) $(_CORE)
