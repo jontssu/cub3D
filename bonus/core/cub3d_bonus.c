@@ -14,7 +14,7 @@
 
 void	draw_gun(t_player *player)
 {
-	printf("load gun %d\n", player->gun_index);
+	// printf("load gun %d\n", player->gun_index);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
 		player->gun[player->gun_index].img, 0, 0);
 	if (player->gun_index >= 1)
@@ -32,9 +32,27 @@ int	core_game(t_player *player)
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);
+	if(player->rotate_left < 0)
+	{
+		player->rotate_left += 0.005;
+		if(player->rotate_left > 0)
+			player->rotate_left = 0;
+	}
+	if(player->rotate_right > 0)
+	{
+		player->rotate_right -= 0.005;
+		if(player->rotate_right < 0)
+			player->rotate_right = 0;
+	}
 	return (0);
 }
 
+int dest(t_player *player)
+{
+	(void) player;
+	printf("cool\n");
+	return (0);
+}
 
 void	mlxing(t_player *player, t_parser *elements)
 {
@@ -56,6 +74,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	mlx_hook(player->mlx_win, 2, 1L << 0, key_pressed, player);
 	mlx_hook(player->mlx_win, 3, 1L << 1, key_release, player);
 	mlx_hook(player->mlx_win, 6, 1L << 6, mouse_rotate, player);
+	mlx_hook(player->mlx_win, 12, 1L << 15, dest, player);
 	mlx_loop(player->mlx);
 }
 
