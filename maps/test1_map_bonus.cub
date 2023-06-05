@@ -2,7 +2,7 @@
 NO ./textures/bluestone.xpm
 WE  . /text ures/eagle.xpm
 
-SO ./text    ur es/greystone.     xpm
+SO ./text    ur es/test.     xpm
 D_O ./textures/purplestone.xpm
 D_C ./textures/purplestone.xpm
 EA ./textures/redbrick.xp m
