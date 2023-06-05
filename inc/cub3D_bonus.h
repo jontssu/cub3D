@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 07:42:45 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 12:55:31 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_player{
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
-	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
+	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
 	t_img		gun[2];
 	int			gun_index;

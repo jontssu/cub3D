@@ -3,7 +3,7 @@ NO ./textures/bluestone.xpm
 WE  . /text ures/eagle.xpm
 
 SO ./text    ur es/greystone.     xpm
-D_O ./textures/purplestone.xpm
+D_O ./textures/colorstone.xpm
 D_C ./textures/purplestone.xpm
 EA ./textures/redbrick.xp m
 
@@ -19,7 +19,7 @@ C 0, 0, 0
 100000000000001
 100000000000001
 100000000000001
-100001010000001
+100001110000001
 100001010100001
 100000N00000001
 100000000000001

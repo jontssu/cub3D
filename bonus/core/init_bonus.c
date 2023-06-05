@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:31:34 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 12:59:51 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	int	y;
 	int	x;
 
+	printf("PATH:%s\n", path);
 	img->img = mlx_xpm_file_to_image(P->mlx, path, \
 	&img->img_width, &img->img_height);
 	if (!img->img)
