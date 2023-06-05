@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   movement_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 07:50:51 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/02 17:39:17 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:32:04 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:32:08 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+
+#include "cub3D_bonus.h"
 
 double	body_move(double dir_1, double dir_2, int key, int reverse)
 {
@@ -86,5 +87,4 @@ void	player_rotate(t_player *P, double x)
 	P->dir_y = old_dir_x * sin(x) + P->dir_y * cos(x);
 	P->plane_x = P->plane_x * cos(x) - P->plane_y * sin(x);
 	P->plane_y = old_plane_x * sin(x) + P->plane_y * cos(x);
-	ray_cast(P);
 }

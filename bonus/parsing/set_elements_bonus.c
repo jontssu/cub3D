@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_elements.c                                     :+:      :+:    :+:   */
+/*   set_elements_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:40:18 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 17:21:35 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:33:33 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:33:34 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+
+
+#include "parsing_bonus.h"
 
 void	set_int_array(char *str, int *int_arr, t_parser *elements, char **split)
 {

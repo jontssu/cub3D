@@ -12,10 +12,10 @@ COLOUR_END=\033[0m
 FLAGS = -Wall -Werror -Wextra -g -I inc -I libft
 
 #Direcory locations
-PARSER_DIR = parsing/
-RAYCASTING_DIR = ray_casting/
-KEYHANDLE_DIR = key_handle/
-CORE_DIR = core/
+PARSER_DIR = mandatory/parsing/
+RAYCASTING_DIR = mandatory/ray_casting/
+KEYHANDLE_DIR = mandatory/key_handle/
+CORE_DIR = mandatory/core/
 OBJS_DIR = obj/
 
 BPARSER_DIR = bonus/parsing/
@@ -33,10 +33,10 @@ _KEYHANDLE := key_handle.c \
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
 _CORE := cub3d.c init.c
-B_RAYCASTING := $(_RAYCASTING)
-B_KEYHANDLE := $(_KEYHANDLE)
-B_PARSER := $(_PARSER)
-B_CORE := $(_CORE)
+B_RAYCASTING := $(subst .c,_bonus.c,$(_RAYCASTING))
+B_KEYHANDLE := $(subst .c,_bonus.c,$(_KEYHANDLE))
+B_PARSER := $(subst .c,_bonus.c,$(_PARSER))
+B_CORE := $(subst .c,_bonus.c,$(_CORE))
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 BSRCS = $(B_RAYCASTING) $(B_KEYHANDLE) $(B_PARSER) $(B_CORE)

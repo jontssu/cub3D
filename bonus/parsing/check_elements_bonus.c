@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_elements.c                                   :+:      :+:    :+:   */
+/*   check_elements_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:39:54 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 17:18:38 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:32:45 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:32:46 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+
+
+#include "parsing_bonus.h"
 
 void	check_config_file_name(char *file)
 {

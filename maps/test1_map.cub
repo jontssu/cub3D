@@ -1,11 +1,9 @@
 
-NO ./texture/bluestone.xpm
-WE  . /text ure/eagle.xpm
+NO ./textures/bluestone.xpm
+WE  . /text ures/eagle.xpm
 
-SO ./text    ur e/greystone.     xpm
-D_O ./texture/purplestone.xpm
-D_C ./texture/purplestone.xpm
-EA ./texture/redbrick.xp m
+SO ./text    ur es/greystone.     xpm
+EA ./textures/redbrick.xp m
 
 F 128,128, 128
 C 0, 0, 0

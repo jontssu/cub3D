@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:39:14 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 17:39:41 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:31:26 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "parsing.h"
+#include "cub3D_bonus.h"
 
 int	core_game(t_player *player)
 {
@@ -21,6 +20,8 @@ int	core_game(t_player *player)
 	player_rotate(player, player->rotate_right);
 	return (0);
 }
+
+
 
 void	mlxing(t_player *player, t_parser *elements)
 {
@@ -41,6 +42,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	mlx_loop_hook(player->mlx, core_game, player);
 	mlx_hook(player->mlx_win, 2, 1L << 0, key_pressed, player);
 	mlx_hook(player->mlx_win, 3, 1L << 1, key_release, player);
+	mlx_hook(player->mlx_win, 6, 1L << 6, test, player);
 	mlx_loop(player->mlx);
 }
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_chars_check.c                                :+:      :+:    :+:   */
+/*   valid_chars_check_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:40:39 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 15:37:43 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:33:55 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:33:57 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 void	valid_start(t_parser *elements, int i, int count)
 {

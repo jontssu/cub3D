@@ -86,5 +86,4 @@ void	player_rotate(t_player *P, double x)
 	P->dir_y = old_dir_x * sin(x) + P->dir_y * cos(x);
 	P->plane_x = P->plane_x * cos(x) - P->plane_y * sin(x);
 	P->plane_y = old_plane_x * sin(x) + P->plane_y * cos(x);
-	ray_cast(P);
 }
