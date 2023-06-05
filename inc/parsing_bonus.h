@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:39:34 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 15:31:46 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 07:42:31 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 07:42:32 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 # include "libft.h"
 # include <stdio.h>
 # include <unistd.h>

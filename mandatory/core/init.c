@@ -6,11 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:47:45 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 18:58:14 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/02 17:39:36 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "parsing.h"
 
 int	create_trgb(int arr[4])
@@ -71,6 +71,11 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 
 	img->img = mlx_xpm_file_to_image(P->mlx, path, \
 	&img->img_width, &img->img_height);
+	if (!img->img)
+	{
+		printf("could not load image %s\n", path);
+		free_all(P);
+	}
 	img->data = (int *)mlx_get_data_addr(img->img, \
 	&img->bpp, &img->size_l, &img->endian);
 	y = 0;
@@ -90,17 +95,9 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
-	int		i;
 
 	load_image(P, P->texture[0], elements->south, &img);
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
-	i = 0;
-	while (i < 4)
-	{
-		if (P->texture[i] == NULL)
-			printf("Exit error\n");
-		i++;
-	}
 }

@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handle.c                                       :+:      :+:    :+:   */
+/*   key_handle_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 07:50:20 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/01 18:48:41 by jole             ###   ########.fr       */
+/*   Created: 2023/06/04 06:31:54 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/04 06:31:56 by leklund          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+
+
+#include "cub3D_bonus.h"
 
 int	key_pressed(int keycode, t_player *param)
 {
@@ -50,7 +52,8 @@ int	key_release(int keycode, t_player *param)
 
 int	free_all(t_player *param)
 {
-	mlx_destroy_window(param->mlx, param->mlx_win);
+	if (param->mlx && param->mlx_win)
+		mlx_destroy_window(param->mlx, param->mlx_win);
 	free_elements(param->elements);
 	exit(0);
 	return (0);
