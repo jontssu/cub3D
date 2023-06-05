@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:21 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:22 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:38:34 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	flood_fill_check(t_parser *elements)
 				error_invalid_map(elements, 5);
 			else if (elements->map[i][j] != 'X' && elements->map[i][j] != 'I' \
 			&& elements->map[i][j] != '.' && elements->map[i][j] != 'D' \
-			&& elements->map[i][j] != elements->orientation)
+			&& elements->map[i][j] != 'O' && elements->map[i][j] != \
+			elements->orientation)
 				error_invalid_map(elements, 6);
 			j++;
 		}

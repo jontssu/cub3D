@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:04 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:32:08 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:32:17 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 double	body_move(double dir_1, double dir_2, int key, int reverse)
 {
-	double	body;
-
-	body = 0;
 	if (dir_1 < 0 && key == KEY_W)
 		return (-BODY);
 	else if (dir_1 >= 0 && key == KEY_W)
@@ -49,12 +46,16 @@ static void	action_move(t_player *player, double y, double x, int key)
 	body_x = body_move(player->dir_x, player->dir_y, key, 1);
 	body_y = body_move(player->dir_y, player->dir_x, key, -1);
 	// printf("value1:%fvalue2:%f",pos_y + y + body_y, pos_x + body_x);
-	if (player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.')
+	if ((player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.') ||
+		(player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == 'O' &&
+		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == 'O'))
 		player->pos_y += y;
 	pos_y = player->pos_y;
-	if (player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
-		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.')
+	if ((player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
+		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.') ||
+		(player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == 'O' &&
+		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == 'O'))
 		player->pos_x += x;
 }
 

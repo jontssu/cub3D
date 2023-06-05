@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:31:26 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:10:33 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_gun(t_player *player)
 {
-	printf("load gun %d\n", player->gun_index);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
 		player->gun[player->gun_index].img, 0, 0);
 	if (player->gun_index >= 1)
@@ -47,7 +46,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
-	ft_bzero(player->texture, 6 * TEX_HEIGHT * TEX_WIDTH);
+	ft_bzero(player->texture, 8 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(player, elements);
 	mlx_hook(player->mlx_win, 17, 0, free_all, player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:31:34 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:09:14 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	load_texture(t_player *P, t_parser *elements)
 	else
 		printf("load image %s\n", "textures/gun3.xpm");
 
-	// load_image(P, P->texture[4], elements->door_o, &img);
-	// load_image(P, P->texture[5], elements->door_c, &img);
+	load_image(P, P->texture[4], elements->door_o, &img);
+	load_image(P, P->texture[5], elements->door_c, &img);
 	// printf("LOAD_TEXTURE\n");
 }
