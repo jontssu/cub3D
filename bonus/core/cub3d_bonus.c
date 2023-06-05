@@ -12,15 +12,28 @@
 
 #include "cub3D_bonus.h"
 
+void	draw_gun(t_player *player)
+{
+	printf("load gun %d\n", player->gun_index);
+	mlx_put_image_to_window(player->mlx, player->mlx_win, \
+		player->gun[player->gun_index].img, 0, 0);
+	if (player->gun_index >= 1)
+		player->gun_index = 0;
+	else
+		player->gun_index++;
+
+	
+}
+
 int	core_game(t_player *player)
 {
 	ray_cast(player);
+	draw_gun(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);
 	return (0);
 }
-
 
 
 void	mlxing(t_player *player, t_parser *elements)
@@ -42,7 +55,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	mlx_loop_hook(player->mlx, core_game, player);
 	mlx_hook(player->mlx_win, 2, 1L << 0, key_pressed, player);
 	mlx_hook(player->mlx_win, 3, 1L << 1, key_release, player);
-	mlx_hook(player->mlx_win, 6, 1L << 6, test, player);
+	mlx_hook(player->mlx_win, 6, 1L << 6, mouse_rotate, player);
 	mlx_loop(player->mlx);
 }
 

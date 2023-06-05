@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "cub3D_bonus.h"
-#include "parsing_bonus.h"
 
 int	create_trgb(int arr[4])
 {
@@ -103,6 +100,26 @@ void	load_texture(t_player *P, t_parser *elements)
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
+	P->gun_index = 0;
+	P->gun[0].img = mlx_xpm_file_to_image(P->mlx, "textures/gun3.xpm", \
+	&P->gun[0].img_width, &P->gun[0].img_height);
+	if (!P->gun[0].img)
+	{
+		printf("could not load image %s\n", "textures/gun0.xpm");
+		free_all(P);
+	}
+	else
+		printf("load image %s\n", "textures/gun3.xpm");
+	P->gun[1].img = mlx_xpm_file_to_image(P->mlx, "textures/gun0.xpm", \
+	&P->gun[1].img_width, &P->gun[1].img_height);
+	if (!P->gun[1].img)
+	{
+		printf("could not load image %s\n", "textures/gun3.xpm");
+		free_all(P);
+	}
+	else
+		printf("load image %s\n", "textures/gun3.xpm");
+
 	// load_image(P, P->texture[4], elements->door_o, &img);
 	// load_image(P, P->texture[5], elements->door_c, &img);
 	// printf("LOAD_TEXTURE\n");

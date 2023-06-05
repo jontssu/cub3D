@@ -47,8 +47,7 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (P->map[dda->map_y][dda->map_x] == 'I' \
-		/*|| P->map[dda->map_y][dda->map_x] == 'D' */ )
+		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
 	}
 }

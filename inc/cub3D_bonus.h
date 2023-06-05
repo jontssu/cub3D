@@ -12,8 +12,8 @@
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
-# include "parsing.h"
 # include "libft.h"
+# include "parsing_bonus.h"
 # include <stdio.h>
 # include <mlx.h>
 # include <unistd.h>
@@ -40,6 +40,8 @@
 # define HEIGHT 480
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
+# define GUN_HEIGHT 140
+# define GUN_WIDTH 140
 
 typedef struct s_img
 {
@@ -83,6 +85,9 @@ typedef struct s_player{
 	t_img		img;
 	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
+	t_img		gun[2];
+	int			gun_index;
+	// int			gun[1][GUN_HEIGHT * GUN_WIDTH];
 	int			ceiling;
 	int			floor;
 	char		**map;
@@ -123,6 +128,7 @@ int		free_all(t_player *param);
 void	player_move(t_player *P);
 void	player_rotate(t_player *P, double x);
 int		key_release(int keycode, t_player *param);
+int		mouse_rotate(int x, int y, t_player *player);
 
 //texturing
 void	texture(t_player *P, t_dda *dda);
