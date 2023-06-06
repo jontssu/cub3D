@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:26 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 17:36:28 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/06 12:03:51y jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
+		// if (P->minimap)
+		// 	P->minimap[dda->map_y][dda->map_x] = '/';
 		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
 		else if (P->map[dda->map_y][dda->map_x] == 'D')
@@ -129,6 +131,7 @@ int	ray_cast(t_player *player)
 	dda.x = 0;
 	while (dda.x < WIDTH)
 		make_screen(player, &dda);
+	// minimap(player);
 	draw(player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
 		player->img.img, 0, 0);

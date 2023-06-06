@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 09:48:56 by leklund           #+#    #+#             */
+/*   Updated: 2023/06/06 13:04:08 by jole             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3D_bonus.h"
+#include <string.h>
+
+void print_map(t_player *P)
+{
+	int y = 0;
+	int x = 0;
+	while(P->minimap[y])
+	{
+		x = 0;
+		while(P->minimap[y][x])
+		{
+			if(y == P->pos_y && x == P->pos_x)
+				printf("P");
+			else
+				printf("%c", P->minimap[y][x]);
+
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+
+}
+
+char** copy2DCharArray(char** arr) {
+	int rows = 0;
+	int cols = 0;
+	while(arr[0][cols])
+		cols++;
+	while(arr[rows])
+		rows++;
+    char** copy = (char**)malloc((rows +1) * sizeof(char*));
+    if (copy == NULL) {
+        fprintf(stderr, "Memory allocation failed.");
+        exit(1);
+    }
+    for (int i = 0; i < rows; i++) {
+        copy[i] = (char*)malloc((cols + 1) * sizeof(char));
+        if (copy[i] == NULL) {
+            fprintf(stderr, "Memory allocation failed.");
+            exit(1);
+        }
+        strcpy(copy[i], arr[i]);
+    }
+	printf("MALLOCED %p\n", copy);
+	copy[rows] = NULL;
+    return copy;
+}

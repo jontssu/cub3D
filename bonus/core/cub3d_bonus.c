@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 18:09:41 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/06 13:04:59 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	draw_gun(t_player *player)
 
 int	core_game(t_player *player)
 {
+	// player->minimap = copy2DCharArray(player->map);
 	ray_cast(player);
+	// print_map(player);
+	// if (player->minimap)
+	// 	free_double_pointer(player->minimap);
 	draw_gun(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);

@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 15:54:06 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/06 12:37:14 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_player{
 	int			ceiling;
 	int			floor;
 	char		**map;
+	char		**minimap;
 	t_parser	*elements;
 }				t_player;
 
@@ -140,4 +141,7 @@ void	draw(t_player *P);
 //Ray_casting
 int		ray_cast(t_player *P);
 
+//deteltelteltleltletlweltewlt
+void print_map(t_player *P);
+char** copy2DCharArray(char** arr);
 #endif

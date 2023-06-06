@@ -36,7 +36,7 @@ _CORE := cub3d.c init.c
 B_RAYCASTING := $(subst .c,_bonus.c,$(_RAYCASTING))
 B_KEYHANDLE := $(subst .c,_bonus.c,$(_KEYHANDLE)) mouse_bonus.c
 B_PARSER := $(subst .c,_bonus.c,$(_PARSER))
-B_CORE := $(subst .c,_bonus.c,$(_CORE))
+B_CORE := $(subst .c,_bonus.c,$(_CORE)) minimap_bonus.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 BSRCS = $(B_RAYCASTING) $(B_KEYHANDLE) $(B_PARSER) $(B_CORE)
