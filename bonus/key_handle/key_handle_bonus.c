@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:54 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:31:56 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:11:09by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_pressed(int keycode, t_player *param)
 		param->rotate_right = -ROT_SPEED;
 	else if (keycode == KEY_ESC)
 		free_all(param);
+	else if (keycode == KEY_OPEN)
+		param->open_door = 1;
 	return (0);
 }
 
@@ -47,6 +49,22 @@ int	key_release(int keycode, t_player *param)
 		param->rotate_left = 0;
 	else if (keycode == KEY_RIGHT)
 		param->rotate_right = 0;
+	else if (keycode == KEY_OPEN)
+		open_door(param);
+	return (0);
+}
+
+int	open_door(t_player *p)
+{
+	int	y;
+	int	x;
+
+	y = p->pos_y + p->dir_y;
+	x = p->pos_x + p->dir_x;
+	if (p->map[y][x] == 'D')
+		p->map[y][x] = 'O';
+	else if (p->map[y][x] == 'O')
+		p->map[y][x] = 'D';
 	return (0);
 }
 

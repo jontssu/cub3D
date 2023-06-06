@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 07:42:45 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:54:06 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define KEY_LEFT 124
 # define KEY_RIGHT 123
 # define KEY_ESC 53
+# define KEY_OPEN 14 
 
 //Graphics
 # define WIDTH 640
@@ -79,11 +80,12 @@ typedef struct s_player{
 	int			move_d;
 	double		rotate_left;
 	double		rotate_right;
+	int			open_door;
 	int			prev_rot_x;
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
-	int			texture[4][TEX_HEIGHT * TEX_WIDTH];
+	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
 	t_img		gun[2];
 	int			gun_index;
@@ -129,6 +131,7 @@ void	player_move(t_player *P);
 void	player_rotate(t_player *P, double x);
 int		key_release(int keycode, t_player *param);
 int		mouse_rotate(int x, int y, t_player *player);
+int		open_door(t_player *p);
 
 //texturing
 void	texture(t_player *P, t_dda *dda);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:26 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:32:27 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:36:28 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (P->map[dda->map_y][dda->map_x] == 'I' \
-		/*|| P->map[dda->map_y][dda->map_x] == 'D' */ )
+		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
+		else if (P->map[dda->map_y][dda->map_x] == 'D')
+			dda->hit = 2;
+		else if (P->map[dda->map_y][dda->map_x] == 'O')
+			dda->hit = 3;
 	}
 }
 
