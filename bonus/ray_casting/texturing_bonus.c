@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturing_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:32:34 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:37:52 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	choose_texture(t_dda *dda)
 {
 	int	tex_num;
 
+	if (dda->hit == 2)
+		return (5);
+	if (dda->hit == 3)
+		return (4);
 	if (dda->side == 1)
 	{
 		if (dda->ray_dir_y <= 0)

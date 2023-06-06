@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_chars_check_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:55 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:57 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:38:55 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	valid_chars_check(t_parser *elements)
 			if (elements->map[i][j] != 'X' && elements->map[i][j] != '1' && \
 			elements->map[i][j] != '0' && elements->map[i][j] != 'N' && \
 			elements->map[i][j] != 'S' && elements->map[i][j] != 'W' && \
-			elements->map[i][j] != 'E' && elements->map[i][j] != 'D')
+			elements->map[i][j] != 'E' && elements->map[i][j] != 'D' \
+			&& elements->map[i][j] != 'O')
 				error_invalid_map(elements, 3);
 			j++;
 		}
