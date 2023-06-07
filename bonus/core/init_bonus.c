@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 13:09:14 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/06 13:13:47 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init(t_player *P, t_parser *elements)
 	P->plane_x = 0;
 	determine_dir(P, elements);
 	P->map = elements->map;
+	// P->cpy_map = copy2DCharArray(P->map);
 	P->ceiling = create_trgb(elements->ceiling);
 	P->floor = create_trgb(elements->floor);
 	P->map[(int)P->pos_y][(int)P->pos_x] = '.';
