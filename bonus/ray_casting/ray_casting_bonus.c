@@ -33,6 +33,7 @@ void	calc_line(t_dda *dda)
 		dda->draw_end = HEIGHT;
 }
 
+
 void	digital_differential_analysis(t_player *P, t_dda *dda)
 {
 	while (dda->hit == 0)
@@ -51,10 +52,10 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 		}
 		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
-		else if (P->map[dda->map_y][dda->map_x] == 'D')
-			dda->hit = 2;
-		else if (P->map[dda->map_y][dda->map_x] == 'O')
-			dda->hit = 3;
+		// else if (P->map[dda->map_y][dda->map_x] == 'D' && !dda->door.door_type)
+		// 	cpy_for_door(dda, &dda->door);
+		// else if (P->map[dda->map_y][dda->map_x] == 'O' && !dda->door.door_type)
+		// 	cpy_for_door(dda, &dda->door);
 	}
 }
 
@@ -102,6 +103,8 @@ void	make_screen(t_player *player, t_dda *dda)
 	digital_differential_analysis(player, dda);
 	calc_line(dda);
 	texture(player, dda);
+	player->ZBuffer[dda->x] = dda->perp_wall_dist;
+
 	dda->hit = 0;
 	dda->x++;
 }

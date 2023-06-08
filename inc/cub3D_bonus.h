@@ -43,6 +43,8 @@
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
 # define GUN_WIDTH 140
+# define DOOR_OPEN 1
+# define DOOR_CLOSED -1
 
 typedef struct s_img
 {
@@ -87,6 +89,9 @@ typedef struct s_player{
 	t_img		img;
 	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
+	double 		ZBuffer[WIDTH];
+	int 		spriteOrder[1];
+	double 		spriteDistance[1];
 	t_img		gun[2];
 	int			gun_index;
 	// int			gun[1][GUN_HEIGHT * GUN_WIDTH];
@@ -118,6 +123,7 @@ typedef struct s_dda
 	int		draw_start;
 	int		draw_end;
 }					t_dda;
+
 
 //init
 

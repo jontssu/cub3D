@@ -12,7 +12,7 @@
 
 #include "cub3D_bonus.h"
 
-int	create_trgb(int arr[4])
+int	create_trgb_arr(int arr[4])
 {
 	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
 }
@@ -58,8 +58,8 @@ void	init(t_player *P, t_parser *elements)
 	P->plane_x = 0;
 	determine_dir(P, elements);
 	P->map = elements->map;
-	P->ceiling = create_trgb(elements->ceiling);
-	P->floor = create_trgb(elements->floor);
+	P->ceiling = create_trgb_arr(elements->ceiling);
+	P->floor = create_trgb_arr(elements->floor);
 	P->map[(int)P->pos_y][(int)P->pos_x] = '.';
 }
 
