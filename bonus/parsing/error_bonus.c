@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:52 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:32:53 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:31:15 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	error_elements(t_parser *elements, char **split, int error)
 		free(elements->west);
 	if (elements->east)
 		free(elements->east);
+	if (elements->door_c)
+		free(elements->door_o);
+	if (elements->door_c)
+		free(elements->door_c);
 	free_double_pointer(split);
 	exit(-1);
 }
@@ -66,6 +70,10 @@ void	error_colors(t_parser *elements, int err, char **split, char **split2)
 		free(elements->west);
 	if (elements->east)
 		free(elements->east);
+	if (elements->door_c)
+		free(elements->door_o);
+	if (elements->door_c)
+		free(elements->door_c);
 	free_double_pointer(split);
 	free_double_pointer(split2);
 	exit(-1);

@@ -3,7 +3,7 @@ NO ./textures/bluestone.xpm
 WE  . /text ures/eagle.xpm
 
 SO ./text    ur es/greystone.     xpm
-D_O ./textures/pillar.xpm
+D_O ./textures/mossy.xpm
 D_C ./textures/gun3.xpm
 EA ./textures/redbrick.xp m
 
@@ -19,8 +19,8 @@ C 0, 0, 0
 100000000000001
 100000000000001
 100000000000001
-100001010000001
-100001010100001
+100000D00000001
+100000000100001
 100000N00000001
 100000000000001
 100000000000001

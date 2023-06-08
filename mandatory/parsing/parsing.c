@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 18:36:48 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/08 18:40:49 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ void	read_file_to_content(char *file, char **content)
 			error_malloc(*content);
 	}
 	close(fd);
+	if (ft_strlen(*content) > 50000)
+	{
+		free(*content);
+		ft_putstr_fd("Error\nMap was too big\n", 2);
+		exit (-1);
+	}
 }
 
 char	*remove_spaces(char *string)

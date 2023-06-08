@@ -108,7 +108,7 @@ void	make_screen(t_player *player, t_dda *dda)
 	dda->x++;
 }
 
-void	fill_buff_minimap(t_player *p, int y, int x)
+void	fill_buff_minimap(t_player *p, int y, int x, int render_size)
 {
 	int	count_y;
 	int	count_x;
@@ -123,20 +123,26 @@ void	fill_buff_minimap(t_player *p, int y, int x)
 		{
 			if (y < 0 || y >= p->elements->max_heigth || x >= \
 			p->elements->max_width || x < 0)
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size *(int)(x - (p->pos_x - MAP_SIZE)))] = 0;
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size *(int)(x - (p->pos_x - render_size)))] = 0;
 			else if (x == (int)p->pos_x && y == (int)p->pos_y)
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0x00FFFF;	
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size * (int)(x - (p->pos_x - render_size)))] = 0x00FFFF;	
 			else if (p->cpy_map[y][x] == '/')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size *(int)(x - (p->pos_x - MAP_SIZE)))] = 0xFF00FF;	
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size *(int)(x - (p->pos_x - render_size)))] = 0xFF00FF;	
 			else if (p->cpy_map[y][x] == 'I')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0xFFFFFF;
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size * (int)(x - (p->pos_x - render_size)))] = 0xFFFFFF;
 			else if (p->cpy_map[y][x] == '.')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0xFF0000;	
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size * (int)(x - (p->pos_x - render_size)))] = 0xFF0000;	
+			else if (p->cpy_map[y][x] == 'D')
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size * (int)(x - (p->pos_x - render_size)))] = 200;	
+			else if (p->cpy_map[y][x] == 'O')
+				p->buf[count_y + (size * (int)(y - (p->pos_y - render_size)))] \
+				[count_x + (size * (int)(x - (p->pos_x - render_size)))] = 0xFF9999;	
 		}
 	}
 }
@@ -145,13 +151,19 @@ void	minimap(t_player *p)
 {
 	int	y;
 	int	x;
+	int	render_size;
 
-	y = p->pos_y - MAP_SIZE;
-	while (y <= p->pos_y + MAP_SIZE)
+	render_size = 7;
+	if (p->elements->max_heigth < 7)
+		render_size = p->elements->max_heigth - 2;
+	else if (p->elements->max_width < 7)
+		render_size = p->elements->max_width - 2;
+	y = p->pos_y - render_size;
+	while (y <= p->pos_y + render_size)
 	{
-		x = p->pos_x - MAP_SIZE;
-		while (x <= p->pos_x + MAP_SIZE)
-			fill_buff_minimap(p, y, x++);
+		x = p->pos_x - render_size;
+		while (x <= p->pos_x + render_size)
+			fill_buff_minimap(p, y, x++, render_size);
 		y++;
 	}
 }

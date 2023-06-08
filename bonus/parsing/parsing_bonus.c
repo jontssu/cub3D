@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:39 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:40 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:40:19 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	read_file_to_content(char *file, char **content)
 			error_malloc(*content);
 	}
 	close(fd);
+	if (ft_strlen(*content) > 50000)
+	{
+		free(*content);
+		ft_putstr_fd("Error\nMap was too big\n", 2);
+		exit (-1);
+	}
 }
 
 char	*remove_spaces(char *string)

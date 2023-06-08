@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/07 18:33:32 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/08 17:56:53 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
 # define GUN_WIDTH 140
-# define MAP_SIZE 7
 
 typedef struct s_img
 {

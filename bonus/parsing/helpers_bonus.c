@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:13 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:14 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:29:40 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	free_elements(t_parser *elements)
 	free(elements->south);
 	free(elements->west);
 	free(elements->east);
+	free(elements->door_c);
+	free(elements->door_o);
 	free_double_pointer(elements->map);
 }
 
