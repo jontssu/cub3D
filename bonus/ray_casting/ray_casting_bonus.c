@@ -53,9 +53,19 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 		if (P->map[dda->map_y][dda->map_x] == 'I')
 			dda->hit = 1;
 		else if (P->map[dda->map_y][dda->map_x] == 'D')
-			dda->hit = 2;
+		{
+			// dda->hit = 2;
+			P->sprite.y = dda->map_y;
+			P->sprite.x = dda->map_x;
+			P->sprite.texture = 5;
+		}
 		else if (P->map[dda->map_y][dda->map_x] == 'O')
-			dda->hit = 3;
+		{
+			// dda->hit = 3;
+			P->sprite.y = dda->map_y;
+			P->sprite.x = dda->map_x;
+			P->sprite.texture = 4;
+		}
 		if (!dda->hit)
 			P->cpy_map[dda->map_y][dda->map_x] = '/';
 	}
@@ -106,7 +116,6 @@ void	make_screen(t_player *player, t_dda *dda)
 	calc_line(dda);
 	texture(player, dda);
 	player->ZBuffer[dda->x] = dda->perp_wall_dist;
-
 	dda->hit = 0;
 	dda->x++;
 }
@@ -183,6 +192,7 @@ int	ray_cast(t_player *player)
 	while (dda.x < WIDTH)
 		make_screen(player, &dda);
 	minimap(player);
+	calc_sprites(player, &dda);
 	draw(player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
 		player->img.img, 0, 0);

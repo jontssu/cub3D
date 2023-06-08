@@ -45,6 +45,13 @@
 # define GUN_WIDTH 140
 # define MAP_SIZE 7
 
+typedef struct			s_sprite
+{
+	double		x;
+	double		y;
+	int			texture;
+}				t_sprite;
+
 typedef struct s_img
 {
 	void	*img;
@@ -91,6 +98,7 @@ typedef struct s_player{
 	double 		ZBuffer[WIDTH];
 	int 		spriteOrder[1];
 	double 		spriteDistance[1];
+	t_sprite	sprite;
 	t_img		gun[2];
 	int			gun_index;
 	// int			gun[1][GUN_HEIGHT * GUN_WIDTH];
@@ -122,6 +130,7 @@ typedef struct s_dda
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+
 }					t_dda;
 
 
@@ -145,6 +154,9 @@ void	draw(t_player *P);
 
 //Ray_casting
 int		ray_cast(t_player *P);
+
+//sprites
+void	calc_sprites(t_player *player, t_dda *dda);
 
 
 // //asdasdas
