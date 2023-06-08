@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 15:54:06 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/07 18:33:32 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
 # define GUN_WIDTH 140
-# define DOOR_OPEN 1
-# define DOOR_CLOSED -1
+# define MAP_SIZE 7
 
 typedef struct s_img
 {
@@ -98,6 +97,7 @@ typedef struct s_player{
 	int			ceiling;
 	int			floor;
 	char		**map;
+	char		**cpy_map;
 	t_parser	*elements;
 }				t_player;
 
@@ -146,4 +146,8 @@ void	draw(t_player *P);
 //Ray_casting
 int		ray_cast(t_player *P);
 
+
+// //asdasdas
+void print_map(t_player *P);
+char** copy2DCharArray(char** arr);
 #endif
