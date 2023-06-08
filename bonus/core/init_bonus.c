@@ -92,6 +92,17 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	mlx_destroy_image(P->mlx, img->img);
 }
 
+void	load_gun(t_player *P, t_img *img, char *path)
+{
+	img->img = mlx_xpm_file_to_image(P->mlx, path, \
+	&img->img_width, &img->img_height);
+	if (!img->img)
+	{
+		printf("could not load image %s\n", path);
+		free_all(P);
+	}
+}
+
 void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
@@ -101,27 +112,36 @@ void	load_texture(t_player *P, t_parser *elements)
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
-	P->gun_index = 0;
-	P->gun[0].img = mlx_xpm_file_to_image(P->mlx, "textures/gun3.xpm", \
-	&P->gun[0].img_width, &P->gun[0].img_height);
-	if (!P->gun[0].img)
-	{
-		printf("could not load image %s\n", "textures/gun0.xpm");
-		free_all(P);
-	}
-	else
-		printf("load image %s\n", "textures/gun3.xpm");
-	P->gun[1].img = mlx_xpm_file_to_image(P->mlx, "textures/gun0.xpm", \
-	&P->gun[1].img_width, &P->gun[1].img_height);
-	if (!P->gun[1].img)
-	{
-		printf("could not load image %s\n", "textures/gun3.xpm");
-		free_all(P);
-	}
-	else
-		printf("load image %s\n", "textures/gun3.xpm");
-
 	load_image(P, P->texture[4], elements->door_o, &img);
 	load_image(P, P->texture[5], elements->door_c, &img);
+
+	// load_gun(P, &P->gun[0], );
+	load_gun(P, &P->gun[0], "textures/gun0.xpm");
+	load_gun(P, &P->gun[1], "textures/gun1.xpm");
+	load_gun(P, &P->gun[2], "textures/gun2.xpm");
+	load_gun(P, &P->gun[3], "textures/gun3.xpm");
+	load_gun(P, &P->gun[4], "textures/gun4.xpm");
+	P->gun_index = 0;
+	P->shoot = 0;
+	// P->gun[0].img = mlx_xpm_file_to_image(P->mlx, "textures/gun4.xpm", \
+	// &P->gun[0].img_width, &P->gun[0].img_height);
+	// if (!P->gun[0].img)
+	// {
+	// 	printf("could not load image %s\n", "textures/gun0.xpm");
+	// 	free_all(P);
+	// }
+	// else
+	// 	printf("load image %s\n", "textures/gun3.xpm");
+	// P->gun[1].img = mlx_xpm_file_to_image(P->mlx, "textures/gun0.xpm", \
+	// &P->gun[1].img_width, &P->gun[1].img_height);
+	// if (!P->gun[1].img)
+	// {
+	// 	printf("could not load image %s\n", "textures/gun3.xpm");
+	// 	free_all(P);
+	// }
+	// else
+	// 	printf("load image %s\n", "textures/gun3.xpm");
+
+	
 	// printf("LOAD_TEXTURE\n");
 }

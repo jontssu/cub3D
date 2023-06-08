@@ -32,6 +32,8 @@ int	key_pressed(int keycode, t_player *param)
 		free_all(param);
 	else if (keycode == KEY_OPEN)
 		param->open_door = 1;
+	else if (keycode == 49)
+		param->shoot = param->d_time + 0.05;
 	return (0);
 }
 

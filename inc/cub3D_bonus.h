@@ -20,6 +20,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
+# include <time.h>
+# include <sys/time.h>
 
 //Player
 # define BODY 0.1
@@ -95,13 +97,12 @@ typedef struct s_player{
 	t_img		img;
 	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
-	double 		ZBuffer[WIDTH];
-	int 		spriteOrder[1];
-	double 		spriteDistance[1];
-	t_sprite	sprite;
-	t_img		gun[2];
 	int			gun_index;
-	// int			gun[1][GUN_HEIGHT * GUN_WIDTH];
+	t_img		gun[5];
+	// int			shoot;
+	double				shoot;
+	double				d_time;
+	struct timeval		time;
 	int			ceiling;
 	int			floor;
 	char		**map;
@@ -135,7 +136,7 @@ typedef struct s_dda
 
 
 //init
-
+void	update_gun(t_player *player);
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
 
