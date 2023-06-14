@@ -5,12 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 06:32:26 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/07 15:59:57by jole             ###   ########.fr       */
+/*   Created: 2023/06/14 16:29:50 by jole              #+#    #+#             */
+/*   Updated: 2023/06/14 17:24:10 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "cub3D_bonus.h"
 
@@ -31,9 +29,7 @@ void	calc_line(t_dda *dda)
 	dda->draw_end = dda->line_height / 2 + HEIGHT / 2;
 	if (dda->draw_end >= HEIGHT)
 		dda->draw_end = HEIGHT;
-	
 }
-
 
 void	digital_differential_analysis(t_player *P, t_dda *dda)
 {
@@ -110,54 +106,6 @@ void	make_screen(t_player *player, t_dda *dda)
 	dda->x++;
 }
 
-void	fill_buff_minimap(t_player *p, int y, int x)
-{
-	int	count_y;
-	int	count_x;
-	int	size;
-
-	count_y = 0;
-	size = (WIDTH / HEIGHT) * 10;
-	while (count_y++ < 10)
-	{
-		count_x = 0;
-		while (count_x++ < 10)
-		{
-			if (y < 0 || y >= p->elements->max_heigth || x >= \
-			p->elements->max_width || x < 0)
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size *(int)(x - (p->pos_x - MAP_SIZE)))] = 0;
-			else if (x == (int)p->pos_x && y == (int)p->pos_y)
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0x00FFFF;	
-			else if (p->cpy_map[y][x] == '/')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size *(int)(x - (p->pos_x - MAP_SIZE)))] = 0xFF00FF;	
-			else if (p->cpy_map[y][x] == 'I')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0xFFFFFF;
-			else if (p->cpy_map[y][x] == '.')
-				p->buf[count_y + (size * (int)(y - (p->pos_y - MAP_SIZE)))] \
-				[count_x + (size * (int)(x - (p->pos_x - MAP_SIZE)))] = 0xFF0000;	
-		}
-	}
-}
-
-void	minimap(t_player *p)
-{
-	int	y;
-	int	x;
-
-	y = p->pos_y - MAP_SIZE;
-	while (y <= p->pos_y + MAP_SIZE)
-	{
-		x = p->pos_x - MAP_SIZE;
-		while (x <= p->pos_x + MAP_SIZE)
-			fill_buff_minimap(p, y, x++);
-		y++;
-	}
-}
-
 int	ray_cast(t_player *player)
 {
 	t_dda	dda;
@@ -183,7 +131,5 @@ int	ray_cast(t_player *player)
 		make_screen(player, &dda);
 	minimap(player);
 	draw(player);
-	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->img.img, 0, 0);
 	return (0);
 }

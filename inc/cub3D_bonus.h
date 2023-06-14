@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/07 18:33:32 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/14 17:28:47 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define GUN_WIDTH 140
 # define MAP_SIZE 7
 
-typedef struct			s_sprite
+typedef struct s_sprite
 {
 	double		x;
 	double		y;
@@ -100,11 +100,15 @@ typedef struct s_player{
 	int			gun_index;
 	t_img		gun[5];
 	// int			shoot;
-	double				shoot;
-	double				d_time;
-	struct timeval		time;
+	double		shoot;
+	double		d_time;
+	struct timeval	time;
 	int			ceiling;
 	int			floor;
+	int			count_y;
+	int			count_x;
+	int			size;
+	int			r_size;
 	char		**map;
 	char		**cpy_map;
 	t_parser	*elements;
@@ -134,11 +138,11 @@ typedef struct s_dda
 
 }					t_dda;
 
-
 //init
 void	update_gun(t_player *player);
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
+char	**copy_2d_array(char **arr);
 
 //KEY_HANDLE
 int		key_pressed(int keycode, t_player *param);
@@ -159,8 +163,7 @@ int		ray_cast(t_player *P);
 //sprites
 void	calc_sprites(t_player *player, t_dda *dda);
 
+//minimap
+void	minimap(t_player *p);
 
-// //asdasdas
-void print_map(t_player *P);
-char** copy2DCharArray(char** arr);
 #endif

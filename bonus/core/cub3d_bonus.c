@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/07 18:53:58 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/14 17:30:10 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	core_game(t_player *player)
 {
 	if (player->cpy_map)
 		free_double_pointer(player->cpy_map);
-	player->cpy_map = copy2DCharArray(player->map);
+	player->cpy_map = copy_2d_array(player->map);
 	ray_cast(player);
 	get_time(player);
 	draw_gun(player);

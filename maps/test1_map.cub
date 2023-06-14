@@ -1,12 +1,10 @@
-
 NO ./textures/bluestone.xpm
-WE  . /text ures/eagle.xpm
+WE ./textures/eagle.xpm
+SO ./textures/greystone.xpm
+EA ./textures/redbrick.xpm
 
-SO ./text    ur es/greystone.     xpm
-EA ./textures/redbrick.xp m
-
-F 128,128, 128
-C 0, 0, 0
+F 128,128,128
+C 0,0,0
 
 111111111111111
 100000100000001
