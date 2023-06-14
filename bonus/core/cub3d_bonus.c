@@ -12,27 +12,8 @@
 
 #include "cub3D_bonus.h"
 
-// void	update_gun(t_player *player)
-// {
-// 	// printf("load gun %d\n", player->gun_index);
-// 	if (player->shoot && player->d_time == player->shoot)
-// 	{
-// 		if (player->gun_index >= 4)
-// 		{
-// 			player->gun_index = 0;
-// 			player->shoot = 0;
-// 		}
-// 		else
-// 			player->gun_index++;
-// 	}
-
-
-	
-// }
-
 void	draw_gun(t_player *player)
 {
-	// printf("shoot %f, d_time %f\n", player->shoot, player->d_time);
 	if (player->shoot)
 	{
 		player->shoot -= player->d_time;
@@ -51,8 +32,8 @@ void	draw_gun(t_player *player)
 		}
 	}
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, WIDTH/2 - 70, HEIGHT/2 + 100);
-	
+		player->gun[player->gun_index].img, \
+		WIDTH / 2 - 70, HEIGHT - GUN_HEIGHT);
 }
 
 void	get_time(t_player *player)
@@ -74,24 +55,20 @@ int	core_game(t_player *player)
 	player->cpy_map = copy2DCharArray(player->map);
 	ray_cast(player);
 	get_time(player);
-	if(WIDTH > 140 && HEIGHT > 140)
-	{
-		draw_gun(player);
-	}
-	// print_map(player);
+	draw_gun(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);
-	if(player->rotate_left < 0)
+	if (player->rotate_left < 0)
 	{
 		player->rotate_left += 0.005;
-		if(player->rotate_left > 0)
+		if (player->rotate_left > 0)
 			player->rotate_left = 0;
 	}
-	if(player->rotate_right > 0)
+	if (player->rotate_right > 0)
 	{
 		player->rotate_right -= 0.005;
-		if(player->rotate_right < 0)
+		if (player->rotate_right < 0)
 			player->rotate_right = 0;
 	}
 	return (0);
@@ -127,6 +104,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_invalid_input(1);
+	if (WIDTH < 300 || HEIGHT < 300)
+	{
+		printf("bad Window size\n");
+		return (1);
+	}
 	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)

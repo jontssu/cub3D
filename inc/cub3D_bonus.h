@@ -39,8 +39,8 @@
 # define KEY_OPEN 14 
 
 //Graphics
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 300
+# define HEIGHT 300
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
