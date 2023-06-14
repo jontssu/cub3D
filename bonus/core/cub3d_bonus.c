@@ -32,7 +32,7 @@
 
 void	draw_gun(t_player *player)
 {
-	printf("shoot %f, d_time %f\n", player->shoot, player->d_time);
+	// printf("shoot %f, d_time %f\n", player->shoot, player->d_time);
 	if (player->shoot)
 	{
 		player->shoot -= player->d_time;
