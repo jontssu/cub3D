@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/06 13:13:47 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/14 17:31:17 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	init(t_player *P, t_parser *elements)
 	P->plane_x = 0;
 	determine_dir(P, elements);
 	P->map = elements->map;
-	// P->cpy_map = copy2DCharArray(P->map);
 	P->ceiling = create_trgb_arr(elements->ceiling);
 	P->floor = create_trgb_arr(elements->floor);
 	P->map[(int)P->pos_y][(int)P->pos_x] = '.';
@@ -141,7 +140,5 @@ void	load_texture(t_player *P, t_parser *elements)
 	// }
 	// else
 	// 	printf("load image %s\n", "textures/gun3.xpm");
-
-	
 	// printf("LOAD_TEXTURE\n");
 }

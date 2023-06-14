@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:33:54 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 07:33:56 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:27:18 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int mouse_rotate(int x, int y, t_player *player)
 {
-	// printf("%d, %d\n", x, y);
 	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
 	{
 		player->rotate_right = 0;
@@ -22,9 +21,11 @@ int mouse_rotate(int x, int y, t_player *player)
 		return (-1);
 	}
 	if (x > player->prev_rot_x)
-		player->rotate_right = ROT_SPEED * ((double)(x - player->prev_rot_x) / 3.5);
+		player->rotate_right = ROT_SPEED * ((double)(x - player->prev_rot_x) \
+		/ 3.5);
 	else if (x < player->prev_rot_x)
-		player->rotate_left = -ROT_SPEED * ((double)(player->prev_rot_x - x) / 3.5);
+		player->rotate_left = -ROT_SPEED * ((double)(player->prev_rot_x - x) \
+		/ 3.5);
 	else
 	{
 		player->rotate_right = 0;

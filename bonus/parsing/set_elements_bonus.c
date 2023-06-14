@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   set_elements_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:33 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:34 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:21:27 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "parsing_bonus.h"
 
@@ -32,6 +30,14 @@ void	set_int_array(char *str, int *int_arr, t_parser *elements, char **split)
 		error_colors(elements, 1, split, split2);
 	int_arr[3] = 1;
 	free_double_pointer(split2);
+}
+
+void	if_not_element(t_parser *elements, char **split)
+{
+	if (!elements->north || !elements->south || !elements->west \
+	|| !elements->east || !elements->door_o || !elements->door_c \
+	|| elements->ceiling[3] == -1 || elements->floor[3] == -1)
+		error_elements(elements, split, 2);
 }
 
 int	set_elements(char **split, t_parser *elements)
@@ -58,9 +64,6 @@ int	set_elements(char **split, t_parser *elements)
 		else if (split[i][0] == 'C' && ft_isdigit(split[i][1]))
 			set_int_array(&split[i][1], elements->ceiling, elements, split);
 	}
-	if (!elements->north || !elements->south || !elements->west \
-	|| !elements->east || !elements->door_o || !elements->door_c \
-	|| elements->ceiling[3] == -1 || elements->floor[3] == -1)
-		error_elements(elements, split, 2);
+	if_not_element(elements, split);
 	return (0);
 }
