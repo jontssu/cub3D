@@ -6,11 +6,9 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/05 15:37:52 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/14 17:24:26 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "cub3D_bonus.h"
 
@@ -30,6 +28,8 @@ void	draw(t_player *P)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(P->mlx, P->mlx_win, \
+	P->img.img, 0, 0);
 }
 
 int	choose_texture(t_dda *dda)
@@ -60,8 +60,8 @@ int	choose_texture(t_dda *dda)
 void	add_line_to_buff(t_player *P, t_dda *dda, t_tex *tex)
 {
 	int		y;
+
 	y = dda->draw_start;
-	
 	while (y < dda->draw_end)
 	{
 		tex->tex_y = (int)tex->tex_pos & (TEX_HEIGHT - 1);

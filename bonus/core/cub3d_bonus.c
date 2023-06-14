@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/07 18:53:58 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/14 17:30:10 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@
 // 		else
 // 			player->gun_index++;
 // 	}
-
-
-	
 // }
 
 void	draw_gun(t_player *player)
 {
-	// printf("shoot %f, d_time %f\n", player->shoot, player->d_time);
 	if (player->shoot)
 	{
 		player->shoot -= player->d_time;
@@ -51,8 +47,7 @@ void	draw_gun(t_player *player)
 		}
 	}
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, WIDTH/2 - 70, HEIGHT/2 + 100);
-	
+		player->gun[player->gun_index].img, WIDTH / 2 - 70, HEIGHT / 2 + 100);
 }
 
 void	get_time(t_player *player)
@@ -71,27 +66,24 @@ int	core_game(t_player *player)
 {
 	if (player->cpy_map)
 		free_double_pointer(player->cpy_map);
-	player->cpy_map = copy2DCharArray(player->map);
+	player->cpy_map = copy_2d_array(player->map);
 	ray_cast(player);
 	get_time(player);
-	if(WIDTH > 140 && HEIGHT > 140)
-	{
+	if (WIDTH > 140 && HEIGHT > 140)
 		draw_gun(player);
-	}
-	// print_map(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);
-	if(player->rotate_left < 0)
+	if (player->rotate_left < 0)
 	{
 		player->rotate_left += 0.005;
-		if(player->rotate_left > 0)
+		if (player->rotate_left > 0)
 			player->rotate_left = 0;
 	}
-	if(player->rotate_right > 0)
+	if (player->rotate_right > 0)
 	{
 		player->rotate_right -= 0.005;
-		if(player->rotate_right < 0)
+		if (player->rotate_right < 0)
 			player->rotate_right = 0;
 	}
 	return (0);
