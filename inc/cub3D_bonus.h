@@ -20,6 +20,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
+# include <time.h>
+# include <sys/time.h>
 
 //Player
 # define BODY 0.1
@@ -44,6 +46,13 @@
 # define GUN_HEIGHT 140
 # define GUN_WIDTH 140
 # define MAP_SIZE 7
+
+typedef struct			s_sprite
+{
+	double		x;
+	double		y;
+	int			texture;
+}				t_sprite;
 
 typedef struct s_img
 {
@@ -88,9 +97,12 @@ typedef struct s_player{
 	t_img		img;
 	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
 	int			buf[HEIGHT][WIDTH];
-	t_img		gun[2];
 	int			gun_index;
-	// int			gun[1][GUN_HEIGHT * GUN_WIDTH];
+	t_img		gun[5];
+	// int			shoot;
+	double				shoot;
+	double				d_time;
+	struct timeval		time;
 	int			ceiling;
 	int			floor;
 	char		**map;
@@ -119,10 +131,12 @@ typedef struct s_dda
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+
 }					t_dda;
 
-//init
 
+//init
+void	update_gun(t_player *player);
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
 
@@ -141,6 +155,9 @@ void	draw(t_player *P);
 
 //Ray_casting
 int		ray_cast(t_player *P);
+
+//sprites
+void	calc_sprites(t_player *player, t_dda *dda);
 
 
 // //asdasdas

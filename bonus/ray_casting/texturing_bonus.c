@@ -60,8 +60,8 @@ int	choose_texture(t_dda *dda)
 void	add_line_to_buff(t_player *P, t_dda *dda, t_tex *tex)
 {
 	int		y;
-
 	y = dda->draw_start;
+	
 	while (y < dda->draw_end)
 	{
 		tex->tex_y = (int)tex->tex_pos & (TEX_HEIGHT - 1);

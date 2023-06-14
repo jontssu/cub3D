@@ -12,17 +12,59 @@
 
 #include "cub3D_bonus.h"
 
-void	draw_gun(t_player *player)
-{
-	// printf("load gun %d\n", player->gun_index);
-	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, 0, 0);
-	if (player->gun_index >= 1)
-		player->gun_index = 0;
-	else
-		player->gun_index++;
+// void	update_gun(t_player *player)
+// {
+// 	// printf("load gun %d\n", player->gun_index);
+// 	if (player->shoot && player->d_time == player->shoot)
+// 	{
+// 		if (player->gun_index >= 4)
+// 		{
+// 			player->gun_index = 0;
+// 			player->shoot = 0;
+// 		}
+// 		else
+// 			player->gun_index++;
+// 	}
+
 
 	
+// }
+
+void	draw_gun(t_player *player)
+{
+	// printf("shoot %f, d_time %f\n", player->shoot, player->d_time);
+	if (player->shoot)
+	{
+		player->shoot -= player->d_time;
+		if (player->shoot <= 0)
+		{
+			if (player->gun_index >= 4)
+			{
+				player->gun_index = 0;
+				player->shoot = 0;
+			}
+			else
+			{
+				player->gun_index++;
+				player->shoot = 0.05;
+			}
+		}
+	}
+	mlx_put_image_to_window(player->mlx, player->mlx_win, \
+		player->gun[player->gun_index].img, WIDTH/2 - 70, HEIGHT/2 + 100);
+	
+}
+
+void	get_time(t_player *player)
+{
+	struct timeval	t;
+	double			elapsed;
+
+	gettimeofday(&t, NULL);
+	elapsed = (t.tv_sec - player->time.tv_sec) * 1000;
+	elapsed += (t.tv_usec - player->time.tv_usec) / 1000;
+	player->d_time = elapsed / 1000;
+	player->time = t;
 }
 
 int	core_game(t_player *player)
@@ -31,7 +73,11 @@ int	core_game(t_player *player)
 		free_double_pointer(player->cpy_map);
 	player->cpy_map = copy2DCharArray(player->map);
 	ray_cast(player);
-	// draw_gun(player);
+	get_time(player);
+	if(WIDTH > 140 && HEIGHT > 140)
+	{
+		draw_gun(player);
+	}
 	// print_map(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);

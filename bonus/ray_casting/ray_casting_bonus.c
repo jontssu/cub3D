@@ -31,7 +31,9 @@ void	calc_line(t_dda *dda)
 	dda->draw_end = dda->line_height / 2 + HEIGHT / 2;
 	if (dda->draw_end >= HEIGHT)
 		dda->draw_end = HEIGHT;
+	
 }
+
 
 void	digital_differential_analysis(t_player *P, t_dda *dda)
 {
