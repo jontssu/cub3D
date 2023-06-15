@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/15 12:53:43 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 14:57:43 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	load_texture(t_player *P, t_parser *elements);
 
 //KEY_HANDLE
 int		key_pressed(int keycode, t_player *param);
-int		free_all(t_player *param);
+int		free_all(t_player *param, int exit_code);
 void	player_move(t_player *P);
 void	player_rotate(t_player *P, double x);
 int		key_release(int keycode, t_player *param);
@@ -168,6 +168,6 @@ void	calc_sprites(t_player *player, t_dda *dda);
 
 //minimap
 void	minimap(t_player *p);
-char	**copy_2d_array(char **arr);
+char	**copy_2d_array(t_player *p, char **arr);
 
 #endif

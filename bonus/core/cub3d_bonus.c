@@ -6,18 +6,17 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/15 12:32:24 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 15:01:04 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-
 int	core_game(t_player *player)
 {
 	if (player->cpy_map)
 		free_double_pointer(player->cpy_map);
-	player->cpy_map = copy_2d_array(player->map);
+	player->cpy_map = copy_2d_array(player, player->map);
 	ray_cast(player);
 	get_time(player);
 	draw_gun(player);
@@ -43,10 +42,10 @@ void	mlxing(t_player *player, t_parser *elements)
 {
 	player->mlx_win = mlx_new_window(player->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!player->mlx_win)
-		free_all(player);
+		free_all(player, 1);
 	player->img.img = mlx_new_image(player->mlx, WIDTH, HEIGHT);
 	if (!player->img.img)
-		free_all(player);
+		free_all(player, 1);
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
