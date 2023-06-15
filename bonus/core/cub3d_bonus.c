@@ -6,26 +6,11 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/14 17:30:10 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 12:32:24 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-// void	update_gun(t_player *player)
-// {
-// 	// printf("load gun %d\n", player->gun_index);
-// 	if (player->shoot && player->d_time == player->shoot)
-// 	{
-// 		if (player->gun_index >= 4)
-// 		{
-// 			player->gun_index = 0;
-// 			player->shoot = 0;
-// 		}
-// 		else
-// 			player->gun_index++;
-// 	}
-// }
 
 void	draw_gun(t_player *player)
 {
