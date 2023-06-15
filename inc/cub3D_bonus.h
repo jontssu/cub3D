@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/14 17:28:47 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 12:53:43 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,40 +78,39 @@ typedef struct s_tex
 }				t_tex;
 
 typedef struct s_player{
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	int			move_w;
-	int			move_s;
-	int			move_a;
-	int			move_d;
-	double		rotate_left;
-	double		rotate_right;
-	int			open_door;
-	int			prev_rot_x;
-	void		*mlx;
-	void		*mlx_win;
-	t_img		img;
-	int			texture[6][TEX_HEIGHT * TEX_WIDTH];
-	int			buf[HEIGHT][WIDTH];
-	int			gun_index;
-	t_img		gun[5];
-	// int			shoot;
-	double		shoot;
-	double		d_time;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				move_w;
+	int				move_s;
+	int				move_a;
+	int				move_d;
+	double			rotate_left;
+	double			rotate_right;
+	int				open_door;
+	int				prev_rot_x;
+	void			*mlx;
+	void			*mlx_win;
+	t_img			img;
+	int				texture[6][TEX_HEIGHT * TEX_WIDTH];
+	int				buf[HEIGHT][WIDTH];
+	int				gun_index;
+	t_img			gun[5];
+	double			shoot;
+	double			d_time;
 	struct timeval	time;
-	int			ceiling;
-	int			floor;
-	int			count_y;
-	int			count_x;
-	int			size;
-	int			r_size;
-	char		**map;
-	char		**cpy_map;
-	t_parser	*elements;
+	int				ceiling;
+	int				floor;
+	int				count_y;
+	int				count_x;
+	int				size;
+	int				r_size;
+	char			**map;
+	char			**cpy_map;
+	t_parser		*elements;
 }				t_player;
 
 //Digital differential analysis ;D
@@ -142,7 +141,6 @@ typedef struct s_dda
 void	update_gun(t_player *player);
 void	init(t_player *P, t_parser *elements);
 void	load_texture(t_player *P, t_parser *elements);
-char	**copy_2d_array(char **arr);
 
 //KEY_HANDLE
 int		key_pressed(int keycode, t_player *param);
@@ -165,5 +163,6 @@ void	calc_sprites(t_player *player, t_dda *dda);
 
 //minimap
 void	minimap(t_player *p);
+char	**copy_2d_array(char **arr);
 
 #endif

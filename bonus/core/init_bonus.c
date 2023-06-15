@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:32 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/14 17:31:17 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 12:32:07 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,12 @@ void	load_texture(t_player *P, t_parser *elements)
 {
 	t_img	img;
 
-	// printf("LOAD_TEXTURE\n");
 	load_image(P, P->texture[0], elements->south, &img);
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
 	load_image(P, P->texture[4], elements->door_o, &img);
 	load_image(P, P->texture[5], elements->door_c, &img);
-
-	// load_gun(P, &P->gun[0], );
 	load_gun(P, &P->gun[0], "textures/gun0.xpm");
 	load_gun(P, &P->gun[1], "textures/gun1.xpm");
 	load_gun(P, &P->gun[2], "textures/gun2.xpm");
@@ -122,23 +119,4 @@ void	load_texture(t_player *P, t_parser *elements)
 	load_gun(P, &P->gun[4], "textures/gun4.xpm");
 	P->gun_index = 0;
 	P->shoot = 0;
-	// P->gun[0].img = mlx_xpm_file_to_image(P->mlx, "textures/gun4.xpm", \
-	// &P->gun[0].img_width, &P->gun[0].img_height);
-	// if (!P->gun[0].img)
-	// {
-	// 	printf("could not load image %s\n", "textures/gun0.xpm");
-	// 	free_all(P);
-	// }
-	// else
-	// 	printf("load image %s\n", "textures/gun3.xpm");
-	// P->gun[1].img = mlx_xpm_file_to_image(P->mlx, "textures/gun0.xpm", \
-	// &P->gun[1].img_width, &P->gun[1].img_height);
-	// if (!P->gun[1].img)
-	// {
-	// 	printf("could not load image %s\n", "textures/gun3.xpm");
-	// 	free_all(P);
-	// }
-	// else
-	// 	printf("load image %s\n", "textures/gun3.xpm");
-	// printf("LOAD_TEXTURE\n");
 }
