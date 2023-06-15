@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include <string.h>
 
 char	**calloc_and_copy(t_player *p, char **arr, char **copy, int *ints)
 {
@@ -27,7 +26,7 @@ char	**calloc_and_copy(t_player *p, char **arr, char **copy, int *ints)
 			free_double_pointer(copy);
 			free_all(p, -1);
 		}
-		ft_strlcpy(copy[i], arr[i], ft_strlen(arr[i] + 1));
+		ft_strlcpy(copy[i], arr[i], ft_strlen(arr[i]) + 1);
 	}
 	copy[ints[0]] = NULL;
 	return (arr);
@@ -83,7 +82,7 @@ void	render_color(t_player *p, int y, int x, int color)
 void	fill_buff_minimap(t_player *p, int y, int x)
 {
 	p->count_y = 0;
-	p->size = (WIDTH / HEIGHT) * 10;
+	p->size = 10;
 	while (p->count_y++ < 10)
 	{
 		p->count_x = 0;

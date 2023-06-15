@@ -42,6 +42,8 @@ void	error_elements(t_parser *elements, char **split, int error)
 		free(elements->west);
 	if (elements->east)
 		free(elements->east);
+	if (elements->door_c)
+		free(elements->door_c);
 	free_double_pointer(split);
 	exit(-1);
 }
@@ -64,6 +66,8 @@ void	error_colors(t_parser *elements, int err, char **split, char **split2)
 		free(elements->west);
 	if (elements->east)
 		free(elements->east);
+	if (elements->door_c)
+		free(elements->door_c);
 	free_double_pointer(split);
 	free_double_pointer(split2);
 	exit(-1);

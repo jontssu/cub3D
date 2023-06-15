@@ -80,8 +80,6 @@ void	check_path(t_parser *elements, char *path)
 			free(elements->west);
 		if (elements->east)
 			free(elements->east);
-		if (elements->door_o)
-			free(elements->door_o);
 		if (elements->door_c)
 			free(elements->door_c);
 		exit(-1);
@@ -94,6 +92,5 @@ void	check_elements(t_parser *elements)
 	check_path(elements, elements->south);
 	check_path(elements, elements->west);
 	check_path(elements, elements->east);
-	check_path(elements, elements->door_o);
 	check_path(elements, elements->door_c);
 }

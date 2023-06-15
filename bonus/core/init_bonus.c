@@ -12,7 +12,6 @@
 
 #include "cub3D_bonus.h"
 
-
 void	determine_dir(t_player *P, t_parser *elements)
 {
 	if (elements->orientation == 'N')
@@ -27,13 +26,13 @@ void	determine_dir(t_player *P, t_parser *elements)
 	}
 	else if (elements->orientation == 'W')
 	{
-		P->dir_x = 1;
-		P->plane_y = -0.66;
+		P->dir_x = -1;
+		P->plane_y = 0.66;
 	}
 	else if (elements->orientation == 'E')
 	{
-		P->dir_x = -1;
-		P->plane_y = 0.66;
+		P->dir_x = 1;
+		P->plane_y = -0.66;
 	}
 }
 
@@ -68,8 +67,8 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	&img->img_width, &img->img_height);
 	if (!img->img)
 	{
-		printf("could not load image %s\n", path);
-		free_all(P);
+		ft_putstr_fd("Error\nCould not load image\n", 2);
+		free_all(P, -1);
 	}
 	img->data = (int *)mlx_get_data_addr(img->img, \
 	&img->bpp, &img->size_l, &img->endian);
@@ -93,8 +92,8 @@ void	load_gun(t_player *P, t_img *img, char *path)
 	&img->img_width, &img->img_height);
 	if (!img->img)
 	{
-		printf("could not load image %s\n", path);
-		free_all(P);
+		ft_putstr_fd("Error\nCould not load image\n", 2);
+		free_all(P, -1);
 	}
 }
 
@@ -106,8 +105,7 @@ void	load_texture(t_player *P, t_parser *elements)
 	load_image(P, P->texture[1], elements->north, &img);
 	load_image(P, P->texture[2], elements->east, &img);
 	load_image(P, P->texture[3], elements->west, &img);
-	load_image(P, P->texture[4], elements->door_o, &img);
-	load_image(P, P->texture[5], elements->door_c, &img);
+	load_image(P, P->texture[4], elements->door_c, &img);
 	load_gun(P, &P->gun[0], "textures/gun0.xpm");
 	load_gun(P, &P->gun[1], "textures/gun1.xpm");
 	load_gun(P, &P->gun[2], "textures/gun2.xpm");

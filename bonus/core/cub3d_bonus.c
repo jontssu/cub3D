@@ -49,7 +49,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
-	ft_bzero(player->texture, 8 * TEX_HEIGHT * TEX_WIDTH);
+	ft_bzero(player->texture, 5 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(player, elements);
 	mlx_hook(player->mlx_win, 17, 0, free_all, player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 	t_player	player;
 	t_parser	elements;
 
+	printf("#");
 	if (argc != 2)
 		error_invalid_input(1);
 	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
@@ -78,7 +79,7 @@ int	main(int argc, char **argv)
 	if (!player.mlx)
 	{
 		ft_putstr_fd("Error\nBad MLXing LOL\n", 2);
-		free_all(&player);
+		free_all(&player, -1);
 	}
 	init(&player, &elements);
 	mlxing(&player, &elements);

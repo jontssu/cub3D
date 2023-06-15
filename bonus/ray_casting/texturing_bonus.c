@@ -37,8 +37,6 @@ int	choose_texture(t_dda *dda)
 	int	tex_num;
 
 	if (dda->hit == 2)
-		return (5);
-	if (dda->hit == 3)
 		return (4);
 	if (dda->side == 1)
 	{

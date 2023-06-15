@@ -39,8 +39,8 @@
 # define KEY_OPEN 14 
 
 //Graphics
-# define WIDTH 1024
-# define HEIGHT 768
+# define WIDTH 1080
+# define HEIGHT 301
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
@@ -95,7 +95,7 @@ typedef struct s_player{
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
-	int				texture[6][TEX_HEIGHT * TEX_WIDTH];
+	int				texture[5][TEX_HEIGHT * TEX_WIDTH];
 	int				buf[HEIGHT][WIDTH];
 	int				gun_index;
 	t_img			gun[5];
