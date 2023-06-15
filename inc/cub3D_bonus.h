@@ -39,8 +39,8 @@
 # define KEY_OPEN 14 
 
 //Graphics
-# define WIDTH 300
-# define HEIGHT 300
+# define WIDTH 1024
+# define HEIGHT 768
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define GUN_HEIGHT 140
@@ -136,6 +136,11 @@ typedef struct s_dda
 	int		draw_end;
 
 }					t_dda;
+
+//utils
+int		create_trgb_arr(int arr[4]);
+void	draw_gun(t_player *player);
+void	get_time(t_player *player);
 
 //init
 void	update_gun(t_player *player);

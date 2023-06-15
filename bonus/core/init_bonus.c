@@ -12,10 +12,6 @@
 
 #include "cub3D_bonus.h"
 
-int	create_trgb_arr(int arr[4])
-{
-	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
-}
 
 void	determine_dir(t_player *P, t_parser *elements)
 {

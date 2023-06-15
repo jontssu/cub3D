@@ -12,41 +12,6 @@
 
 #include "cub3D_bonus.h"
 
-void	draw_gun(t_player *player)
-{
-	if (player->shoot)
-	{
-		player->shoot -= player->d_time;
-		if (player->shoot <= 0)
-		{
-			if (player->gun_index >= 4)
-			{
-				player->gun_index = 0;
-				player->shoot = 0;
-			}
-			else
-			{
-				player->gun_index++;
-				player->shoot = 0.05;
-			}
-		}
-	}
-	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, \
-		WIDTH / 2 - 70, HEIGHT - GUN_HEIGHT);
-}
-
-void	get_time(t_player *player)
-{
-	struct timeval	t;
-	double			elapsed;
-
-	gettimeofday(&t, NULL);
-	elapsed = (t.tv_sec - player->time.tv_sec) * 1000;
-	elapsed += (t.tv_usec - player->time.tv_usec) / 1000;
-	player->d_time = elapsed / 1000;
-	player->time = t;
-}
 
 int	core_game(t_player *player)
 {
@@ -104,16 +69,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_invalid_input(1);
-	if (WIDTH < 300 || HEIGHT < 300)
+	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
 	{
-		printf("bad Window size\n");
-		return (1);
+		ft_putstr_fd("Error\nBad window size\n", 2);
+		return (-1);
 	}
 	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
-		printf("mlx_init broke\n");
+		ft_putstr_fd("Error\nBad MLXing LOL\n", 2);
 		free_all(&player);
 	}
 	init(&player, &elements);
