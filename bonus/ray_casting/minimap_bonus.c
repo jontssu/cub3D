@@ -6,44 +6,52 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 09:48:56 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/14 17:28:43 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/15 15:08:09 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 #include <string.h>
 
-char	**copy_2d_array(char **arr)
+char	**calloc_and_copy(t_player *p, char **arr, char **copy, int *ints)
 {
-	int		rows;
-	int		cols;
-	char	**copy;
-	int		i;
+	int	i;
 
-	rows = 0;
-	cols = 0;
-	while (arr[0][cols])
-		cols++;
-	while (arr[rows])
-		rows++;
-	copy = malloc((rows + 1) * sizeof(char *));
-	if (copy == NULL)
-	{
-		fprintf(stderr, "Memory allocation failed.");
-		exit(1);
-	}
 	i = -1;
-	while (++i < rows)
+	while (++i < ints[0])
 	{
-		copy[i] = malloc((cols + 1) * sizeof(char));
+		copy[i] = ft_calloc((ints[1] + 1), sizeof(char));
 		if (copy[i] == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed.");
-			exit(1);
+			ft_putstr_fd("Error\nMemory allocation failed\n", 2);
+			free_double_pointer(copy);
+			free_all(p, -1);
 		}
-		strcpy(copy[i], arr[i]);
+		ft_strlcpy(copy[i], arr[i], ft_strlen(arr[i] + 1));
 	}
-	copy[rows] = NULL;
+	copy[ints[0]] = NULL;
+	return (arr);
+}
+
+char	**copy_2d_array(t_player *p, char **arr)
+{
+	int		ints[2];
+	char	**copy;
+
+	ints[0] = 0;
+	ints[1] = 0;
+	while (arr[0][ints[1]])
+		ints[1]++;
+	while (arr[ints[0]])
+		ints[0]++;
+	copy = ft_calloc((ints[0] + 1), sizeof(char *));
+	if (copy == NULL)
+	{
+		ft_putstr_fd("Error\nMemory allocation failed\n", 2);
+		free(copy);
+		free_all(p, -1);
+	}
+	calloc_and_copy(p, arr, copy, ints);
 	return (copy);
 }
 
