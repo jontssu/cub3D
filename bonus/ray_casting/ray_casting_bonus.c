@@ -51,10 +51,10 @@ void	digital_differential_analysis(t_player *P, t_dda *dda)
 			dda->hit = 1;
 		else if (P->map[dda->map_y][dda->map_x] == 'D')
 			dda->hit = 2;
-		else if (P->map[dda->map_y][dda->map_x] == 'O')
-			dda->hit = 3;
 		if (!dda->hit)
 			P->cpy_map[dda->map_y][dda->map_x] = '/';
+		if (P->map[dda->map_y][dda->map_x] == 'O')
+			P->cpy_map[dda->map_y][dda->map_x] = 'O';
 	}
 }
 

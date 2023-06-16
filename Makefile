@@ -9,7 +9,7 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 #Flags -O2
-FLAGS = -Wall -Werror -Wextra -g -I inc -I libft
+FLAGS = -Wall -Werror -Wextra -g  -fsanitize=address -I inc -I libft
 
 #Direcory locations
 PARSER_DIR = mandatory/parsing/
@@ -32,11 +32,11 @@ _KEYHANDLE := key_handle.c \
 				movement.c
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
 				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
-_CORE := cub3d.c init.c
+_CORE := cub3d.c init.c 
 B_RAYCASTING := $(subst .c,_bonus.c,$(_RAYCASTING)) minimap_bonus.c
 B_KEYHANDLE := $(subst .c,_bonus.c,$(_KEYHANDLE)) mouse_bonus.c
 B_PARSER := $(subst .c,_bonus.c,$(_PARSER))
-B_CORE := $(subst .c,_bonus.c,$(_CORE))
+B_CORE := $(subst .c,_bonus.c,$(_CORE)) utils_bonus.c
 
 SRCS = $(_RAYCASTING) $(_PARSER) $(_KEYHANDLE) $(_CORE)
 BSRCS = $(B_RAYCASTING) $(B_KEYHANDLE) $(B_PARSER) $(B_CORE)

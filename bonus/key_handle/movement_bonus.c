@@ -35,25 +35,29 @@ double	body_move(double dir_1, double dir_2, int key, int reverse)
 
 static void	action_move(t_player *player, double y, double x, int key)
 {
-	double	body_x;
-	double	body_y;
+	double	bod_x;
+	double	bod_y;
 	double	pos_y;
 	double	pos_x;
 
 	pos_y = player->pos_y;
 	pos_x = player->pos_x;
-	body_x = body_move(player->dir_x, player->dir_y, key, 1);
-	body_y = body_move(player->dir_y, player->dir_x, key, -1);
-	if ((player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == '.' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == '.') ||
-		(player->map[(int)(pos_y + y + body_y)][(int)(pos_x + body_x)] == 'O' &&
-		player->map[(int)(pos_y + y + body_y)][(int)(pos_x - body_x)] == 'O'))
+	bod_x = body_move(player->dir_x, player->dir_y, key, 1);
+	bod_y = body_move(player->dir_y, player->dir_x, key, -1);
+	if ((player->map[(int)(pos_y + y + bod_y)][(int)(pos_x + bod_x)] == '.' &&
+		(player->map[(int)(pos_y + y + bod_y)][(int)(pos_x - bod_x)] == '.' ||
+		player->map[(int)(pos_y + y + bod_y)][(int)(pos_x - bod_x)] == 'O')) ||
+		(player->map[(int)(pos_y + y + bod_y)][(int)(pos_x + bod_x)] == 'O' &&
+		(player->map[(int)(pos_y + y + bod_y)][(int)(pos_x - bod_x)] == 'O' ||
+		player->map[(int)(pos_y + y + bod_y)][(int)(pos_x - bod_x)] == '.')))
 		player->pos_y += y;
 	pos_y = player->pos_y;
-	if ((player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == '.' &&
-		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == '.') ||
-		(player->map[(int)(pos_y + body_y)][(int)(pos_x + x + body_x)] == 'O' &&
-		player->map[(int)(pos_y - body_y)][(int)(pos_x + x + body_x)] == 'O'))
+	if ((player->map[(int)(pos_y + bod_y)][(int)(pos_x + x + bod_x)] == '.' &&
+		(player->map[(int)(pos_y - bod_y)][(int)(pos_x + x + bod_x)] == '.' ||
+		player->map[(int)(pos_y - bod_y)][(int)(pos_x + x + bod_x)] == 'O')) ||
+		(player->map[(int)(pos_y + bod_y)][(int)(pos_x + x + bod_x)] == 'O' &&
+		(player->map[(int)(pos_y - bod_y)][(int)(pos_x + x + bod_x)] == 'O' ||
+		player->map[(int)(pos_y - bod_y)][(int)(pos_x + x + bod_x)] == '.')))
 		player->pos_x += x;
 }
 

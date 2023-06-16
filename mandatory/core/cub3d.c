@@ -51,11 +51,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_invalid_input(1);
+	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
+	{
+		ft_putstr_fd("Error\nBad window size\n", 2);
+		return (-1);
+	}
 	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
-		printf("mlx_init broke\n");
+		ft_putstr_fd("Error\nMLXing broke LOL xd\n", 2);
 		free_all(&player);
 	}
 	init(&player, &elements);

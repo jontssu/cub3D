@@ -79,19 +79,29 @@ char	**remove_spaces_from_elements(char **split)
 	int	i;
 
 	i = -1;
-	while (split[++i] && i < 8)
+	while (split[++i] && i < 7)
 		split[i] = remove_spaces(split[i]);
 	return (split);
 }
+
+// void	compare_string_and_split(char **split, char *compare)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while 
+// }
 
 int	parser(char *file, t_parser *elements)
 {
 	char	*content;
 	char	**split;
+	// char	*compare;
 
 	init_elements(elements);
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
+	// read_file_to_content(file, &compare);
 	split = ft_split(content, '\n');
 	if (!split)
 		error_malloc(content);
@@ -99,7 +109,8 @@ int	parser(char *file, t_parser *elements)
 	split = remove_spaces_from_elements(split);
 	set_elements(split, elements);
 	check_elements(elements);
-	get_map(&split[8], elements);
+	get_map(&split[7], elements);
+	// compare_string_and_split(split, compare);
 	free_double_pointer(split);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);

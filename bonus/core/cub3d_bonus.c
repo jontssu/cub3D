@@ -12,41 +12,6 @@
 
 #include "cub3D_bonus.h"
 
-void	draw_gun(t_player *player)
-{
-	if (player->shoot)
-	{
-		player->shoot -= player->d_time;
-		if (player->shoot <= 0)
-		{
-			if (player->gun_index >= 4)
-			{
-				player->gun_index = 0;
-				player->shoot = 0;
-			}
-			else
-			{
-				player->gun_index++;
-				player->shoot = 0.05;
-			}
-		}
-	}
-	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, WIDTH / 2 - 70, HEIGHT / 2 + 100);
-}
-
-void	get_time(t_player *player)
-{
-	struct timeval	t;
-	double			elapsed;
-
-	gettimeofday(&t, NULL);
-	elapsed = (t.tv_sec - player->time.tv_sec) * 1000;
-	elapsed += (t.tv_usec - player->time.tv_usec) / 1000;
-	player->d_time = elapsed / 1000;
-	player->time = t;
-}
-
 int	core_game(t_player *player)
 {
 	if (player->cpy_map)
@@ -54,8 +19,7 @@ int	core_game(t_player *player)
 	player->cpy_map = copy_2d_array(player, player->map);
 	ray_cast(player);
 	get_time(player);
-	if (WIDTH > 140 && HEIGHT > 140)
-		draw_gun(player);
+	draw_gun(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);
@@ -85,7 +49,7 @@ void	mlxing(t_player *player, t_parser *elements)
 	player->img.data = (int *)mlx_get_data_addr(player->img.img, \
 	&player->img.bpp, &player->img.size_l, &player->img.endian);
 	ft_bzero(player->buf, WIDTH * HEIGHT);
-	ft_bzero(player->texture, 8 * TEX_HEIGHT * TEX_WIDTH);
+	ft_bzero(player->texture, 5 * TEX_HEIGHT * TEX_WIDTH);
 	load_texture(player, elements);
 	mlx_hook(player->mlx_win, 17, 0, free_all, player);
 	mlx_put_image_to_window(player->mlx, player->mlx_win, \
@@ -102,13 +66,19 @@ int	main(int argc, char **argv)
 	t_player	player;
 	t_parser	elements;
 
+	printf("#");
 	if (argc != 2)
 		error_invalid_input(1);
+	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
+	{
+		ft_putstr_fd("Error\nBad window size\n", 2);
+		return (-1);
+	}
 	parser(argv[1], &elements);
 	player.mlx = mlx_init();
 	if (!player.mlx)
 	{
-		printf("mlx_init broke\n");
+		ft_putstr_fd("Error\nBad MLXing LOL\n", 2);
 		free_all(&player, -1);
 	}
 	init(&player, &elements);

@@ -32,13 +32,13 @@ void	determine_dir(t_player *P, t_parser *elements)
 	}
 	else if (elements->orientation == 'W')
 	{
-		P->dir_x = 1;
-		P->plane_y = -0.66;
+		P->dir_x = -1;
+		P->plane_y = 0.66;
 	}
 	else if (elements->orientation == 'E')
 	{
-		P->dir_x = -1;
-		P->plane_y = 0.66;
+		P->dir_x = 1;
+		P->plane_y = -0.66;
 	}
 }
 
@@ -73,7 +73,7 @@ void	load_image(t_player *P, int *texture, char *path, t_img *img)
 	&img->img_width, &img->img_height);
 	if (!img->img)
 	{
-		printf("could not load image %s\n", path);
+		ft_putstr_fd("Error\nCould not load image\n", 2);
 		free_all(P);
 	}
 	img->data = (int *)mlx_get_data_addr(img->img, \

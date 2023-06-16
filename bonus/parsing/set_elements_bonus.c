@@ -34,9 +34,9 @@ void	set_int_array(char *str, int *int_arr, t_parser *elements, char **split)
 
 void	if_not_element(t_parser *elements, char **split)
 {
-	if (!elements->north || !elements->south || !elements->west \
-	|| !elements->east || !elements->door_o || !elements->door_c \
-	|| elements->ceiling[3] == -1 || elements->floor[3] == -1)
+	if (!elements->north || !elements->south || !elements->west
+		|| !elements->east || !elements->door_c
+		|| elements->ceiling[3] == -1 || elements->floor[3] == -1)
 		error_elements(elements, split, 2);
 }
 
@@ -55,8 +55,6 @@ int	set_elements(char **split, t_parser *elements)
 			elements->west = ft_strdup(&split[i][4]);
 		else if (ft_strncmp(split[i], "EA./", 4) == 0)
 			elements->east = ft_strdup(&split[i][4]);
-		else if (ft_strncmp(split[i], "D_O./", 4) == 0)
-			elements->door_o = ft_strdup(&split[i][5]);
 		else if (ft_strncmp(split[i], "D_C./", 4) == 0)
 			elements->door_c = ft_strdup(&split[i][5]);
 		else if (split[i][0] == 'F' && ft_isdigit(split[i][1]))

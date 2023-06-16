@@ -18,6 +18,7 @@ void	free_elements(t_parser *elements)
 	free(elements->south);
 	free(elements->west);
 	free(elements->east);
+	free(elements->door_c);
 	free_double_pointer(elements->map);
 }
 
