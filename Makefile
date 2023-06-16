@@ -31,7 +31,8 @@ _RAYCASTING := ray_casting.c \
 _KEYHANDLE := key_handle.c \
 				movement.c
 _PARSER := parsing.c error.c set_elements.c check_elements.c \
-				get_map.c map_check.c valid_chars_check.c flood_fill.c helpers.c
+				get_map.c map_check.c valid_chars_check.c flood_fill.c \
+				helpers.c disconnect_check.c
 _CORE := cub3d.c init.c 
 B_RAYCASTING := $(subst .c,_bonus.c,$(_RAYCASTING)) minimap_bonus.c
 B_KEYHANDLE := $(subst .c,_bonus.c,$(_KEYHANDLE)) mouse_bonus.c

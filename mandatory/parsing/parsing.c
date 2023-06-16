@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:40:35 by jole              #+#    #+#             */
-/*   Updated: 2023/06/01 18:36:48 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/16 06:07:18 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,12 @@ int	parser(char *file, t_parser *elements)
 {
 	char	*content;
 	char	**split;
+	char	*compare;
 
 	init_elements(elements);
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
+	read_file_to_content(file, &compare);
 	split = ft_split(content, '\n');
 	if (!split)
 		error_malloc(content);
@@ -98,6 +100,8 @@ int	parser(char *file, t_parser *elements)
 	set_elements(split, elements);
 	check_elements(elements);
 	get_map(&split[6], elements);
+	compare_string_and_split(split, compare, elements);
+	free(compare);
 	free_double_pointer(split);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);

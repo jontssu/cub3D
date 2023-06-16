@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:24 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/16 04:29:39 by jon              ###   ########.fr       */
+/*   Updated: 2023/06/16 05:11:02 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	main(int argc, char **argv)
 	t_player	player;
 	t_parser	elements;
 
-	printf("#");
 	if (argc != 2)
 		error_invalid_input(1);
 	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
@@ -75,13 +74,13 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	parser(argv[1], &elements);
-	// player.mlx = mlx_init();
-	// if (!player.mlx)
-	// {
-	// 	ft_putstr_fd("Error\nBad MLXing LOL\n", 2);
-	// 	free_all(&player, -1);
-	// }
-	// init(&player, &elements);
-	// mlxing(&player, &elements);
+	player.mlx = mlx_init();
+	if (!player.mlx)
+	{
+		ft_putstr_fd("Error\nBad MLXing LOL\n", 2);
+		free_all(&player, -1);
+	}
+	init(&player, &elements);
+	mlxing(&player, &elements);
 	return (0);
 }
