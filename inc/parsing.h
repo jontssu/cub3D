@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:34 by jole              #+#    #+#             */
-/*   Updated: 2023/06/02 15:31:46 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/16 06:05:45 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	check_elements(t_parser *elements);
 void	map_check(t_parser *elements);
 void	valid_chars_check(t_parser *elements);
 void	flood_fill(t_parser *elements, int y, int x);
+void	compare_string_and_split(char **split, char *cmp, t_parser *elements);
 
 //Error handling
 void	error_invalid_input(int error);

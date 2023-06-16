@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:32:52 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/16 04:49:32 by jon              ###   ########.fr       */
+/*   Updated: 2023/06/16 05:59:08 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	error_elements(t_parser *elements, char **split, int error)
 	else if (error == 2)
 		ft_putstr_fd("Error\nIncorrect amount of elements\n", 2);
 	else if (error == 3)
-		ft_putstr_fd("Error\nNewline inside map\n", 2);
+		ft_putstr_fd("Error\nThere is a disconnected part of the map\n", 2);
 	if (elements->north)
 		free(elements->north);
 	if (elements->south)

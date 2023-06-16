@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:39 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/16 04:58:31 by jon              ###   ########.fr       */
+/*   Updated: 2023/06/16 06:11:59 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,33 +84,6 @@ char	**remove_spaces_from_elements(char **split)
 	return (split);
 }
 
-void	compare_string_and_split(char **split, char *cmp, t_parser *elements)
-{
-	int		len;
-	char	*tmp;
-
-	tmp = cmp;
-	while (cmp)
-	{
-		len = 0;
-		while (*cmp && *cmp != '\n')
-			len++;
-		if (len > 4 && ft_strncmp(cmp, &split[7], len + 1))
-			break ;
-		cmp += len + 1;
-	}
-	cmp += len + 1;
-	while (cmp + 1)
-	{
-		if (cmp[0] == '\n' && cmp[1] == '\n')
-		{
-			free(tmp);	
-			error_elements(elements, split, 3);
-		}
-		cmp++;
-	}
-}
-
 int	parser(char *file, t_parser *elements)
 {
 	char	*content;
@@ -130,6 +103,7 @@ int	parser(char *file, t_parser *elements)
 	check_elements(elements);
 	get_map(&split[7], elements);
 	compare_string_and_split(split, compare, elements);
+	free(compare);
 	free_double_pointer(split);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
