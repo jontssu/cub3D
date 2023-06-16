@@ -12,13 +12,14 @@
 
 #include "parsing_bonus.h"
 
-void	check_newlines(char **split, char *cmp, t_parser *elements, int i)
+void	check_newlines(char **split, char *cmp, t_parser *elements)
 {
 	int	newlines;
 	int	map_len;
+	int	i;
 
+	i = 0;
 	newlines = 0;
-	map_len = 0;
 	map_len = ft_strlen(&cmp[i]);
 	while (cmp[i + --map_len] == '\n')
 		newlines++;
@@ -44,10 +45,10 @@ void	compare_string_and_split(char **split, char *cmp, t_parser *elements)
 			len++;
 			i++;
 		}
-		if (len > 4 && !ft_strncmp(&cmp[i - len], split[7], len))
+		if (len > 2 && !ft_strncmp(&cmp[i - len], split[7], len))
 			break ;
 		i++;
 	}
-	i -= len - 1;
-	check_newlines(split, &cmp[i], elements, i);
+	i -= len;
+	check_newlines(split, &cmp[i], elements);
 }
