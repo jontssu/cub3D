@@ -6,7 +6,7 @@
 /*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:39 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/16 04:53:34 by jon              ###   ########.fr       */
+/*   Updated: 2023/06/16 04:58:31 by jon              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,12 @@ int	parser(char *file, t_parser *elements)
 {
 	char	*content;
 	char	**split;
-	// char	*compare;
+	char	*compare;
 
 	init_elements(elements);
 	check_config_file_name(file);
 	read_file_to_content(file, &content);
-	// read_file_to_content(file, &compare);
+	read_file_to_content(file, &compare);
 	split = ft_split(content, '\n');
 	if (!split)
 		error_malloc(content);
@@ -129,7 +129,7 @@ int	parser(char *file, t_parser *elements)
 	set_elements(split, elements);
 	check_elements(elements);
 	get_map(&split[7], elements);
-	// compare_string_and_split(split, compare);
+	compare_string_and_split(split, compare, elements);
 	free_double_pointer(split);
 	if (elements->max_heigth < 3 || elements->max_width < 3)
 		error_invalid_map(elements, 8);
