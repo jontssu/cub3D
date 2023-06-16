@@ -9,7 +9,7 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 #Flags -O2
-FLAGS = -Wall -Werror -Wextra -g  -fsanitize=address -I inc -I libft
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I inc -I libft
 
 #Direcory locations
 PARSER_DIR = mandatory/parsing/

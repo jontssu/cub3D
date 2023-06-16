@@ -1,7 +1,11 @@
 
+
+
 NO ./textures/bluestone.xpm
 WE  . /text ures/eagle.xpm
 SO ./textures/eagle.xpm
+
+
 D_C ./textures/bluestone.xpm
 EA ./textures/redbrick.xp m
 

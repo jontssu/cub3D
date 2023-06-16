@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leklund <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:33:39 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/04 06:33:40 by leklund          ###   ########.fr       */
+/*   Updated: 2023/06/16 04:53:34 by jon              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,32 @@ char	**remove_spaces_from_elements(char **split)
 	return (split);
 }
 
-// void	compare_string_and_split(char **split, char *compare)
-// {
-// 	int	i;
+void	compare_string_and_split(char **split, char *cmp, t_parser *elements)
+{
+	int		len;
+	char	*tmp;
 
-// 	i = 0;
-// 	while 
-// }
+	tmp = cmp;
+	while (cmp)
+	{
+		len = 0;
+		while (*cmp && *cmp != '\n')
+			len++;
+		if (len > 4 && ft_strncmp(cmp, &split[7], len + 1))
+			break ;
+		cmp += len + 1;
+	}
+	cmp += len + 1;
+	while (cmp + 1)
+	{
+		if (cmp[0] == '\n' && cmp[1] == '\n')
+		{
+			free(tmp);	
+			error_elements(elements, split, 3);
+		}
+		cmp++;
+	}
+}
 
 int	parser(char *file, t_parser *elements)
 {

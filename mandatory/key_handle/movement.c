@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jon <jon@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 07:50:51 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/02 17:39:17 by jole             ###   ########.fr       */
+/*   Updated: 2023/06/16 04:06:53 by jon              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 double	body_move(double dir_1, double dir_2, int key, int reverse)
 {
-	double	body;
-
-	body = 0;
 	if (dir_1 < 0 && key == KEY_W)
 		return (-BODY);
 	else if (dir_1 >= 0 && key == KEY_W)
