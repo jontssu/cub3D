@@ -36,8 +36,8 @@
 # define KEY_ESC 53
 
 //Graphics
-# define WIDTH 1850
-# define HEIGHT 1080
+# define WIDTH 1680
+# define HEIGHT 900
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 

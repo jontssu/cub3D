@@ -3,7 +3,7 @@ WE  . /text ures/eagle.xpm
 SO ./textures/eagle.xpm
 
 
-D_C ./textures/bluestone.xpm
+D_C ./textures/pillar.xpm
 EA ./textures/redbrick.xp m
 
 C 0, 0, 0
@@ -26,7 +26,6 @@ F 128,128, 128
 100001010100001
 100000000000001
 100000000000001
-
 100000000000001
 100000000000001
 100000000000001

@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_invalid_input(1);
-	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1850 || HEIGHT > 1080))
+	if ((WIDTH < 300 || HEIGHT < 300) || (WIDTH > 1680 || HEIGHT > 900))
 	{
 		ft_putstr_fd("Error\nBad window size\n", 2);
 		return (-1);
