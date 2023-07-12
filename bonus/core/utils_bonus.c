@@ -17,6 +17,27 @@ int	create_trgb_arr(int arr[4])
 	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
 }
 
+void	actually_draw_gun(t_player *P)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	y = 0;
+	while (y < GUN_HEIGHT)
+	{
+		x = 0;
+		while (x < GUN_WIDTH)
+		{
+			color = (int)P->gun[P->gun_index][GUN_HEIGHT * y + x];
+			if ((unsigned int)color != 0xFF000000)
+				P->buf[HEIGHT - GUN_HEIGHT + y][WIDTH / 2 - 70 + x] = color;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_gun(t_player *player)
 {
 	if (player->shoot)
@@ -36,9 +57,7 @@ void	draw_gun(t_player *player)
 			}
 		}
 	}
-	mlx_put_image_to_window(player->mlx, player->mlx_win, \
-		player->gun[player->gun_index].img, \
-		WIDTH / 2 - 70, HEIGHT - GUN_HEIGHT);
+	actually_draw_gun(player);
 }
 
 void	get_time(t_player *player)

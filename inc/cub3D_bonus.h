@@ -98,7 +98,7 @@ typedef struct s_player{
 	int				texture[5][TEX_HEIGHT * TEX_WIDTH];
 	int				buf[HEIGHT][WIDTH];
 	int				gun_index;
-	t_img			gun[5];
+	int				gun[5][GUN_HEIGHT * GUN_WIDTH];
 	double			shoot;
 	double			d_time;
 	struct timeval	time;
