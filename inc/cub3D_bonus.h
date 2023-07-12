@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 07:42:43 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/15 14:57:43 by jole             ###   ########.fr       */
+/*   Updated: 2023/07/12 13:56:59 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@
 # define KEY_RIGHT 123
 # define KEY_ESC 53
 # define KEY_OPEN 14 
+# define KEY_SHOOT 49
+
+//Linux key values
+/*
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_LEFT 65363
+# define KEY_RIGHT 65361
+# define KEY_ESC 65306
+# define KEY_OPEN 101
+# define KEY_SHOOT 32*/
+
 
 //Graphics
 # define WIDTH 1680

@@ -6,7 +6,7 @@
 /*   By: jole <jole@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 06:31:54 by leklund           #+#    #+#             */
-/*   Updated: 2023/06/15 14:59:51 by jole             ###   ########.fr       */
+/*   Updated: 2023/07/12 13:54:43 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	key_pressed(int keycode, t_player *param)
 		free_all(param, 0);
 	else if (keycode == KEY_OPEN)
 		param->open_door = 1;
-	else if (keycode == 49)
+	else if (keycode == KEY_SHOOT)
 		param->shoot = param->d_time + 0.05;
 	return (0);
 }
