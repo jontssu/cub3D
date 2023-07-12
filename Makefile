@@ -54,6 +54,7 @@ $(LIB):
 # @make bonus -C libft
 $(NAME):  $(LIB) $(OBJS_DIR) $(OBJS)
 	@cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
+	#@cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft -Lminilibx-linux -lmlx -L/usr/X11/include/../lib -lXext -lX11 -lm
 	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR):
@@ -63,18 +64,22 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o: $(PARSER_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR)%.o: $(RAYCASTING_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR)%.o: $(KEYHANDLE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(OBJS_DIR)%.o: $(CORE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 clean:
@@ -99,6 +104,7 @@ bonus: $(NAME_BONUS)
 
 $(NAME_BONUS):  $(LIB) $(BOBJS_DIR) $(BOBJS)
 	@cc $(FLAGS) $(BOBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft
+	#@cc $(FLAGS) $(BOBJS) -lmlx -framework OpenGL -framework AppKit -o $@ -L ./libft -lft -Lminilibx-linux -lmlx -L/usr/X11/include/../lib -lXext -lX11 -lm
 	@echo "$(COLOUR_GREEN)$@ created$(COLOUR_END)"
 
 $(BOBJS_DIR):
@@ -108,16 +114,20 @@ $(BOBJS_DIR):
 
 $(BOBJS_DIR)%.o: $(BRAYCASTING_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(BOBJS_DIR)%.o: $(BKEYHANDLE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(BOBJS_DIR)%.o: $(BCORE_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
 
 $(BOBJS_DIR)%.o: $(BPARSER_DIR)%.c
 	@cc $(FLAGS) -c $< -o $@ 
+	#@cc $(FLAGS) -Iminilibx-linux -c $< -o $@ 
 	@echo "$(COLOUR_BLUE)$@ created$(COLOUR_END)"
