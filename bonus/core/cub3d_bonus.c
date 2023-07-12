@@ -18,8 +18,6 @@ int	core_game(t_player *player)
 		free_double_pointer(player->cpy_map);
 	player->cpy_map = copy_2d_array(player, player->map);
 	ray_cast(player);
-	get_time(player);
-	draw_gun(player);
 	player_move(player);
 	player_rotate(player, player->rotate_left);
 	player_rotate(player, player->rotate_right);

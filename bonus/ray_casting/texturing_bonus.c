@@ -18,6 +18,8 @@ void	draw(t_player *P)
 	int	x;
 
 	y = 0;
+	get_time(P);
+	draw_gun(P);
 	while (y < HEIGHT)
 	{
 		x = 0;
