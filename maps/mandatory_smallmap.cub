@@ -4,8 +4,8 @@ WE  . /text ures/eagle.xpm
 SO ./text    ur es/greystone.     xpm
 EA ./textures/redbrick.xp m
 
-F 128,128, 128
-C 0, 0, 0
+F 128,128,128 
+C 0,153,153
 
 
 11111

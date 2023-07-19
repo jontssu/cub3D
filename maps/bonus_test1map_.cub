@@ -6,9 +6,8 @@ SO ./textures/eagle.xpm
 D_C ./textures/pillar.xpm
 EA ./textures/redbrick.xp m
 
-C 0, 0, 0
-
-F 128,128, 128
+F 128,128,128 
+C 0,153,153
 
 
 111111111111111

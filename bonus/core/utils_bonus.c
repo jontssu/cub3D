@@ -14,7 +14,7 @@
 
 int	create_trgb_arr(int arr[4])
 {
-	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[3]);
+	return (0 << 24 | arr[0] << 16 | arr[1] << 8 | arr[2]);
 }
 
 void	actually_draw_gun(t_player *P)
