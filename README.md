@@ -2,6 +2,8 @@
 
 Cub3D is a graphic game project inspired by the world-famous 90's game Wolfenstein 3D, which was the first FPS ever. The project is about creating a dynamic view inside a maze. The player can look around and navigate through the maze.
 
+![](https://github.com/jontssu/cub3D/blob/master/Peek%202024-01-09%2016-46.gif)
+
 This project uses the concepts of ray-casting and was implemented in C language.
 
 ## Prerequisites
